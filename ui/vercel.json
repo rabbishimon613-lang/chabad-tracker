@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "builds": [{ "src": "**/*", "use": "@vercel/static" }],
+  "headers": [
+    { "source": "/public/chabad.db", "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }] }
+  ]
+}

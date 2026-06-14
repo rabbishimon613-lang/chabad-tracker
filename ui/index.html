@@ -1,0 +1,3169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<title>CHABAD TRACKER · entity surveillance</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" />
+
+<style>
+  :root {
+    --bg:        #0A0B0D;
+    --surface:   #14161A;
+    --line:      #1F232A;
+    --text:      #E6E4DC;
+    --mute:      #6E737A;
+    --accent:    #E03E3E;
+
+    --sev-low:   #C8A93E;
+    --sev-mid:   #D26C2B;
+    --sev-high:  var(--accent);
+
+    --fs-xs:   12px;
+    --fs-sm:   14px;
+    --fs-base: 16px;
+    --fs-lg:   20px;
+    --fs-xl:   24px;
+
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --sans: 'Public Sans', system-ui, sans-serif;
+  }
+  @media (min-width: 768px) {
+    :root { --fs-xs:11px; --fs-sm:13px; --fs-base:15px; --fs-lg:18px; --fs-xl:24px; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--text); overflow: hidden; }
+  body { font: 400 var(--fs-base)/1.45 var(--sans); -webkit-font-smoothing: antialiased; }
+  button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+  a { color: inherit; }
+
+  /* ----- TOP BAR (two-row) ----- */
+  :root { --topbar-h: 88px; }
+  @media (max-width: 1199px) { :root { --topbar-h: 72px; } }
+  #topbar {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    z-index: 30;
+    padding-top: env(safe-area-inset-top);
+    height: calc(var(--topbar-h) + env(safe-area-inset-top));
+    display: flex; flex-direction: column;
+  }
+  #topbar .row1 {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 12px;
+    height: 44px;
+    font: 500 var(--fs-sm)/1.2 var(--mono);
+    letter-spacing: 0.04em; text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+  }
+  #topbar .row2 {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px;
+    height: 44px;
+  }
+  @media (max-width: 1199px) {
+    #topbar .row1, #topbar .row2 { height: 36px; padding: 4px 10px; }
+  }
+  #topbar .grow { flex: 1; }
+  #topbar .mode-switch { display: flex; gap: 0; }
+  #topbar .mode-switch button {
+    width: 52px; height: 40px;
+    border: 1px solid var(--line);
+    margin-left: -1px;
+    cursor: pointer; background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    padding: 6px; transition: background 0.15s;
+    position: relative; z-index: 0;
+  }
+  #topbar .mode-switch button:first-child { margin-left: 0; }
+  #topbar .mode-switch button img {
+    width: 26px; height: 26px; object-fit: contain;
+    filter: invert(1) opacity(0.45);
+    transition: filter 0.15s;
+  }
+  #topbar .mode-switch button[data-active="1"] {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.5);
+    z-index: 1;
+  }
+  #topbar .mode-switch button[data-active="1"] img { filter: invert(1) opacity(1); }
+  #topbar .mode-switch button:hover { background: rgba(255,255,255,0.13); z-index: 1; }
+  #topbar .mode-switch button:hover img { filter: invert(1) opacity(0.8); }
+  #topbar .brand { color: var(--text); font: 600 var(--fs-sm) var(--mono); }
+  #topbar .sep { color: var(--mute); }
+  #topbar a.about { color: var(--mute); text-decoration: none; border-bottom: 1px dotted var(--line); }
+  #topbar a.about:hover { color: var(--text); border-bottom-color: var(--text); }
+  #topbar form.search { flex: 1; display: flex; }
+  #topbar input.search {
+    flex: 1; min-width: 0;
+    background: var(--surface); border: 1px solid var(--line);
+    color: var(--text); padding: 6px 12px;
+    font: 400 var(--fs-sm) var(--mono); letter-spacing: 0.02em;
+    text-transform: none;
+    outline: none;
+  }
+  #topbar input.search::placeholder { color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+  #topbar input.search:focus { border-color: var(--text); }
+  #search-dropdown {
+    position: fixed; top: var(--topbar-h); left: 0; right: 0;
+    background: var(--surface); border-bottom: 1px solid var(--line);
+    max-height: 60vh; overflow-y: auto; z-index: 25;
+    display: none;
+  }
+  #search-dropdown.open { display: block; }
+  #search-dropdown .o-row {
+    padding: 10px 14px; cursor: pointer;
+    display: grid; grid-template-columns: 80px 1fr; gap: 12px; align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  #search-dropdown .o-row:last-child { border-bottom: 0; }
+  #search-dropdown .o-row[data-active="1"], #search-dropdown .o-row:hover { background: rgba(255,255,255,0.04); }
+  #search-dropdown .o-row .o-type {
+    font: 500 var(--fs-xs) var(--mono); color: var(--mute);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  #search-dropdown .o-row .o-label { font: 400 var(--fs-sm) var(--sans); color: var(--text); }
+  #search-dropdown .empty { padding: 14px; color: var(--mute); font: 400 var(--fs-sm) var(--mono); text-align: center; }
+
+  /* ----- MAP ----- */
+  #map {
+    position: fixed;
+    top: var(--topbar-h);
+    left: 0; right: 0; bottom: 0;
+    background: var(--bg);
+  }
+  .maplibregl-canvas-container { cursor: crosshair; }
+  .maplibregl-ctrl-attrib { background: var(--surface) !important; color: var(--mute) !important; font: 400 10px/1.2 var(--mono) !important; }
+  .maplibregl-ctrl-attrib a { color: var(--mute) !important; }
+  .maplibregl-ctrl-group { background: var(--surface) !important; border: 1px solid var(--line) !important; }
+  .maplibregl-ctrl-group button { background-color: var(--surface) !important; }
+  .maplibregl-ctrl-icon { filter: invert(0.85) !important; }
+
+  /* ----- LEGEND ----- */
+  #legend {
+    position: fixed;
+    top: calc(var(--topbar-h) + 110px);
+    right: 10px;
+    z-index: 15;
+    display: flex; flex-direction: column; gap: 4px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 6px;
+  }
+  #legend .chip {
+    font: 500 var(--fs-xs) var(--mono);
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--mute);
+    display: flex; align-items: center; gap: 6px;
+    min-width: 78px; justify-content: space-between;
+    cursor: pointer;
+  }
+  #legend .chip .dot { width: 8px; height: 8px; display: inline-block; }
+  #legend .chip[data-on="1"] { color: var(--text); }
+  #legend .chip[data-on="0"] { opacity: 0.4; }
+  #legend .chip[data-band="red"] .dot    { background: var(--sev-high); }
+  #legend .chip[data-band="orange"] .dot { background: var(--sev-mid); }
+  #legend .chip[data-band="yellow"] .dot { background: var(--sev-low); }
+  #legend .chip[data-band="black"] .dot  { background: #2A2E36; }
+  #legend .chip[data-on="1"][data-band="red"]    { border-color: var(--sev-high); }
+  #legend .chip[data-on="1"][data-band="orange"] { border-color: var(--sev-mid); }
+  #legend .chip[data-on="1"][data-band="yellow"] { border-color: var(--sev-low); }
+  #legend .n { color: var(--mute); }
+
+  /* ----- HOVER CARD ----- */
+  #hover {
+    position: fixed; pointer-events: none; z-index: 25;
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 8px 10px; min-width: 200px; max-width: 280px;
+    font: 400 var(--fs-xs)/1.35 var(--sans);
+    display: none;
+  }
+  #hover .h-name { font: 500 var(--fs-sm) var(--sans); color: var(--text); margin-bottom: 2px; }
+  #hover .h-loc { color: var(--mute); font: 400 var(--fs-xs) var(--mono); }
+  #hover .h-foot { margin-top: 6px; display: flex; gap: 8px; align-items: center; font: 500 var(--fs-xs) var(--mono); }
+  #hover .h-sev { padding: 1px 5px; border: 1px solid; text-transform: uppercase; letter-spacing: 0.04em; }
+  #hover .h-sev[data-band="red"]    { color: var(--sev-high); border-color: var(--sev-high); }
+  #hover .h-sev[data-band="orange"] { color: var(--sev-mid);  border-color: var(--sev-mid); }
+  #hover .h-sev[data-band="yellow"] { color: var(--sev-low);  border-color: var(--sev-low); }
+  #hover .h-sev[data-band="black"]  { color: var(--mute);     border-color: var(--mute); }
+
+  /* ----- OMNIBOX ----- */
+  #omni {
+    position: fixed; inset: 0; z-index: 40;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: flex-start; justify-content: center;
+    padding-top: 12vh;
+  }
+  #omni.open { display: flex; }
+  #omni .box {
+    width: min(560px, 92vw);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    display: flex; flex-direction: column;
+  }
+  #omni input {
+    width: 100%; padding: 14px 16px;
+    background: transparent; border: 0; outline: none; color: var(--text);
+    font: 400 var(--fs-lg) var(--sans);
+    border-bottom: 1px solid var(--line);
+  }
+  #omni input::placeholder { color: var(--mute); }
+  #omni .results { max-height: 50vh; overflow-y: auto; }
+  #omni .o-row {
+    padding: 10px 14px; cursor: pointer;
+    display: grid; grid-template-columns: 70px 1fr; gap: 10px; align-items: baseline;
+    border-bottom: 1px solid var(--line);
+  }
+  #omni .o-row:last-child { border-bottom: 0; }
+  #omni .o-row[data-active="1"] { background: rgba(255,255,255,0.04); }
+  #omni .o-row .o-type {
+    font: 500 var(--fs-xs) var(--mono); color: var(--mute);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  #omni .o-row .o-label { font: 400 var(--fs-sm) var(--sans); color: var(--text); }
+  #omni .empty { padding: 16px; color: var(--mute); font: 400 var(--fs-sm) var(--mono); text-align: center; }
+
+  /* ----- BOTTOM SHEET ----- */
+  #sheet {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    transform: translateY(calc(100% - 96px));
+    transition: transform 100ms cubic-bezier(.2,0,.2,1);
+    z-index: 20;
+    height: 88vh;
+    padding-bottom: env(safe-area-inset-bottom);
+    display: flex; flex-direction: column;
+  }
+  #sheet[data-detent="half"] { transform: translateY(60%); }
+  #sheet[data-detent="full"] { transform: translateY(0); }
+  #sheet[data-dragging="1"] { transition: none; }
+  #sheet .handle-row {
+    padding: 14px 0 10px 0;
+    display: flex; justify-content: center; align-items: center;
+    cursor: grab; touch-action: none;
+    user-select: none; -webkit-user-select: none;
+    min-height: 32px;
+  }
+  #sheet .handle-row:active { cursor: grabbing; }
+  #sheet header { cursor: grab; touch-action: none; user-select: none; }
+  #sheet .handle {
+    width: 48px; height: 5px; background: var(--mute); border-radius: 3px;
+  }
+  #sheet header {
+    padding: 12px 16px 12px 16px;
+    border-bottom: 1px solid var(--line);
+    font: 600 var(--fs-sm)/1.2 var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+  }
+  #sheet header .id { color: var(--mute); font-weight: 400; }
+  #sheet header .grow { flex: 1; }
+  #sheet header .close, #sheet header .back {
+    color: var(--mute); font-family: var(--mono); font-size: var(--fs-sm);
+    width: 28px; height: 28px; display: inline-flex;
+    align-items: center; justify-content: center;
+  }
+  #sheet .body {
+    overflow-y: auto;
+    flex: 1;
+    padding: 12px 16px 24px 16px;
+  }
+
+  /* Sheet — list rows */
+  .row {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: baseline;
+    cursor: pointer;
+  }
+  .row:last-child { border-bottom: 0; }
+  .row:hover { background: rgba(255,255,255,0.04); }
+  .row:hover .name { color: var(--accent); }
+  .row[data-href]:hover .name { text-decoration: underline; text-underline-offset: 3px; }
+  .row .id { font: 400 var(--fs-xs) var(--mono); color: var(--mute); letter-spacing: 0.04em; }
+  .row .name { font: 500 var(--fs-base) var(--sans); color: var(--text); transition: color 80ms; }
+  .row .name .city { color: var(--mute); font-weight: 400; font-size: var(--fs-sm); }
+  .row .sev {
+    font: 600 var(--fs-xs) var(--mono); padding: 2px 6px;
+    border: 1px solid var(--line);
+    text-transform: uppercase; letter-spacing: 0.04em; color: var(--mute);
+  }
+  .row .sev[data-band="yellow"] { color: var(--sev-low); border-color: var(--sev-low); }
+  .row .sev[data-band="orange"] { color: var(--sev-mid); border-color: var(--sev-mid); }
+  .row .sev[data-band="red"]    { color: var(--sev-high); border-color: var(--sev-high); }
+
+  /* Sheet — dossier */
+  .dossier h1 {
+    font: 500 var(--fs-xl)/1.2 var(--sans);
+    margin-bottom: 4px;
+  }
+  .dossier .sub {
+    font: 400 var(--fs-sm) var(--mono); color: var(--mute);
+    letter-spacing: 0.02em; margin-bottom: 16px;
+  }
+  .dossier .badge-row {
+    display: flex; gap: 8px; margin: 12px 0 20px 0; flex-wrap: wrap;
+  }
+  .dossier .badge {
+    font: 600 var(--fs-xs) var(--mono); padding: 4px 8px;
+    border: 1px solid var(--line); text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--mute);
+  }
+  .dossier .badge.accent { color: var(--accent); border-color: var(--accent); }
+  .dossier .badge.sev[data-band="yellow"]  { color: var(--sev-low);  border-color: var(--sev-low); }
+  .dossier .badge.sev[data-band="orange"]  { color: var(--sev-mid);  border-color: var(--sev-mid); }
+  .dossier .badge.sev[data-band="red"]     { color: var(--sev-high); border-color: var(--sev-high); }
+  .dossier .badge.warn { color: var(--sev-mid); border-color: var(--sev-mid); }
+  .dossier section {
+    border-top: 1px solid var(--line);
+    padding: 16px 0;
+  }
+  .dossier section h2 {
+    font: 600 var(--fs-xs) var(--mono);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--mute); margin-bottom: 12px;
+  }
+  .dossier .field { display: grid; grid-template-columns: 110px 1fr; gap: 12px; margin-bottom: 6px; }
+  .dossier .field .k { font: 400 var(--fs-xs) var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.04em; padding-top: 3px; }
+  .dossier .field .v { font: 400 var(--fs-sm) var(--sans); color: var(--text); }
+  .dossier .field .v a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+  .incident {
+    border-left: 2px solid var(--line);
+    padding: 8px 0 8px 12px;
+    margin-bottom: 14px;
+  }
+  .incident[data-sev="red"]    { border-left-color: var(--sev-high); }
+  .incident[data-sev="orange"] { border-left-color: var(--sev-mid); }
+  .incident[data-sev="yellow"] { border-left-color: var(--sev-low); }
+  .incident .hd { font: 600 var(--fs-xs) var(--mono); letter-spacing: 0.04em; text-transform: uppercase; color: var(--mute); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .incident .hd b { color: var(--text); }
+  .incident .hd .mini-badge { font: 600 var(--fs-xs) var(--mono); padding: 1px 5px; border: 1px solid var(--sev-mid); color: var(--sev-mid); letter-spacing: 0.04em; }
+  .incident .summary { font: 400 var(--fs-sm)/1.45 var(--sans); }
+  .incident .perps { font: 400 var(--fs-xs) var(--mono); color: var(--mute); margin-top: 6px; }
+  .incident .perps a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+  .incident .srcs { font: 400 var(--fs-xs)/1.5 var(--mono); color: var(--mute); margin-top: 6px; word-break: break-all; }
+  .incident .srcs a { color: var(--mute); display: block; }
+  .incident .srcs a:hover { color: var(--text); }
+  .pivot { cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+  .pivot:hover { color: var(--accent); }
+
+  /* ===== HOVER PREVIEW ===== */
+  #hpreview {
+    position: fixed; top: 0; left: 0;
+    max-width: 280px; padding: 10px 12px;
+    background: var(--surface); border: 1px solid var(--line);
+    pointer-events: none; z-index: 30; display: none;
+  }
+  #hpreview.open { display: block; }
+  #hpreview .hp-type {
+    font-family: var(--mono); font-weight: 600; font-size: var(--fs-xs);
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--mute);
+    margin-bottom: 4px;
+  }
+  #hpreview .hp-title { font-family: var(--sans); font-weight: 500; font-size: var(--fs-sm); color: var(--text); margin-bottom: 4px; }
+  #hpreview .hp-meta { font-family: var(--mono); font-size: var(--fs-xs); color: var(--mute); }
+  #hpreview .hp-sev {
+    display: inline-block; font-family: var(--mono); font-size: var(--fs-xs); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 6px; border: 1px solid; margin-right: 6px;
+  }
+  #hpreview .hp-sev[data-band="red"]    { color: var(--sev-high); border-color: var(--sev-high); }
+  #hpreview .hp-sev[data-band="orange"] { color: var(--sev-mid);  border-color: var(--sev-mid); }
+  #hpreview .hp-sev[data-band="yellow"] { color: var(--sev-low);  border-color: var(--sev-low); }
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb {
+    font-family: var(--mono); font-size: var(--fs-xs); text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--mute);
+    padding: 4px 0 0 0; overflow-x: auto; white-space: nowrap;
+    -ms-overflow-style: none; scrollbar-width: none;
+    margin-bottom: 4px;
+  }
+  .breadcrumb::-webkit-scrollbar { display: none; }
+  .breadcrumb .crumb {
+    color: var(--mute); padding: 0 4px; text-decoration: none; cursor: pointer;
+    max-width: 200px; overflow: hidden; text-overflow: ellipsis;
+    vertical-align: middle; display: inline-block; background: none; border: none; font: inherit;
+  }
+  .breadcrumb .crumb:hover { color: var(--text); }
+  .breadcrumb .crumb[data-active="1"] { color: var(--text); cursor: default; }
+  .breadcrumb .crumb-sep { color: var(--line); margin: 0 2px; }
+
+  /* ===== TAB STRIP ===== */
+  .tab-strip { display: flex; border-bottom: 1px solid var(--line); margin: -4px -16px 12px -16px; padding: 0 16px; }
+  .tab-strip .tab {
+    font-family: var(--mono); font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; padding: 10px 14px; color: var(--mute);
+    background: transparent; border: none; cursor: pointer; position: relative;
+  }
+  .tab-strip .tab:hover { color: var(--text); }
+  .tab-strip .tab[data-active="1"] { color: var(--text); }
+  .tab-strip .tab[data-active="1"]::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px;
+    height: 2px; background: var(--accent);
+  }
+
+  /* ===== FACETS PANEL ===== */
+  #facets {
+    position: fixed; left: 0;
+    top: var(--topbar-h); bottom: 0;
+    width: 240px;
+    background: var(--surface); border-right: 1px solid var(--line);
+    overflow-y: auto; padding: 12px 14px; z-index: 12;
+  }
+  @media (max-width: 1199px) {
+    #facets {
+      width: auto; inset: 0; top: 0;
+      background: rgba(0,0,0,0.7);
+      display: none; justify-content: flex-start; align-items: stretch;
+      padding: 0;
+    }
+    #facets.open { display: flex; }
+    #facets .facet-inner {
+      width: 280px; height: 100%; background: var(--surface);
+      border-right: 1px solid var(--line); overflow-y: auto;
+      padding: 16px 14px; position: relative;
+    }
+  }
+  @media (min-width: 1200px) {
+    #facets .facet-inner { padding: 0; }
+  }
+  .facet { margin-bottom: 18px; }
+  .facet h3 {
+    font-family: var(--mono); font-size: var(--fs-xs); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--mute);
+    margin-bottom: 8px;
+  }
+  .facet-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 4px 6px; cursor: pointer;
+    font-family: var(--sans); font-size: 13px; color: var(--text);
+    border: 1px solid transparent;
+  }
+  .facet-item:hover { background: rgba(255,255,255,0.04); }
+  .facet-item[data-active="1"] { border-color: var(--line); background: rgba(255,255,255,0.06); }
+  .facet-item .label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .facet-item .bar { display: inline-block; height: 8px; background: var(--mute); opacity: 0.5; margin-right: 6px; max-width: 80px; min-width: 4px; vertical-align: middle; }
+  .facet-item .bar[data-band="red"]    { background: var(--sev-high); opacity: 0.9; }
+  .facet-item .bar[data-band="orange"] { background: var(--sev-mid);  opacity: 0.9; }
+  .facet-item .bar[data-band="yellow"] { background: var(--sev-low);  opacity: 0.9; }
+  .facet-item .count { font: 400 11px var(--mono); color: var(--mute); margin-left: 8px; }
+  #facets-toggle { display: none; }
+  @media (max-width: 1199px) {
+    #facets-toggle {
+      display: flex; position: fixed; bottom: 110px; left: 12px;
+      padding: 8px 14px; background: var(--surface); border: 1px solid var(--line);
+      font: 600 var(--fs-xs) var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--text); z-index: 18; cursor: pointer;
+    }
+  }
+  .facet-inner #facets-close {
+    position: absolute; top: 8px; right: 8px;
+    font: 400 var(--fs-sm) var(--mono); color: var(--mute);
+    cursor: pointer; background: none; border: none;
+  }
+  .active-filters { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+  .active-filter-chip {
+    font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 2px 6px; border: 1px solid var(--line); color: var(--text);
+    cursor: pointer; background: none;
+  }
+  .active-filter-chip::after { content: " ✕"; color: var(--mute); }
+  .active-filter-chip:hover { border-color: var(--accent); }
+
+  /* ===== TIMELINE STRIP ===== */
+  #timeline {
+    position: fixed; left: 240px; right: 420px; bottom: 0;
+    height: 72px;
+    background: var(--surface); border-top: 1px solid var(--line);
+    padding: 6px 12px 4px 12px;
+    overflow: hidden; transition: height 150ms; z-index: 14;
+  }
+  #timeline[data-collapsed="1"] { height: 20px; }
+  @media (max-width: 1199px) {
+    #timeline { left: 0; right: 0; bottom: 96px; }
+  }
+  #timeline .tl-header {
+    display: flex; justify-content: space-between; align-items: center;
+    font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--mute); margin-bottom: 4px;
+  }
+  #timeline .tl-title { color: var(--text); }
+  #timeline .tl-toggle { background: none; border: none; color: var(--mute); cursor: pointer; font: inherit; padding: 0 4px; }
+  #timeline .tl-toggle:hover { color: var(--text); }
+  #timeline .tl-canvas { position: relative; height: 40px; width: 100%; }
+  #timeline .tl-bar { position: absolute; bottom: 0; background: var(--sev-high); opacity: 0.85; min-width: 2px; cursor: pointer; }
+  #timeline .tl-bar[data-band="red"]    { background: var(--sev-high); }
+  #timeline .tl-bar[data-band="orange"] { background: var(--sev-mid); }
+  #timeline .tl-bar[data-band="yellow"] { background: var(--sev-low); }
+  #timeline .tl-bar:hover { opacity: 1; }
+  #timeline .tl-year-label { position: absolute; bottom: -14px; font: 400 9px var(--mono); color: var(--mute); transform: translateX(-50%); }
+
+  /* ===== PIN TRAY ===== */
+  .pin-pill {
+    font: 600 var(--fs-xs) var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 4px 10px; border: 1px solid var(--line); color: var(--text);
+    cursor: pointer; background: none;
+  }
+  .pin-pill:hover { border-color: var(--text); }
+  .pin-pill .n { font-family: var(--mono); font-size: var(--fs-xs); margin-left: 6px; color: var(--accent); }
+  #pintray {
+    position: fixed; top: 50px; right: 12px; width: 320px; max-height: 60vh;
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 12px; overflow-y: auto; z-index: 22; display: none;
+  }
+  #pintray.open { display: block; }
+  @media (max-width: 1199px) { #pintray { width: 90vw; right: 5vw; } }
+  .pin-card { padding: 8px 10px; border: 1px solid var(--line); margin-bottom: 6px; position: relative; cursor: pointer; }
+  .pin-card:hover { background: rgba(255,255,255,0.04); }
+  .pin-card .ptype { font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--mute); margin-bottom: 2px; }
+  .pin-card .ptitle { font: 400 var(--fs-sm) var(--sans); color: var(--text); padding-right: 18px; }
+  .pin-card .pclose {
+    position: absolute; top: 6px; right: 8px;
+    font: 400 var(--fs-xs) var(--mono); color: var(--mute); cursor: pointer;
+    background: none; border: none;
+  }
+  .pin-card .pclose:hover { color: var(--accent); }
+  .pin-empty { font: 400 var(--fs-sm) var(--mono); color: var(--mute); padding: 12px; text-align: center; }
+  .pin-actions { display: flex; gap: 6px; margin-top: 8px; }
+  .pin-actions button {
+    flex: 1; font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 6px 10px; border: 1px solid var(--line); background: transparent; color: var(--text);
+    cursor: pointer;
+  }
+  .pin-actions button:hover { border-color: var(--accent); }
+  .pin-actions button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* avatars */
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--surface) center/cover no-repeat;
+    border: 1px solid var(--line); flex-shrink: 0; margin-right: 14px;
+    display: inline-block; vertical-align: middle;
+  }
+  .avatar.probable { border-style: dashed; }
+  .avatar-row { display: flex; align-items: center; margin-bottom: 8px; }
+  .row .row-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--surface) center/cover no-repeat;
+    border: 1px solid var(--line); flex-shrink: 0;
+    display: inline-block; margin-right: 6px; vertical-align: middle;
+  }
+  .row .row-avatar.empty { background: var(--surface); }
+
+  /* back arrow + pin toggle (sheet header) */
+  .back-arrow {
+    width: 32px; height: 32px; margin-right: 8px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--surface); border: 1px solid var(--line);
+    color: var(--text); cursor: pointer;
+    font: 500 16px var(--mono); line-height: 1;
+  }
+  .back-arrow:hover { border-color: var(--accent); color: var(--accent); }
+  .pin-toggle {
+    color: var(--mute); font-family: var(--mono); font-size: var(--fs-sm);
+    width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;
+    background: none; border: none; cursor: pointer;
+  }
+  .pin-toggle:hover, .pin-toggle[data-pinned="1"] { color: var(--accent); }
+
+  /* ===== GRAPH VIEW ===== */
+  /* ===== PEOPLE WEB (W mode) ===== */
+  #mode-W { display: none; }
+  #mode-W.active { display: block; }
+  #graph {
+    position: absolute; inset: 0;
+    background: var(--bg); overflow: hidden;
+  }
+  #graph svg { width: 100%; height: 100%; cursor: grab; display: block; }
+  #graph svg:active { cursor: grabbing; }
+  /* Nodes */
+  #graph .g-node { cursor: pointer; transition: opacity 0.2s; }
+  #graph .g-node.dimmed { opacity: 0.07; pointer-events: none; }
+  #graph .g-node text {
+    font-family: var(--mono); font-size: 9px; fill: var(--mute);
+    pointer-events: none; text-anchor: middle; dominant-baseline: hanging;
+  }
+  #graph .g-node.focused text { fill: var(--text); }
+  /* Edges */
+  #graph .g-edge { pointer-events: none; transition: opacity 0.2s; }
+  #graph .g-edge.dimmed { opacity: 0.03; }
+  #graph .g-edge[data-rel="house"]       { stroke: #C8A93E; stroke-opacity: 0.18; }
+  #graph .g-edge[data-rel="codefendant"] { stroke: #E03E3E; stroke-opacity: 0.6; }
+  #graph .g-edge[data-rel="family"]      { stroke: #7EB8FF; stroke-opacity: 0.55; stroke-dasharray: 4 3; }
+  #graph .g-edge[data-rel="supervisor"]  { stroke: #A0A0FF; stroke-opacity: 0.45; stroke-dasharray: 6 3; }
+  #graph .g-edge[data-rel="financial"]   { stroke: #FFD700; stroke-opacity: 0.5; }
+  #graph .g-edge[data-rel="rabbinical"]  { stroke: #FF8C00; stroke-opacity: 0.5; stroke-dasharray: 2 4; }
+  #graph .g-edge[data-rel="attorney"]    { stroke: #90EE90; stroke-opacity: 0.4; }
+  #graph .g-edge[data-rel="associate"]   { stroke: #555; stroke-opacity: 0.25; }
+  #graph .g-edge[data-path="1"]         { stroke: #00E5FF !important; stroke-opacity: 1 !important; stroke-width: 3px !important; stroke-dasharray: none !important; }
+  #graph .g-node.path-node circle,
+  #graph .g-node.path-node rect         { filter: drop-shadow(0 0 6px #00E5FF); }
+  #graph .g-controls button[data-active="1"] { border-color: var(--text); color: var(--text); }
+  /* Controls */
+  #graph .g-controls {
+    position: absolute; top: 10px; left: 12px;
+    background: rgba(10,11,13,0.85); border: 1px solid var(--line);
+    padding: 6px 12px; backdrop-filter: blur(6px);
+    font: 500 var(--fs-xs) var(--mono); letter-spacing: 0.04em;
+    color: var(--mute); z-index: 2;
+    display: flex; gap: 12px; align-items: center;
+  }
+  #graph .g-stat { color: var(--text); }
+  #graph .g-controls button {
+    background: none; border: 1px solid var(--line); color: var(--text);
+    font: 600 10px var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 4px 8px; cursor: pointer;
+  }
+  #graph .g-controls button:hover { border-color: var(--accent); color: var(--accent); }
+  /* Legend */
+  #graph .g-legend {
+    position: absolute; bottom: 14px; left: 12px;
+    background: rgba(10,11,13,0.85); border: 1px solid var(--line);
+    padding: 8px 12px; backdrop-filter: blur(6px);
+    font: 400 10px var(--mono); color: var(--mute);
+    display: flex; flex-direction: column; gap: 5px; z-index: 2;
+  }
+  #graph .g-legend .leg-row { display: flex; align-items: center; gap: 7px; }
+  #graph .g-legend .leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  #graph .g-legend .leg-line { width: 20px; height: 2px; flex-shrink: 0; }
+  /* Side panel */
+  #w-panel {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 320px;
+    background: var(--bg); border-left: 1px solid var(--line);
+    transform: translateX(100%); transition: transform 0.22s ease;
+    overflow-y: auto; z-index: 5; padding: 16px;
+    font-family: var(--sans); -webkit-overflow-scrolling: touch;
+  }
+  #w-panel.open { transform: translateX(0); }
+  #w-panel .wp-close {
+    position: absolute; top: 12px; right: 14px;
+    background: none; border: none; color: var(--mute);
+    font-size: 18px; cursor: pointer; line-height: 1;
+  }
+  #w-panel .wp-close:hover { color: var(--text); }
+  #w-panel .wp-type {
+    font: 600 10px var(--mono); text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--mute); margin-bottom: 8px;
+  }
+  #w-panel .wp-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--surface); background-size: cover; background-position: center;
+    margin-bottom: 10px; border: 2px solid var(--line);
+  }
+  #w-panel .wp-name {
+    font: 600 15px var(--sans); color: var(--text); margin-bottom: 4px;
+  }
+  #w-panel .wp-meta {
+    font: 400 11px var(--mono); color: var(--mute); margin-bottom: 12px; line-height: 1.6;
+  }
+  #w-panel .wp-incidents { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+  #w-panel .wp-inc {
+    border-left: 2px solid var(--line); padding: 6px 10px;
+    font: 400 11px var(--mono); color: var(--mute); line-height: 1.5;
+  }
+  #w-panel .wp-inc[data-sev="convicted"]   { border-left-color: var(--sev-high); }
+  #w-panel .wp-inc[data-sev="indicted"]    { border-left-color: var(--sev-high); }
+  #w-panel .wp-inc[data-sev="charged"]     { border-left-color: var(--sev-mid); }
+  #w-panel .wp-inc[data-sev="settled"]     { border-left-color: var(--sev-mid); }
+  #w-panel .wp-inc b { color: var(--text); }
+  #w-panel .wp-open-full {
+    display: block; margin-top: 14px; padding: 8px 0; text-align: center;
+    border: 1px solid var(--line); color: var(--mute); font: 500 11px var(--mono);
+    text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer;
+    background: none; width: 100%;
+  }
+  #w-panel .wp-open-full:hover { border-color: var(--text); color: var(--text); }
+  /* Tooltip */
+  #g-tooltip {
+    position: fixed; pointer-events: none; z-index: 20;
+    background: rgba(10,11,13,0.92); border: 1px solid var(--line);
+    padding: 6px 10px; backdrop-filter: blur(4px);
+    font: 400 11px var(--mono); color: var(--text); max-width: 200px;
+    display: none;
+  }
+  #g-tooltip.open { display: block; }
+
+  /* ===== MODE PANES ===== */
+  #modes { position: fixed; top: var(--topbar-h); left: 0; right: 0; bottom: 0; }
+  .mode-pane { position: absolute; inset: 0; display: none; }
+  .mode-pane.active { display: block; }
+
+  /* M pane: just the map */
+  #mode-M #map { position: absolute; inset: 0; background: var(--bg); }
+  /* small in-map popup */
+  #m-popup {
+    position: absolute; z-index: 5;
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 12px 14px; min-width: 220px; max-width: 300px;
+    font: 400 var(--fs-sm) var(--sans);
+    display: none;
+  }
+  #m-popup.open { display: block; }
+  #m-popup .mp-name { font: 500 var(--fs-base) var(--sans); color: var(--text); margin-bottom: 4px; padding-right: 16px; }
+  #m-popup .mp-loc  { font: 400 var(--fs-xs) var(--mono); color: var(--mute); margin-bottom: 8px; }
+  #m-popup .mp-row  { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; font: 600 var(--fs-xs) var(--mono); color: var(--mute); }
+  #m-popup .mp-sev  { padding: 2px 6px; border: 1px solid; text-transform: uppercase; letter-spacing: 0.04em; }
+  #m-popup .mp-sev[data-band="red"]    { color: var(--sev-high); border-color: var(--sev-high); }
+  #m-popup .mp-sev[data-band="orange"] { color: var(--sev-mid);  border-color: var(--sev-mid); }
+  #m-popup .mp-sev[data-band="yellow"] { color: var(--sev-low);  border-color: var(--sev-low); }
+  #m-popup .mp-btn {
+    display: block; width: 100%; padding: 7px 10px;
+    background: transparent; color: var(--text); border: 1px solid var(--line);
+    font: 600 var(--fs-xs) var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+    cursor: pointer; text-align: center;
+  }
+  #m-popup .mp-btn:hover { border-color: var(--accent); color: var(--accent); }
+  #m-popup .mp-close {
+    position: absolute; top: 6px; right: 8px;
+    background: none; border: none; color: var(--mute);
+    font: 400 var(--fs-sm) var(--mono); cursor: pointer;
+  }
+  #m-popup .mp-close:hover { color: var(--text); }
+
+  /* W pane */
+  #mode-W #graph { display: block !important; position: absolute; inset: 0; background: var(--bg); }
+
+  /* D pane */
+  #mode-D.active { display: flex; }
+  @media (max-width: 1199px) {
+    #mode-D.active { display: block; }
+  }
+  #mode-D #facets { position: relative; top: 0; height: 100%; width: 240px; flex-shrink: 0; }
+  #mode-D #d-content { flex: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  @media (max-width: 1199px) {
+    #mode-D #facets { display: none; }
+    #mode-D #d-content { position: absolute; inset: 0; }
+  }
+  #d-subtabs { display: flex; border-bottom: 1px solid var(--line); flex-shrink: 0; }
+  #d-subtabs button {
+    font: 600 var(--fs-xs) var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 10px 16px; color: var(--mute);
+    background: none; border: none; cursor: pointer; position: relative;
+  }
+  #d-subtabs button:hover { color: var(--text); }
+  #d-subtabs button[data-active="1"] { color: var(--text); }
+  #d-subtabs button[data-active="1"]::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent);
+  }
+  #d-banner {
+    display: flex; flex-direction: column; padding: 12px 16px;
+    border-bottom: 1px solid var(--line); flex-shrink: 0;
+  }
+  #d-banner .bn-row { display: flex; align-items: center; gap: 8px; }
+  #d-banner #d-title { font: 600 var(--fs-sm) var(--mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--text); }
+  #d-content-body { flex: 1 1 0; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 12px 16px 24px 16px; }
+  #d-browse-pane { min-height: 0; }
+  #d-stats { min-height: 0; -webkit-overflow-scrolling: touch; }
+  #mode-D #d-content { min-height: 0; }
+  #d-stats { padding: 18px 20px; overflow-y: auto; flex: 1; }
+  #d-stats h2 { font: 600 var(--fs-xs) var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--mute); margin: 22px 0 10px; }
+  #d-stats h2:first-of-type { margin-top: 0; }
+  #d-stats .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  #d-stats .stat-card { border: 1px solid var(--line); padding: 14px; background: var(--surface); }
+  #d-stats .stat-n { font: 500 28px/1 var(--sans); color: var(--text); }
+  #d-stats .stat-k { font: 400 var(--fs-xs) var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; }
+
+  /* status overlay during boot */
+  #boot {
+    position: fixed; inset: 0; z-index: 100;
+    background: var(--bg); color: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    font: 500 var(--fs-sm) var(--mono); letter-spacing: 0.08em;
+  }
+  #boot .bar { font: 400 var(--fs-lg) var(--mono); color: var(--mute); }
+
+  /* Desktop progressive enhancement */
+  @media (min-width: 1200px) {
+    #sheet {
+      left: auto; right: 0; bottom: 0; top: var(--topbar-h);
+      width: 420px; height: auto;
+      transform: none !important;
+      border-top: 0; border-left: 1px solid var(--line);
+    }
+    #sheet .handle-row { display: none; }
+    #map { left: 240px; right: 420px; bottom: 72px; }
+    #legend { right: 430px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="boot">
+  <div>CHABAD TRACKER</div>
+  <div class="bar" id="boot-bar">▓▓▒░░░░░░░░░</div>
+  <div id="boot-msg" style="color:var(--mute)">initializing sql.js</div>
+</div>
+
+<header id="topbar">
+  <div class="row1">
+    <a class="brand" href="/" id="brand-home" style="text-decoration:none;">CHABAD TRACKER</a>
+    <span class="sep">/</span>
+    <a class="about" href="about.html">ABOUT</a>
+    <div class="grow"></div>
+    <div class="mode-switch">
+      <button data-mode="M" data-active="1" title="Map"><img src="public/icon-map.png" alt="Map"></button>
+      <button data-mode="W" title="People Web"><img src="public/icon-web.png" alt="People Web"></button>
+      <button data-mode="D" title="Database"><img src="public/icon-db.png" alt="Database"></button>
+    </div>
+  </div>
+  <div class="row2">
+    <form class="search" id="search-form" onsubmit="return false;" style="flex:1;">
+      <input class="search" id="search-input" type="search" autocomplete="off"
+             placeholder="Search" />
+    </form>
+  </div>
+</header>
+
+<div id="search-dropdown"></div>
+<div id="hover"></div>
+
+<main id="modes">
+  <section id="mode-M" class="mode-pane active">
+    <div id="map"></div>
+    <div id="m-popup">
+      <button class="mp-close" id="mp-close">✕</button>
+      <div class="mp-name" id="mp-name"></div>
+      <div class="mp-loc" id="mp-loc"></div>
+      <div class="mp-row" id="mp-row"></div>
+      <button class="mp-btn" id="mp-open">OPEN IN DATABASE</button>
+    </div>
+  </section>
+
+  <section id="mode-W" class="mode-pane">
+    <div id="graph"></div>
+    <div id="w-panel">
+      <button class="wp-close" id="wp-close">✕</button>
+      <div id="wp-body"></div>
+    </div>
+    <div id="g-tooltip"></div>
+  </section>
+
+  <section id="mode-D" class="mode-pane">
+    <aside id="facets"><div class="facet-inner" id="facets-inner"></div></aside>
+    <button id="facets-toggle">▤ FILTERS</button>
+    <div id="d-content">
+      <div id="d-subtabs">
+        <button data-sub="browse" data-active="1">Browse</button>
+        <button data-sub="stats">Stats</button>
+      </div>
+      <div id="d-browse-pane" style="flex:1; display:flex; flex-direction:column;">
+        <div id="d-banner">
+          <div class="bn-row">
+            <button class="back-arrow" id="sheet-back" hidden title="Back">←</button>
+            <span id="d-title">HOME · INVESTIGATION CONSOLE</span>
+            <span style="flex:1;"></span>
+            <button class="close" id="sheet-close" hidden>✕</button>
+          </div>
+          <div class="breadcrumb" id="breadcrumb" hidden></div>
+        </div>
+        <div id="d-content-body">
+          <div id="sheet-body"></div>
+        </div>
+      </div>
+      <div id="d-stats" hidden></div>
+    </div>
+  </section>
+</main>
+
+<script type="module">
+import maplibregl from "https://esm.sh/maplibre-gl@4.7.1";
+import initSqlJs from "https://esm.sh/sql.js@1.10.3";
+import * as d3 from "https://esm.sh/d3-force@3?bundle";
+import * as d3sel from "https://esm.sh/d3-selection@3?bundle";
+import * as d3drag from "https://esm.sh/d3-drag@3?bundle";
+import * as d3zoom from "https://esm.sh/d3-zoom@3?bundle";
+
+const $ = (id) => document.getElementById(id);
+const bootBar = $("boot-bar"), bootMsg = $("boot-msg");
+const stages = ["▓░░░░░░░░░░░","▓▓▒░░░░░░░░░","▓▓▓▒░░░░░░░░","▓▓▓▓▒░░░░░░░","▓▓▓▓▓▒░░░░░░","▓▓▓▓▓▓▒░░░░░","▓▓▓▓▓▓▓▒░░░░","▓▓▓▓▓▓▓▓▒░░░","▓▓▓▓▓▓▓▓▓▒░░","▓▓▓▓▓▓▓▓▓▓▒░","▓▓▓▓▓▓▓▓▓▓▓▒","▓▓▓▓▓▓▓▓▓▓▓▓"];
+let stage = 0;
+function progress(msg) { bootBar.textContent = stages[Math.min(stage++, stages.length-1)]; bootMsg.textContent = msg; }
+
+const SEV_BAND = (s) => ({convicted:"red", indicted:"red", charged:"orange", settled:"orange",
+                          investigation:"yellow", allegation:"yellow",
+                          dismissed:"black", acquitted:"black"}[s] || "");
+const BAND_COLOR = { yellow:"#C8A93E", orange:"#D26C2B", red:"#E03E3E", black:"#2A2E36" };
+
+// global state
+let db = null, map = null;
+let trail = [];            // breadcrumb stack of {label, href}
+let homeTab = "severity";  // active tab on the home list
+let activeRowIdx = -1;     // for j/k keyboard navigation
+
+// Filter state — drives map dot visibility + home list filtering
+const filters = {
+  severity: new Set(),  // 'red'|'orange'|'yellow'  empty = all
+  type:     new Set(),  // csa, financial_fraud, ...
+  country:  new Set(),  // 'USA', 'Israel', ...
+  yearMin:  null,
+  yearMax:  null,
+};
+function hasAnyFilter() {
+  return filters.severity.size + filters.type.size + filters.country.size > 0 ||
+         filters.yearMin != null || filters.yearMax != null;
+}
+
+// Pin tray — persisted in localStorage
+let pins = (() => { try { return JSON.parse(localStorage.getItem("pins") || "[]"); } catch { return []; } })();
+function savePins() { localStorage.setItem("pins", JSON.stringify(pins)); }
+
+function escapeHtml(s) {
+  if (s == null) return "";
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+function escapeAttr(s) { return escapeHtml(s).replace(/'/g,"&#39;"); }
+
+// db helper — returns array of row objects with named columns
+function q(sql, params) {
+  const stmt = db.prepare(sql);
+  if (params) stmt.bind(params);
+  const rows = [];
+  while (stmt.step()) rows.push(stmt.getAsObject());
+  stmt.free();
+  return rows;
+}
+
+async function boot() {
+  progress("loading wasm");
+  const SQL = await initSqlJs({ locateFile: f => `https://unpkg.com/sql.js@1.10.3/dist/${f}` });
+
+  progress("fetching corpus");
+  const dbBuf = await fetch("public/chabad.db").then(r => r.arrayBuffer());
+  db = new SQL.Database(new Uint8Array(dbBuf));
+
+  progress("querying houses");
+  const houses = q(`
+    SELECT house_id, name, city, country, lat, lng, color_band, severity_score, incident_count, personnel_count
+    FROM v_house_summary
+    WHERE lat IS NOT NULL AND lng IS NOT NULL
+  `);
+
+  progress("rendering map");
+  const bandCounts = { red:0, orange:0, yellow:0, black:0 };
+  const features = houses.map(r => {
+    const band = r.color_band || "black";
+    bandCounts[band] = (bandCounts[band]||0) + 1;
+    // numeric weight for cluster aggregation: red=3, orange=2, yellow=1, black=0
+    const w = band === "red" ? 3 : band === "orange" ? 2 : band === "yellow" ? 1 : 0;
+    return {
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [r.lng, r.lat] },
+      properties: {
+        id: r.house_id, name: r.name, city: r.city || "", country: r.country || "",
+        band, w,
+        score: r.severity_score || 0, inc: r.incident_count || 0, ppl: r.personnel_count || 0,
+      }
+    };
+  });
+
+  map = new maplibregl.Map({
+    container: "map",
+    style: {
+      version: 8,
+      sources: {
+        carto: {
+          type: "raster",
+          tiles: [
+            "https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png",
+            "https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png",
+            "https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png",
+            "https://d.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png",
+          ],
+          tileSize: 256,
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
+        },
+      },
+      layers: [
+        { id: "bg", type: "background", paint: { "background-color": "#0a0a0a" } },
+        { id: "carto", type: "raster", source: "carto" },
+      ],
+    },
+    center: [-40, 35], zoom: 2.2,
+    attributionControl: { compact: true },
+  });
+  // (zoom controls removed — pinch/scroll only)
+
+  // Add sources/layers after a tick — map renders tiles immediately even before events fire
+  setTimeout(() => {
+    // SOURCE — colored only. Black dots are a separate non-clustered source so we can toggle them cheaply.
+    const coloredFeatures = features.filter(f => f.properties.band !== "black");
+    const blackFeatures   = features.filter(f => f.properties.band === "black");
+
+    map.addSource("houses", {
+      type: "geojson",
+      data: { type: "FeatureCollection", features: coloredFeatures },
+    });
+    map.addSource("houses-black", {
+      type: "geojson",
+      data: { type: "FeatureCollection", features: blackFeatures },
+    });
+
+    // One layer per band — every dot visible at every zoom (no clustering)
+    for (const band of ["yellow","orange","red"]) {
+      map.addLayer({
+        id: `houses-${band}`,
+        type: "circle",
+        source: "houses",
+        filter: ["==", ["get","band"], band],
+        paint: {
+          "circle-radius": ["interpolate",["linear"],["zoom"], 0, 3, 4, 5, 8, 8],
+          "circle-color": BAND_COLOR[band],
+          "circle-stroke-color": "#0A0B0D",
+          "circle-stroke-width": 1,
+          "circle-opacity": 0.95,
+        },
+      });
+    }
+
+    // Black (clean) layer — hidden by default
+    map.addLayer({
+      id: "houses-clean",
+      type: "circle",
+      source: "houses-black",
+      layout: { visibility: "none" },
+      paint: {
+        "circle-radius": ["interpolate",["linear"],["zoom"], 0, 0.6, 4, 1.5, 8, 2.5],
+        "circle-color": "#2A2E36",
+        "circle-opacity": 0.55,
+      },
+    });
+
+    // Click handlers — open in-map popup (NOT a dossier; dossiers belong to D mode)
+    for (const lid of ["houses-clean","houses-yellow","houses-orange","houses-red"]) {
+      map.on("click", lid, (e) => {
+        const f = e.features[0]; if (!f) return;
+        showMapPopup(f, e.point);
+      });
+      map.on("mouseenter", lid, () => map.getCanvas().style.cursor = "pointer");
+      map.on("mouseleave", lid, () => map.getCanvas().style.cursor = "crosshair");
+    }
+    map.on("move", positionMapPopup);
+    map.on("zoom", positionMapPopup);
+  });
+
+  // (meta available as `meta` if needed by future widgets)
+  // (legend removed — superseded by facets sidebar)
+  void bandCounts;
+
+  // Omnibox
+  setupOmni();
+
+  // Sheet
+
+  // (hover previews removed at user request)
+
+  // Phase 2: facets only (timeline moved to D Stats tab)
+  setupFacets();
+
+  // Mode switcher (M / W / D)
+  setupModes();
+  setupBrandHome();
+
+  // (view switcher and pin tray removed at user request)
+
+  // Routing
+  window.addEventListener("hashchange", route);
+  route();
+
+  // Hide boot
+  setTimeout(() => { $("boot").style.display="none"; }, 200);
+}
+
+// ----- LEGEND -----
+function renderLegend(counts) {
+  const el = $("legend");
+  const bands = [
+    { band: "red",    label: "RED",    on: 1 },
+    { band: "orange", label: "ORANGE", on: 1 },
+    { band: "yellow", label: "YELLOW", on: 1 },
+    { band: "black",  label: "CLEAN",  on: 0 },
+  ];
+  el.innerHTML = bands.map(b =>
+    `<button class="chip" data-band="${b.band}" data-on="${b.on}">
+       <span><span class="dot"></span> ${b.label}</span>
+       <span class="n">${counts[b.band] || 0}</span>
+     </button>`
+  ).join("");
+  el.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const band = chip.dataset.band;
+      const on = chip.dataset.on === "1" ? "0" : "1";
+      chip.dataset.on = on;
+      const vis = on === "1" ? "visible" : "none";
+      if (band === "black") {
+        if (map.getLayer("houses-clean")) map.setLayoutProperty("houses-clean", "visibility", vis);
+      } else {
+        if (map.getLayer(`houses-${band}`)) map.setLayoutProperty(`houses-${band}`, "visibility", vis);
+        // clusters always shown; band toggle only affects unclustered. Acceptable.
+      }
+    });
+  });
+}
+
+// ----- HOVER -----
+let hoverFrame = null;
+function showHover(e) {
+  const f = e.features && e.features[0]; if (!f) return;
+  const p = f.properties;
+  const band = p.band || "black";
+  const el = $("hover");
+  el.innerHTML = `
+    <div class="h-name">${escapeHtml(p.name)}</div>
+    <div class="h-loc">${escapeHtml([p.city, p.country].filter(Boolean).join(", "))}</div>
+    <div class="h-foot">
+      <span class="h-sev" data-band="${band}">${band}</span>
+      <span>SEV ${p.score}</span>
+      <span>${p.inc} INC</span>
+    </div>`;
+  el.style.display = "block";
+  positionHover(e.originalEvent);
+}
+function positionHover(evt) {
+  const el = $("hover");
+  const x = evt.clientX + 14, y = evt.clientY + 14;
+  const maxX = window.innerWidth - el.offsetWidth - 10;
+  const maxY = window.innerHeight - el.offsetHeight - 10;
+  el.style.left = Math.min(x, maxX) + "px";
+  el.style.top  = Math.min(y, maxY) + "px";
+}
+function hideHover() { $("hover").style.display = "none"; }
+window.addEventListener("mousemove", (e) => {
+  if ($("hover").style.display === "block") positionHover(e);
+});
+
+// ----- SEARCH (inline topbar dropdown) -----
+function setupOmni() {
+  const input = $("search-input"), dropdown = $("search-dropdown");
+  let activeIdx = 0, items = [];
+
+  function close() { dropdown.classList.remove("open"); }
+  function open()  { if (items.length || input.value.trim()) dropdown.classList.add("open"); }
+
+  document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault(); input.focus(); input.select();
+    }
+    if (e.key === "Escape") { close(); input.blur(); }
+  });
+  document.addEventListener("click", (e) => {
+    if (e.target === input || dropdown.contains(e.target)) return;
+    close();
+  });
+  input.addEventListener("focus", open);
+
+  let debounce = null;
+  input.addEventListener("input", () => {
+    clearTimeout(debounce);
+    debounce = setTimeout(runQuery, 80);
+  });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") { e.preventDefault(); setActive(activeIdx + 1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); setActive(activeIdx - 1); }
+    else if (e.key === "Enter") {
+      e.preventDefault();
+      const it = items[activeIdx]; if (it) { close(); navigate(it.href); input.blur(); }
+    }
+  });
+
+  function runQuery() {
+    const term = input.value.trim();
+    if (!term) { dropdown.innerHTML = ""; items = []; close(); return; }
+    const like = `%${term.replace(/[%_]/g,'')}%`;
+    items = [];
+    const houses = q(
+      `SELECT house_id AS id, name, COALESCE(city,'') AS city, COALESCE(country,'') AS country
+       FROM v_house_summary
+       WHERE name LIKE ? OR city LIKE ?
+       ORDER BY severity_score DESC LIMIT 6`, [like, like]);
+    houses.forEach(r => items.push({
+      type: "ENTITY", label: `${r.name}${r.city ? " — " + r.city : ""}${r.country ? ", " + r.country : ""}`,
+      href: `house=${r.id}`,
+    }));
+    const people = q(
+      `SELECT id, full_name FROM people WHERE full_name LIKE ? AND canonical_id IS NULL ORDER BY full_name LIMIT 6`, [like]);
+    people.forEach(r => items.push({ type: "PERSON", label: r.full_name, href: `person=${r.id}` }));
+    const incidents = q(
+      `SELECT id, COALESCE(type,'?') AS type, COALESCE(occurred_on,'') AS occ, substr(COALESCE(summary,''),1,90) AS s
+       FROM incidents WHERE summary LIKE ? ORDER BY occurred_on DESC LIMIT 6`, [like]);
+    incidents.forEach(r => items.push({
+      type: "INCIDENT", label: `${r.type}${r.occ ? " · " + r.occ : ""} — ${r.s}`,
+      href: `incident=${r.id}`,
+    }));
+
+    if (items.length === 0) {
+      dropdown.innerHTML = `<div class="empty">no matches</div>`;
+      open(); return;
+    }
+    dropdown.innerHTML = items.map((it, i) =>
+      `<div class="o-row" data-i="${i}" data-active="${i===0?1:0}">
+         <div class="o-type">${it.type}</div>
+         <div class="o-label">${escapeHtml(it.label)}</div>
+       </div>`
+    ).join("");
+    activeIdx = 0;
+    dropdown.querySelectorAll(".o-row").forEach(row => {
+      row.addEventListener("click", () => {
+        const i = +row.dataset.i;
+        close(); navigate(items[i].href); input.blur();
+      });
+      row.addEventListener("mouseenter", () => setActive(+row.dataset.i));
+    });
+    open();
+  }
+  function setActive(i) {
+    if (!items.length) return;
+    activeIdx = (i + items.length) % items.length;
+    dropdown.querySelectorAll(".o-row").forEach((row, j) => {
+      row.dataset.active = j === activeIdx ? "1" : "0";
+      if (j === activeIdx) row.scrollIntoView({ block: "nearest" });
+    });
+  }
+}
+
+// ----- ROUTING -----
+function navigate(hash) {
+  if (location.hash.slice(1) === hash) { route(); return; }
+  location.hash = hash;
+}
+function route() {
+  const h = location.hash.slice(1);
+  if (!h) { renderTopList(); return; }
+  const [k, v] = h.split("=");
+  const id = +v;
+  if (k === "house") renderHouse(id);
+  else if (k === "person") renderPerson(id);
+  else if (k === "incident") renderIncident(id);
+  else renderTopList();
+}
+
+function setSheetHeader(title, { showClose=false } = {}) {
+  $("d-title").textContent = title;
+  $("sheet-close").hidden = !showClose;
+  $("sheet-close").onclick = () => { trail = []; navigate(""); };
+  // Back arrow: visible whenever we're inside a dossier (trail.length >= 2 means home + at least one step)
+  const back = $("sheet-back");
+  back.hidden = !(trail.length >= 2);
+  back.onclick = () => {
+    // pop current segment, navigate to previous
+    if (trail.length < 2) return;
+    trail.pop();
+    const prev = trail[trail.length - 1];
+    if (!prev || prev.href === "") { trail = []; navigate(""); }
+    else navigate(prev.href);
+  };
+  renderBreadcrumb();
+}
+
+function renderBreadcrumb() {
+  const bc = $("breadcrumb");
+  if (trail.length < 2) { bc.hidden = true; bc.innerHTML = ""; return; }
+  bc.hidden = false;
+  bc.innerHTML = trail.map((seg, i) => {
+    const isLast = i === trail.length - 1;
+    const safe = escapeHtml(seg.label).slice(0, 60);
+    return `<button class="crumb" data-href="${escapeAttr(seg.href)}" data-active="${isLast?1:0}" title="${escapeAttr(seg.label)}">${safe}</button>` +
+           (isLast ? "" : `<span class="crumb-sep">›</span>`);
+  }).join("");
+  bc.querySelectorAll(".crumb").forEach(el => {
+    el.addEventListener("click", () => {
+      const target = el.dataset.href;
+      // Truncate trail to clicked segment
+      const idx = trail.findIndex(s => s.href === target);
+      if (idx >= 0) trail = trail.slice(0, idx + 1);
+      if (target === "") { trail = []; location.hash = ""; }
+      else if (location.hash.slice(1) !== target) location.hash = target;
+      else route(); // same hash → rerender
+    });
+  });
+}
+
+function pushTrail(label, href) {
+  // If we're navigating to the head of the trail, don't double-push
+  const last = trail[trail.length - 1];
+  if (last && last.href === href) {
+    last.label = label;
+    return;
+  }
+  // If this href is already deeper in the trail, truncate to it
+  const existing = trail.findIndex(s => s.href === href);
+  if (existing >= 0) { trail = trail.slice(0, existing + 1); trail[existing].label = label; return; }
+  // Ensure trail starts with home
+  if (trail.length === 0) trail.push({label:"HOME", href:""});
+  trail.push({label, href});
+  if (trail.length > 8) trail = [trail[0], ...trail.slice(-7)];
+}
+
+function openSheetForDossier() { /* sheet retired — D mode is full-screen */ }
+
+// ----- VIEWS -----
+function renderTopList() {
+  trail = [];
+  setSheetHeader("HOME · INVESTIGATION CONSOLE", { showClose: false });
+  const tabs = [
+    { id: "severity",   label: "Top severity" },
+    { id: "recent",     label: "Recent" },
+    { id: "countries",  label: "By country" },
+    { id: "unresolved", label: "Unresolved" },
+  ];
+  const stripHtml = `<div class="tab-strip">${tabs.map(t =>
+    `<button class="tab" data-tab="${t.id}" data-active="${t.id===homeTab?1:0}">${t.label}</button>`
+  ).join("")}</div><div id="home-list"></div>`;
+  $("sheet-body").innerHTML = stripHtml;
+  $("sheet-body").querySelectorAll(".tab").forEach(el => {
+    el.addEventListener("click", () => { homeTab = el.dataset.tab; renderTopList(); });
+  });
+  renderHomeTab();
+}
+
+function renderHomeTab() {
+  const list = $("home-list");
+  let rows = [], html = "";
+
+  if (homeTab === "severity") {
+    rows = q(`
+      SELECT house_id, name, COALESCE(city,'') AS city, COALESCE(country,'') AS country,
+             color_band, severity_score, incident_count
+      FROM v_house_summary
+      WHERE color_band IN ('red','orange','yellow')
+      ORDER BY severity_score DESC, incident_count DESC
+      LIMIT 30
+    `);
+    html = rows.map(r => `
+      <div class="row" data-href="house=${r.house_id}">
+        <div class="id">#${String(r.house_id).padStart(5,"0")}</div>
+        <div class="name">${escapeHtml(r.name)} <span class="city">— ${escapeHtml([r.city,r.country].filter(Boolean).join(", "))} · ${r.incident_count} inc</span></div>
+        <div class="sev" data-band="${r.color_band}">${r.color_band}</div>
+      </div>
+    `).join("");
+
+  } else if (homeTab === "recent") {
+    const { sql, params } = buildIncidentWhereClause();
+    rows = q(`
+      SELECT id, type, severity, COALESCE(occurred_on,'') AS occurred_on,
+             COALESCE(location,'') AS location, substr(COALESCE(summary,''),1,140) AS summary
+      FROM incidents WHERE ${sql}
+      ORDER BY COALESCE(occurred_on,'0') DESC LIMIT 40
+    `, params);
+    html = rows.map(r => `
+      <div class="row" data-href="incident=${r.id}">
+        <div class="id">#${String(r.id).padStart(5,"0")}</div>
+        <div class="name">${escapeHtml(r.type||"incident")} <span class="city">— ${escapeHtml(r.occurred_on)} · ${escapeHtml(r.location)}</span></div>
+        <div class="sev" data-band="${SEV_BAND(r.severity)}">${escapeHtml(r.severity||"?")}</div>
+      </div>
+    `).join("");
+
+  } else if (homeTab === "countries") {
+    rows = q(`
+      SELECT COALESCE(NULLIF(country,''),'(unknown)') AS country,
+             COUNT(*) AS n_entities,
+             SUM(CASE WHEN color_band='red' THEN 1 ELSE 0 END) AS n_red,
+             SUM(CASE WHEN color_band='orange' THEN 1 ELSE 0 END) AS n_orange,
+             SUM(CASE WHEN color_band='yellow' THEN 1 ELSE 0 END) AS n_yellow,
+             SUM(severity_score) AS sev_sum
+      FROM v_house_summary
+      WHERE color_band IN ('red','orange','yellow')
+      GROUP BY country
+      ORDER BY sev_sum DESC, n_entities DESC
+      LIMIT 30
+    `);
+    html = rows.map(r => `
+      <div class="row" style="cursor:default">
+        <div class="id">${r.n_red? '●'.repeat(Math.min(r.n_red,3)) : ''}</div>
+        <div class="name">${escapeHtml(r.country)} <span class="city">— ${r.n_entities} flagged · ${r.n_red} red · ${r.n_orange} orange · ${r.n_yellow} yellow</span></div>
+        <div class="sev">Σ${r.sev_sum||0}</div>
+      </div>
+    `).join("");
+
+  } else if (homeTab === "unresolved") {
+    const { sql, params } = buildIncidentWhereClause();
+    rows = q(`
+      SELECT id, type, severity, COALESCE(occurred_on,'') AS occurred_on,
+             COALESCE(location,'') AS location, substr(COALESCE(summary,''),1,140) AS summary
+      FROM incidents
+      WHERE ${sql} AND severity IN ('allegation','investigation','charged')
+      ORDER BY COALESCE(occurred_on,'0') DESC LIMIT 40
+    `, params);
+    html = rows.map(r => `
+      <div class="row" data-href="incident=${r.id}">
+        <div class="id">#${String(r.id).padStart(5,"0")}</div>
+        <div class="name">${escapeHtml(r.type||"incident")} <span class="city">— ${escapeHtml(r.occurred_on)} · ${escapeHtml(r.location)}</span></div>
+        <div class="sev" data-band="${SEV_BAND(r.severity)}">${escapeHtml(r.severity||"?")}</div>
+      </div>
+    `).join("");
+  }
+
+  list.innerHTML = html || `<div style="color:var(--mute);font:400 var(--fs-sm) var(--mono); padding: 14px 0;">no rows</div>`;
+  list.querySelectorAll(".row[data-href]").forEach(el => {
+    el.addEventListener("click", () => navigate(el.dataset.href));
+  });
+}
+
+function renderHouse(id) {
+  const h = q(`SELECT * FROM v_house_summary WHERE house_id = ?`, [id])[0];
+  if (!h) { setSheetHeader("ENTITY NOT FOUND", { showClose:true }); $("sheet-body").innerHTML = `<div style="color:var(--mute)">no record</div>`; return; }
+
+  const personnel = q(`
+    SELECT p.id, p.full_name, hr.role, hr.is_primary,
+           COALESCE(p.photo_local_url, p.photo_url, '') AS photo_url
+    FROM house_roles hr JOIN people p ON p.id = hr.person_id
+    WHERE hr.house_id = ? AND p.canonical_id IS NULL
+    ORDER BY hr.is_primary DESC, p.full_name
+  `, [id]);
+
+  const incidents = q(`
+    SELECT DISTINCT i.id, i.type, i.severity, i.occurred_on, i.summary
+    FROM incidents i
+    JOIN incident_people ip ON ip.incident_id = i.id
+    JOIN people pp ON pp.id = ip.person_id
+    JOIN house_roles hr ON hr.person_id = COALESCE(pp.canonical_id, pp.id)
+    WHERE hr.house_id = ?
+    ORDER BY CASE i.severity
+      WHEN 'convicted' THEN 6 WHEN 'indicted' THEN 5
+      WHEN 'charged' THEN 4 WHEN 'settled' THEN 3
+      WHEN 'investigation' THEN 2 WHEN 'allegation' THEN 1 ELSE 0 END DESC
+  `, [id]);
+
+  pushTrail(h.name || `entity #${h.house_id}`, `house=${h.house_id}`);
+  setSheetHeader(`ENTITY #${String(h.house_id).padStart(7,"0")}`, { showClose:true });
+  void ("house", h.house_id, h.name || `entity #${h.house_id}`);
+  $("sheet-body").innerHTML = `
+    <div class="dossier">
+      <h1>${escapeHtml(h.name)}</h1>
+      <div class="sub">${escapeHtml([h.city,h.state,h.country].filter(Boolean).join(", "))}</div>
+      <div class="badge-row">
+        <span class="badge sev" data-band="${h.color_band||""}">SEV ${h.severity_score||0}</span>
+        <span class="badge">${h.incident_count||0} INCIDENTS</span>
+        <span class="badge">${h.personnel_count||0} PERSONNEL</span>
+        <span class="badge">${h.families_present||0} FAMILIES</span>
+        ${h.mosad_aid ? `<span class="badge">MOSAD ${h.mosad_aid}</span>` : ""}
+      </div>
+      <section>
+        <h2>Identifiers</h2>
+        <div class="field"><div class="k">ADDRESS</div><div class="v">${escapeHtml(h.address||"—")}</div></div>
+        <div class="field"><div class="k">COORDS</div><div class="v">${h.lat?.toFixed(4) || "?"}, ${h.lng?.toFixed(4) || "?"}</div></div>
+        ${h.website ? `<div class="field"><div class="k">WEB</div><div class="v"><a href="https://${escapeAttr(h.website)}" target="_blank" rel="noreferrer">${escapeHtml(h.website)}</a></div></div>` : ""}
+        ${h.phone ? `<div class="field"><div class="k">PHONE</div><div class="v">${escapeHtml(h.phone)}</div></div>` : ""}
+      </section>
+      <section>
+        <h2>Personnel (${personnel.length})</h2>
+        ${personnel.slice(0, 50).map(p => `
+          <div class="row" data-href="person=${p.id}">
+            <div class="id">#${String(p.id).padStart(5,"0")}</div>
+            <div class="name">
+              <span class="row-avatar${p.photo_url?'':' empty'}" ${p.photo_url?`style="background-image:url('${escapeAttr(p.photo_url&&!p.photo_url.startsWith('http')?'public/'+p.photo_url:p.photo_url)}')"`:''}></span>
+              ${escapeHtml(p.full_name)} <span class="city">— ${escapeHtml(p.role||"")}${p.is_primary?" · primary":""}</span>
+            </div>
+            <div class="sev"></div>
+          </div>
+        `).join("") || `<div style="color:var(--mute);font:400 var(--fs-sm) var(--mono);">none listed</div>`}
+      </section>
+      <section>
+        <h2>Incidents (${incidents.length})</h2>
+        ${renderIncidentCards(incidents)}
+      </section>
+    </div>`;
+  bindPivots();
+  openSheetForDossier();
+
+  // pan map to this house
+  if (h.lat != null && h.lng != null && map) {
+    map.easeTo({ center: [h.lng, h.lat], zoom: Math.max(map.getZoom(), 8) });
+  }
+}
+
+function renderPerson(id) {
+  const p = q(`SELECT id, full_name, COALESCE(surname,'') AS surname,
+                       COALESCE(photo_local_url, photo_url, '') AS photo_url,
+                       COALESCE(photo_source, photo_url, '') AS photo_source,
+                       COALESCE(photo_confidence,'') AS photo_confidence
+               FROM people WHERE id = ?`, [id])[0];
+  if (!p) { setSheetHeader("PERSON NOT FOUND", { showClose:true }); $("sheet-body").innerHTML = `<div style="color:var(--mute)">no record</div>`; return; }
+
+  const incidents = q(`
+    SELECT i.id, i.type, i.severity, i.occurred_on, i.summary, ip.role
+    FROM incident_people ip
+    JOIN incidents i ON i.id = ip.incident_id
+    WHERE ip.person_id = ?
+    ORDER BY CASE i.severity
+      WHEN 'convicted' THEN 6 WHEN 'indicted' THEN 5
+      WHEN 'charged' THEN 4 WHEN 'settled' THEN 3
+      WHEN 'investigation' THEN 2 WHEN 'allegation' THEN 1 ELSE 0 END DESC
+  `, [id]);
+
+  const houses = q(`
+    SELECT h.id, h.name, COALESCE(h.city,'') AS city, COALESCE(h.country,'') AS country, hr.role, hr.is_primary
+    FROM house_roles hr JOIN houses h ON h.id = hr.house_id
+    WHERE hr.person_id = ?
+    ORDER BY hr.is_primary DESC
+  `, [id]);
+
+  let relations = [];
+  try {
+    relations = q(`
+      SELECT fr.relation, p2.id AS other_id, p2.full_name AS other_name
+      FROM family_relations fr
+      JOIN people p2 ON p2.id = CASE WHEN fr.person_a = ? THEN fr.person_b ELSE fr.person_a END
+      WHERE (fr.person_a = ? OR fr.person_b = ?) AND p2.canonical_id IS NULL
+      LIMIT 50
+    `, [id, id, id]);
+  } catch (e) { /* table may not exist */ }
+
+  // Section 5: co-perpetrators — other people on shared incidents, ranked
+  const coPerps = q(`
+    SELECT p2.id, p2.full_name, COUNT(DISTINCT ip2.incident_id) AS shared
+    FROM incident_people ip1
+    JOIN incident_people ip2 ON ip2.incident_id = ip1.incident_id AND ip2.person_id != ip1.person_id
+    JOIN people p2 ON p2.id = ip2.person_id
+    WHERE ip1.person_id = ? AND p2.canonical_id IS NULL
+    GROUP BY p2.id, p2.full_name
+    ORDER BY shared DESC, p2.full_name
+    LIMIT 50
+  `, [id]);
+
+  // Section 6: co-residents — other people sharing any of this person's houses
+  const coResidents = q(`
+    SELECT p2.id, p2.full_name,
+           COUNT(DISTINCT hr2.house_id) AS shared,
+           GROUP_CONCAT(DISTINCT h.name) AS houses
+    FROM house_roles hr1
+    JOIN house_roles hr2 ON hr2.house_id = hr1.house_id AND hr2.person_id != hr1.person_id
+    JOIN people p2 ON p2.id = hr2.person_id
+    JOIN houses h ON h.id = hr1.house_id
+    WHERE hr1.person_id = ? AND p2.canonical_id IS NULL
+    GROUP BY p2.id, p2.full_name
+    ORDER BY shared DESC, p2.full_name
+    LIMIT 60
+  `, [id]);
+
+  // Section 8: same-name disambiguation (only unmerged master rows)
+  const sameNamed = q(`
+    SELECT id, COALESCE(surname,'') AS surname
+    FROM people
+    WHERE full_name = ? AND id != ? AND canonical_id IS NULL
+    LIMIT 20
+  `, [p.full_name, id]);
+
+  // Section 9: merged aliases — other name spellings that resolve to this person
+  const mergedAliases = q(`
+    SELECT full_name FROM people WHERE canonical_id = ?
+  `, [id]);
+
+  pushTrail(p.full_name || `person #${p.id}`, `person=${p.id}`);
+  setSheetHeader(`PERSON #${String(p.id).padStart(7,"0")}`, { showClose:true });
+  void ("person", p.id, p.full_name || `person #${p.id}`);
+  // Resolve photo URL: local paths need public/ prefix; remote URLs used as-is
+  const rawPhoto = p.photo_url || "";
+  const resolvedPhoto = rawPhoto && !rawPhoto.startsWith("http") ? `public/${rawPhoto}` : rawPhoto;
+  const avatarHtml = resolvedPhoto
+    ? `<div class="avatar-row">
+         <span class="avatar ${p.photo_confidence==='probable'?'probable':''}" style="background-image:url('${escapeAttr(resolvedPhoto)}')"></span>
+         <div>
+           <h1 style="margin:0;">${escapeHtml(p.full_name)}</h1>
+           <div class="sub" style="margin:2px 0 0 0;">${escapeHtml(p.surname ? "surname: " + p.surname : "")}</div>
+         </div>
+       </div>`
+    : `<h1>${escapeHtml(p.full_name)}</h1>
+       <div class="sub">${escapeHtml(p.surname ? "surname: " + p.surname : "")}</div>`;
+  $("sheet-body").innerHTML = `
+    <div class="dossier">
+      ${avatarHtml}
+      <div class="badge-row">
+        <span class="badge">${incidents.length} INCIDENTS</span>
+        <span class="badge">${houses.length} POSTS</span>
+        <span class="badge">${relations.length} RELATIONS</span>
+        ${mergedAliases.length ? `<span class="badge warn" title="Also known as: ${mergedAliases.map(r=>r.full_name).join(', ')}">${mergedAliases.length} AKA</span>` : ""}
+      </div>
+      <section>
+        <h2>Incidents (${incidents.length})</h2>
+        ${renderIncidentCards(incidents)}
+      </section>
+      <section>
+        <h2>Entity posts (${houses.length})</h2>
+        ${houses.map(h => `
+          <div class="row" data-href="house=${h.id}">
+            <div class="id">#${String(h.id).padStart(5,"0")}</div>
+            <div class="name">${escapeHtml(h.name)} <span class="city">— ${escapeHtml([h.city,h.country].filter(Boolean).join(", "))} · ${escapeHtml(h.role||"")}${h.is_primary?" · primary":""}</span></div>
+            <div class="sev"></div>
+          </div>
+        `).join("") || `<div style="color:var(--mute);font:400 var(--fs-sm) var(--mono);">no posts</div>`}
+      </section>
+      ${relations.length ? `
+      <section>
+        <h2>Family relations (${relations.length})</h2>
+        ${relations.map(r => `
+          <div class="row" data-href="person=${r.other_id}">
+            <div class="id">${escapeHtml(r.relation||"rel")}</div>
+            <div class="name">${escapeHtml(r.other_name)}</div>
+            <div class="sev"></div>
+          </div>
+        `).join("")}
+      </section>` : ""}
+      ${coPerps.length ? `
+      <section>
+        <h2>Co-perpetrators (${coPerps.length})</h2>
+        ${coPerps.map(r => `
+          <div class="row" data-href="person=${r.id}">
+            <div class="id">×${r.shared}</div>
+            <div class="name">${escapeHtml(r.full_name)} <span class="city">— ${r.shared} shared incident${r.shared>1?'s':''}</span></div>
+            <div class="sev"></div>
+          </div>
+        `).join("")}
+      </section>` : ""}
+      ${coResidents.length ? `
+      <section>
+        <h2>Co-residents at posts (${coResidents.length})</h2>
+        ${coResidents.slice(0, 30).map(r => `
+          <div class="row" data-href="person=${r.id}">
+            <div class="id">×${r.shared}</div>
+            <div class="name">${escapeHtml(r.full_name)} <span class="city">— ${escapeHtml((r.houses||"").split(",").slice(0,2).join(", "))}${r.shared>2?` +${r.shared-2}`:""}</span></div>
+            <div class="sev"></div>
+          </div>
+        `).join("")}
+        ${coResidents.length > 30 ? `<div style="color:var(--mute);font:400 var(--fs-xs) var(--mono); margin-top:8px;">+${coResidents.length-30} more</div>` : ""}
+      </section>` : ""}
+      ${sameNamed.length ? `
+      <section>
+        <h2>Same name (${sameNamed.length})</h2>
+        <div style="color:var(--mute);font:400 var(--fs-xs)/1.4 var(--mono); margin-bottom: 8px;">
+          ${sameNamed.length} OTHER ${sameNamed.length===1?”PERSON”:”PEOPLE”} WITH THIS NAME — distinct individuals, not duplicates of this record.
+        </div>
+        ${sameNamed.map(r => `
+          <div class="row" data-href="person=${r.id}">
+            <div class="id">#${String(r.id).padStart(5,"0")}</div>
+            <div class="name">${escapeHtml(p.full_name)} <span class="city">— ${escapeHtml(r.surname||"")}</span></div>
+            <div class="sev"></div>
+          </div>
+        `).join("")}
+      </section>` : ""}
+    </div>`;
+  bindPivots();
+  openSheetForDossier();
+}
+
+function renderIncident(id) {
+  const i = q(`SELECT * FROM incidents WHERE id = ?`, [id])[0];
+  if (!i) { setSheetHeader("INCIDENT NOT FOUND", { showClose:true }); $("sheet-body").innerHTML = `<div style="color:var(--mute)">no record</div>`; return; }
+  const sources = q(`
+    SELECT s.url, COALESCE(s.title,'') AS title
+    FROM incident_sources isc JOIN sources s ON s.id = isc.source_id
+    WHERE isc.incident_id = ?
+  `, [id]);
+  const perps = q(`
+    SELECT COALESCE(master.id, p.id) AS id,
+           COALESCE(master.full_name, p.full_name) AS full_name,
+           ip.role
+    FROM incident_people ip
+    JOIN people p ON p.id = ip.person_id
+    LEFT JOIN people master ON master.id = p.canonical_id
+    WHERE ip.incident_id = ?
+  `, [id]);
+  let linkedHouses = [];
+  try {
+    linkedHouses = q(`
+      SELECT h.id, h.name, COALESCE(h.city,'') AS city, COALESCE(h.country,'') AS country
+      FROM incident_houses ih JOIN houses h ON h.id = ih.house_id
+      WHERE ih.incident_id = ?
+    `, [id]);
+  } catch (e) {}
+
+  const band = SEV_BAND(i.severity);
+  const incLabel = (i.type || `incident #${i.id}`) + (i.occurred_on ? ` ${i.occurred_on}` : "");
+  pushTrail(incLabel, `incident=${i.id}`);
+  setSheetHeader(`INCIDENT #${String(i.id).padStart(7,"0")}`, { showClose:true });
+  void ("incident", i.id, incLabel);
+  $("sheet-body").innerHTML = `
+    <div class="dossier">
+      <h1>${escapeHtml(i.type || "incident")}</h1>
+      <div class="sub">${escapeHtml(i.occurred_on || "date unknown")} · ${escapeHtml(i.location || "")}</div>
+      <div class="badge-row">
+        <span class="badge sev" data-band="${band}">${escapeHtml(i.severity || "?")}</span>
+        <span class="badge">${sources.length} SOURCES</span>
+        ${sources.length === 1 ? `<span class="badge warn">SINGLE-SOURCE</span>` : ""}
+        <span class="badge">${perps.length} NAMED</span>
+      </div>
+      <section>
+        <h2>Summary</h2>
+        <div style="font:400 var(--fs-sm)/1.5 var(--sans);">${escapeHtml(i.summary || "")}</div>
+      </section>
+      <section>
+        <h2>Named (${perps.length})</h2>
+        ${perps.map(pp => `
+          <div class="row" data-href="person=${pp.id}">
+            <div class="id">#${String(pp.id).padStart(5,"0")}</div>
+            <div class="name">${escapeHtml(pp.full_name)} <span class="city">— ${escapeHtml(pp.role||"")}</span></div>
+            <div class="sev"></div>
+          </div>
+        `).join("") || `<div style="color:var(--mute);font:400 var(--fs-sm) var(--mono);">no named individuals</div>`}
+      </section>
+      ${linkedHouses.length ? `
+      <section>
+        <h2>Linked entities (${linkedHouses.length})</h2>
+        ${linkedHouses.map(h => `
+          <div class="row" data-href="house=${h.id}">
+            <div class="id">#${String(h.id).padStart(5,"0")}</div>
+            <div class="name">${escapeHtml(h.name)} <span class="city">— ${escapeHtml([h.city,h.country].filter(Boolean).join(", "))}</span></div>
+            <div class="sev"></div>
+          </div>
+        `).join("")}
+      </section>` : ""}
+      <section>
+        <h2>Sources (${sources.length})</h2>
+        ${sources.map(s => `
+          <div style="font:400 var(--fs-xs)/1.5 var(--mono); margin-bottom: 8px; word-break: break-all;">
+            ${s.title ? `<div style="color:var(--text); margin-bottom:2px;">${escapeHtml(s.title)}</div>` : ""}
+            <a href="${escapeAttr(s.url)}" target="_blank" rel="noreferrer" style="color:var(--mute);">${escapeHtml(s.url)}</a>
+          </div>`).join("") || `<div style="color:var(--mute);font:400 var(--fs-sm) var(--mono);">no sources</div>`}
+      </section>
+    </div>`;
+  bindPivots();
+  openSheetForDossier();
+}
+
+function renderIncidentCards(incidents) {
+  if (!incidents.length) return `<div style="color:var(--mute);font:400 var(--fs-sm) var(--mono);">none</div>`;
+  return incidents.map(r => {
+    const band = SEV_BAND(r.severity);
+    const sources = q(`
+      SELECT s.url, COALESCE(s.title,'') AS title
+      FROM incident_sources isc JOIN sources s ON s.id = isc.source_id
+      WHERE isc.incident_id = ?
+    `, [r.id]);
+    const perps = q(`
+      SELECT p.id, p.full_name
+      FROM incident_people ip JOIN people p ON p.id = ip.person_id
+      WHERE ip.incident_id = ? AND ip.role='perpetrator'
+    `, [r.id]);
+    const single = sources.length === 1;
+    return `<div class="incident" data-sev="${band}">
+      <div class="hd">
+        <a class="pivot" data-href="incident=${r.id}">#${String(r.id).padStart(5,"0")}</a> ·
+        <b>${escapeHtml(r.type||"")}</b> · ${escapeHtml(r.severity||"")} · ${escapeHtml(r.occurred_on||"date unknown")}
+        ${single ? `<span class="mini-badge">SINGLE-SRC</span>` : ""}
+      </div>
+      <div class="summary">${escapeHtml(r.summary||"")}</div>
+      ${perps.length ? `<div class="perps">named: ${perps.map(p => `<a class="pivot" data-href="person=${p.id}">${escapeHtml(p.full_name)}</a>`).join(", ")}</div>` : ""}
+      ${sources.length ? `<div class="srcs">${sources.map(s => `<a href="${escapeAttr(s.url)}" target="_blank" rel="noreferrer">${escapeHtml(s.title || s.url)}</a>`).join("")}</div>` : ""}
+    </div>`;
+  }).join("");
+}
+
+function bindPivots() {
+  document.querySelectorAll(".pivot[data-href]").forEach(el => {
+    el.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); navigate(el.dataset.href); });
+  });
+  document.querySelectorAll("#sheet-body .row[data-href]").forEach(el => {
+    el.addEventListener("click", () => navigate(el.dataset.href));
+  });
+}
+
+// ----- HOVER PREVIEWS -----
+function setupHoverPreviews() {
+  const hp = $("hpreview");
+  let activeEl = null;
+
+  function place(evt) {
+    const x = evt.clientX + 16, y = evt.clientY + 16;
+    const r = hp.getBoundingClientRect();
+    hp.style.left = Math.min(x, window.innerWidth  - r.width  - 8) + "px";
+    hp.style.top  = Math.min(y, window.innerHeight - r.height - 8) + "px";
+  }
+
+  function show(el, evt) {
+    const href = el.dataset.href;
+    if (!href) return;
+    const [k, vRaw] = href.split("=");
+    const v = +vRaw;
+    let html = "";
+    try {
+      if (k === "person") {
+        const p = q(`SELECT full_name, COALESCE(surname,'') AS surname FROM people WHERE id=?`, [v])[0];
+        if (!p) return;
+        const meta = q(`SELECT COUNT(DISTINCT i.id) AS n, MAX(i.severity) AS sev FROM incident_people ip JOIN incidents i ON i.id=ip.incident_id WHERE ip.person_id=?`, [v])[0] || {};
+        const houses = q(`SELECT COUNT(*) AS n FROM house_roles WHERE person_id=?`, [v])[0]?.n || 0;
+        html = `<div class="hp-type">PERSON</div>
+          <div class="hp-title">${escapeHtml(p.full_name)}</div>
+          <div class="hp-meta">${meta.n||0} incident${meta.n==1?'':'s'} · ${houses} post${houses==1?'':'s'}${meta.sev?` · ${escapeHtml(meta.sev)}`:''}</div>`;
+      } else if (k === "house") {
+        const h = q(`SELECT name, COALESCE(city,'') AS city, COALESCE(country,'') AS country,
+                     incident_count, color_band, severity_score
+                     FROM v_house_summary WHERE house_id=?`, [v])[0];
+        if (!h) return;
+        const sevBadge = (h.color_band && h.color_band !== 'black')
+          ? `<span class="hp-sev" data-band="${h.color_band}">${h.color_band}</span>` : '';
+        html = `<div class="hp-type">ENTITY${sevBadge}</div>
+          <div class="hp-title">${escapeHtml(h.name)}</div>
+          <div class="hp-meta">${escapeHtml([h.city,h.country].filter(Boolean).join(', '))} · ${h.incident_count||0} inc · sev ${h.severity_score||0}</div>`;
+      } else if (k === "incident") {
+        const i = q(`SELECT type, severity, COALESCE(occurred_on,'') AS occurred_on, COALESCE(location,'') AS location, substr(COALESCE(summary,''),1,140) AS snip FROM incidents WHERE id=?`, [v])[0];
+        if (!i) return;
+        const band = SEV_BAND(i.severity);
+        const sevBadge = band ? `<span class="hp-sev" data-band="${band}">${escapeHtml(i.severity)}</span>` : escapeHtml(i.severity || '');
+        html = `<div class="hp-type">INCIDENT${band?sevBadge:''}</div>
+          <div class="hp-title">${escapeHtml(i.type||'incident')} · ${escapeHtml(i.occurred_on||'date?')}</div>
+          <div class="hp-meta">${escapeHtml(i.location)}<br/>${escapeHtml(i.snip)}…</div>`;
+      } else { return; }
+    } catch (e) { return; }
+    hp.innerHTML = html;
+    hp.classList.add("open");
+    place(evt);
+  }
+  function hide() { hp.classList.remove("open"); activeEl = null; }
+
+  document.addEventListener("mouseover", (e) => {
+    const el = e.target.closest && e.target.closest("[data-href]");
+    if (!el || el === activeEl) return;
+    // Only target pivots inside the sheet (links/rows), not map dots which have their own hover
+    if (!el.closest("#sheet-body") && !el.closest("#breadcrumb")) return;
+    activeEl = el;
+    show(el, e);
+  });
+  document.addEventListener("mousemove", (e) => {
+    if (hp.classList.contains("open")) place(e);
+  });
+  document.addEventListener("mouseout", (e) => {
+    const el = e.target.closest && e.target.closest("[data-href]");
+    if (el === activeEl) hide();
+  });
+}
+
+// ===========================================================================
+// PHASE 2: FACETS · TIMELINE · PIN TRAY
+// ===========================================================================
+
+// Map maplibre filter expression from current filter state
+function applyMapFilter() {
+  if (!map) return;
+  const sevBands = filters.severity.size ? [...filters.severity] : null;
+
+  // For map layers, build filter using band property (already on features).
+  // Type / country / year filters require joining incident data — that's hard to push to maplibre.
+  // For now, only apply severity (band) to the map; type/country/year affect the home list and entity hits.
+  for (const band of ["red","orange","yellow"]) {
+    if (!map.getLayer(`houses-${band}`)) continue;
+    const baseFilter = ["all", ["!", ["has","point_count"]], ["==", ["get","band"], band]];
+    if (sevBands && !sevBands.includes(band)) {
+      map.setLayoutProperty(`houses-${band}`, "visibility", "none");
+    } else {
+      map.setLayoutProperty(`houses-${band}`, "visibility", "visible");
+    }
+    map.setFilter(`houses-${band}`, baseFilter);
+  }
+  // Sync legend chip data-on state
+  document.querySelectorAll("#legend .chip").forEach(chip => {
+    const b = chip.dataset.band;
+    if (b === "black") return; // CLEAN handled separately
+    const on = !sevBands || sevBands.includes(b);
+    chip.dataset.on = on ? "1" : "0";
+  });
+}
+
+// Refresh everything visible — facets, map, home list (if shown), active chips
+function refreshAll() {
+  applyMapFilter();
+  renderFacets();
+  renderTimeline();
+  if (!location.hash) renderHomeTab(); // refresh home list filtering
+}
+
+// ----- FACETS -----
+function setupFacets() {
+  // Mobile toggle
+  const ft = $("facets-toggle"); if (ft) ft.addEventListener("click", () => $("facets").classList.add("open"));
+  $("facets").addEventListener("click", (e) => {
+    if (e.target.id === "facets") $("facets").classList.remove("open");
+  });
+  renderFacets();
+}
+
+function buildIncidentWhereClause() {
+  // SQL fragment + params for incidents query using current filters (excluding the facet being computed)
+  // For simplicity here we always apply ALL filters; per-facet "exclude this facet from its own count" is omitted to keep complexity manageable.
+  const clauses = ["1=1"]; const params = [];
+  if (filters.type.size) {
+    clauses.push(`type IN (${[...filters.type].map(()=>'?').join(',')})`);
+    params.push(...filters.type);
+  }
+  if (filters.yearMin != null) {
+    clauses.push(`CAST(substr(COALESCE(occurred_on,''),1,4) AS INT) >= ?`); params.push(filters.yearMin);
+  }
+  if (filters.yearMax != null) {
+    clauses.push(`CAST(substr(COALESCE(occurred_on,''),1,4) AS INT) <= ?`); params.push(filters.yearMax);
+  }
+  if (filters.severity.size) {
+    const sevList = [...filters.severity];
+    const sevMap = {red:["convicted","indicted"], orange:["charged","settled"], yellow:["investigation","allegation"]};
+    const sevs = sevList.flatMap(b => sevMap[b] || []);
+    if (sevs.length) {
+      clauses.push(`severity IN (${sevs.map(()=>'?').join(',')})`); params.push(...sevs);
+    }
+  }
+  if (filters.country.size) {
+    // location can be e.g. "Brooklyn, NY, USA" — match substring
+    const list = [...filters.country];
+    clauses.push(`(${list.map(()=>'location LIKE ?').join(' OR ')})`);
+    params.push(...list.map(c => `%${c}%`));
+  }
+  return { sql: clauses.join(" AND "), params };
+}
+
+function renderFacets() {
+  const inner = $("facets-inner");
+  const { sql, params } = buildIncidentWhereClause();
+
+  // active filter chips
+  const chips = [];
+  for (const b of filters.severity) chips.push({ k:"severity", v:b, label:`sev:${b}` });
+  for (const t of filters.type)     chips.push({ k:"type",     v:t, label:`type:${t}` });
+  for (const c of filters.country)  chips.push({ k:"country",  v:c, label:c });
+  if (filters.yearMin != null || filters.yearMax != null)
+    chips.push({ k:"year", v:"", label:`yr:${filters.yearMin||'…'}–${filters.yearMax||'…'}` });
+
+  const activeChipsHtml = chips.length
+    ? `<div class="active-filters">${chips.map(c =>
+        `<button class="active-filter-chip" data-k="${c.k}" data-v="${escapeAttr(c.v)}">${escapeHtml(c.label)}</button>`).join("")}</div>`
+    : "";
+
+  // ---- severity facet (respects type/country/year filters but not severity itself) ----
+  // Build a where clause that excludes severity filter so the counts reflect filtered corpus
+  const sevOnlyFilters = { severity: new Set(), type: filters.type, country: filters.country, yearMin: filters.yearMin, yearMax: filters.yearMax };
+  const { sql: sevSql, params: sevParams } = (() => {
+    const clauses = ["1=1"]; const p = [];
+    if (sevOnlyFilters.type.size) { clauses.push(`type IN (${[...sevOnlyFilters.type].map(()=>'?').join(',')})`); p.push(...sevOnlyFilters.type); }
+    if (sevOnlyFilters.yearMin != null) { clauses.push(`CAST(substr(COALESCE(occurred_on,''),1,4) AS INT) >= ?`); p.push(sevOnlyFilters.yearMin); }
+    if (sevOnlyFilters.yearMax != null) { clauses.push(`CAST(substr(COALESCE(occurred_on,''),1,4) AS INT) <= ?`); p.push(sevOnlyFilters.yearMax); }
+    if (sevOnlyFilters.country.size) { const list=[...sevOnlyFilters.country]; clauses.push(`(${list.map(()=>'location LIKE ?').join(' OR ')})`); p.push(...list.map(c=>`%${c}%`)); }
+    return { sql: clauses.join(" AND "), params: p };
+  })();
+  let sevRows = [];
+  try {
+    sevRows = q(`
+      SELECT 'red' AS band, SUM(CASE WHEN severity IN ('convicted','indicted') THEN 1 ELSE 0 END) AS n FROM incidents WHERE ${sevSql}
+      UNION ALL SELECT 'orange', SUM(CASE WHEN severity IN ('charged','settled') THEN 1 ELSE 0 END) FROM incidents WHERE ${sevSql}
+      UNION ALL SELECT 'yellow', SUM(CASE WHEN severity IN ('investigation','allegation') THEN 1 ELSE 0 END) FROM incidents WHERE ${sevSql}
+    `, [...sevParams, ...sevParams, ...sevParams]);
+  } catch {}
+  const sevMax = Math.max(1, ...sevRows.map(r => r.n||0));
+
+  // ---- type facet ----
+  let typeRows = q(`SELECT COALESCE(NULLIF(type,''),'(other)') AS type, COUNT(*) AS n
+                    FROM incidents WHERE ${sql}
+                    GROUP BY type ORDER BY n DESC LIMIT 12`, params);
+  const typeMax = Math.max(1, ...typeRows.map(r => r.n));
+
+  // ---- country facet ----  (derive from location's last comma segment)
+  let countryRows = q(`SELECT TRIM(SUBSTR(location, MAX(1, INSTR(REPLACE(location,'  ',' '), ', ')+2))) AS country, COUNT(*) AS n
+                       FROM incidents WHERE ${sql} AND location IS NOT NULL AND location != ''
+                       GROUP BY country ORDER BY n DESC LIMIT 12`, params);
+  // crude: better to split country properly. We'll just take chars after the last comma.
+  countryRows = q(`SELECT
+                     CASE WHEN INSTR(location, ',')>0
+                          THEN TRIM(SUBSTR(location, INSTR(location, ', ')+2))
+                          ELSE location END AS country,
+                     COUNT(*) AS n
+                   FROM incidents WHERE ${sql} AND location IS NOT NULL AND location != ''
+                   GROUP BY country ORDER BY n DESC LIMIT 12`, params);
+  // collapse multi-segment locations to just the last token
+  countryRows = countryRows.map(r => {
+    const parts = (r.country||"").split(",").map(s=>s.trim()).filter(Boolean);
+    return { country: parts[parts.length-1] || "(unknown)", n: r.n };
+  }).reduce((acc, r) => {
+    const ex = acc.find(a => a.country === r.country);
+    if (ex) ex.n += r.n; else acc.push(r);
+    return acc;
+  }, []).sort((a,b) => b.n - a.n).slice(0, 10);
+  const countryMax = Math.max(1, ...countryRows.map(r => r.n));
+
+  inner.innerHTML = `
+    ${window.innerWidth < 1200 ? `<button id="facets-close">✕ close</button>` : ""}
+    ${activeChipsHtml}
+
+    <div class="facet">
+      <h3>Severity</h3>
+      ${sevRows.map(r => `
+        <div class="facet-item" data-facet="severity" data-value="${r.band}" data-active="${filters.severity.has(r.band)?1:0}">
+          <span class="bar" data-band="${r.band}" style="width:${Math.round((r.n||0)/sevMax*70)}px;"></span>
+          <span class="label">${r.band.toUpperCase()}</span>
+          <span class="count">${r.n||0}</span>
+        </div>`).join("")}
+    </div>
+
+    <div class="facet">
+      <h3>Crime type</h3>
+      ${typeRows.map(r => `
+        <div class="facet-item" data-facet="type" data-value="${escapeAttr(r.type)}" data-active="${filters.type.has(r.type)?1:0}">
+          <span class="bar" style="width:${Math.round(r.n/typeMax*70)}px;"></span>
+          <span class="label">${escapeHtml(r.type.replace(/_/g,' '))}</span>
+          <span class="count">${r.n}</span>
+        </div>`).join("")}
+    </div>
+
+    <div class="facet">
+      <h3>Country</h3>
+      ${countryRows.map(r => `
+        <div class="facet-item" data-facet="country" data-value="${escapeAttr(r.country)}" data-active="${filters.country.has(r.country)?1:0}">
+          <span class="bar" style="width:${Math.round(r.n/countryMax*70)}px;"></span>
+          <span class="label">${escapeHtml(r.country)}</span>
+          <span class="count">${r.n}</span>
+        </div>`).join("")}
+    </div>
+  `;
+
+  inner.querySelectorAll(".facet-item").forEach(el => {
+    el.addEventListener("click", () => {
+      const f = el.dataset.facet, v = el.dataset.value;
+      const set = filters[f];
+      if (set.has(v)) set.delete(v); else set.add(v);
+      refreshAll();
+    });
+  });
+  inner.querySelectorAll(".active-filter-chip").forEach(el => {
+    el.addEventListener("click", () => {
+      const k = el.dataset.k, v = el.dataset.v;
+      if (k === "year") { filters.yearMin = null; filters.yearMax = null; }
+      else filters[k].delete(v);
+      refreshAll();
+    });
+  });
+  const closeBtn = inner.querySelector("#facets-close");
+  if (closeBtn) closeBtn.addEventListener("click", () => $("facets").classList.remove("open"));
+}
+
+// ----- TIMELINE -----
+function setupTimeline() { /* removed — timeline now lives in D Stats subpage */ }
+
+function renderTimeline() { return; /* moved to Stats */
+  const canvas = $("tl-canvas");
+  // Group incidents by year × severity-band
+  const rows = q(`
+    SELECT CAST(substr(COALESCE(occurred_on,''),1,4) AS INT) AS yr,
+           CASE
+             WHEN severity IN ('convicted','indicted') THEN 'red'
+             WHEN severity IN ('charged','settled') THEN 'orange'
+             WHEN severity IN ('investigation','allegation') THEN 'yellow'
+             ELSE NULL END AS band,
+           COUNT(*) AS n
+    FROM incidents WHERE band IS NOT NULL AND yr BETWEEN 1990 AND 2026
+    GROUP BY yr, band
+  `);
+  const byYear = {};
+  rows.forEach(r => { (byYear[r.yr] ||= {red:0,orange:0,yellow:0})[r.band] = r.n; });
+  const years = Array.from({length: 2026-1990+1}, (_,i) => 1990+i);
+  const maxStack = Math.max(1, ...years.map(y => {
+    const yb = byYear[y] || {}; return (yb.red||0)+(yb.orange||0)+(yb.yellow||0);
+  }));
+  const wPct = 100 / years.length;
+  let html = "";
+  years.forEach((y, idx) => {
+    const yb = byYear[y] || {};
+    const stacked = [
+      {band:"red",    n: yb.red||0},
+      {band:"orange", n: yb.orange||0},
+      {band:"yellow", n: yb.yellow||0},
+    ];
+    let yOff = 0;
+    for (const s of stacked) {
+      if (!s.n) continue;
+      const h = (s.n / maxStack) * 38;
+      html += `<div class="tl-bar" data-band="${s.band}" data-year="${y}" title="${y}: ${s.n} ${s.band}"
+                style="left:${(idx*wPct).toFixed(3)}%; width:${(wPct*0.85).toFixed(3)}%; height:${h.toFixed(1)}px; bottom:${yOff.toFixed(1)}px;"></div>`;
+      yOff += h;
+    }
+    if (y % 5 === 0) {
+      html += `<div class="tl-year-label" style="left:${(idx*wPct + wPct/2).toFixed(3)}%;">${y}</div>`;
+    }
+  });
+  canvas.innerHTML = html;
+  canvas.querySelectorAll(".tl-bar").forEach(el => {
+    el.addEventListener("click", () => {
+      const y = +el.dataset.year;
+      filters.yearMin = y; filters.yearMax = y;
+      refreshAll();
+    });
+  });
+}
+
+// ----- PIN TRAY -----
+function setupPinTray() {
+  $("pin-pill").addEventListener("click", () => $("pintray").classList.toggle("open"));
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("#pin-pill") || e.target.closest("#pintray")) return;
+    $("pintray").classList.remove("open");
+  });
+  renderPinTray();
+}
+
+function renderPinTray() {
+  $("pin-count").textContent = pins.length;
+  const tray = $("pintray");
+  if (!pins.length) {
+    tray.innerHTML = `<div class="pin-empty">No pinned entities.<br/>Pin from any dossier header (📌).</div>`;
+    return;
+  }
+  tray.innerHTML = pins.map((p,i) => `
+    <div class="pin-card" data-href="${p.type}=${p.id}">
+      <button class="pclose" data-i="${i}" title="unpin">✕</button>
+      <div class="ptype">${p.type}</div>
+      <div class="ptitle">${escapeHtml(p.label)}</div>
+    </div>`).join("") +
+    `<div class="pin-actions">
+       ${pins.length >= 2 ? `<button id="pin-connect">connect these</button>` : ""}
+       <button id="pin-clear">clear all</button>
+     </div>`;
+  tray.querySelectorAll(".pin-card").forEach(el => {
+    el.addEventListener("click", (e) => {
+      if (e.target.closest(".pclose")) return;
+      navigate(el.dataset.href);
+      $("pintray").classList.remove("open");
+    });
+  });
+  tray.querySelectorAll(".pclose").forEach(el => {
+    el.addEventListener("click", (e) => {
+      e.stopPropagation();
+      pins.splice(+el.dataset.i, 1);
+      savePins(); renderPinTray();
+    });
+  });
+  const clr = tray.querySelector("#pin-clear");
+  if (clr) clr.addEventListener("click", () => { pins = []; savePins(); renderPinTray(); });
+  const conn = tray.querySelector("#pin-connect");
+  if (conn) conn.addEventListener("click", () => {
+    graphConnectMode = true;
+    switchView("graph");
+    tray.classList.remove("open");
+  });
+}
+
+function togglePin(type, id, label) {
+  const i = pins.findIndex(p => p.type === type && p.id === id);
+  if (i >= 0) pins.splice(i,1); else pins.push({ type, id, label });
+  savePins(); renderPinTray();
+  // Refresh dossier pin button if rendered
+  document.querySelectorAll(".pin-toggle").forEach(b => {
+    if (b.dataset.t === type && +b.dataset.id === id) b.dataset.pinned = (i<0 ? "1" : "0");
+  });
+}
+
+// Decorate dossier header with pin button (called from renderHouse/Person/Incident)
+function attachPinButton(type, id, label) {
+  const header = $("d-title").parentElement;
+  if (!header) return;
+  // Remove any prior pin button
+  header.querySelectorAll(".pin-toggle").forEach(b => b.remove());
+  const pinned = pins.some(p => p.type === type && p.id === id);
+  const btn = document.createElement("button");
+  btn.className = "pin-toggle"; btn.dataset.t = type; btn.dataset.id = id;
+  btn.dataset.pinned = pinned ? "1" : "0";
+  btn.title = pinned ? "unpin" : "pin to working set";
+  btn.textContent = "📌";
+  btn.addEventListener("click", () => togglePin(type, id, label));
+  // Insert before close button
+  const closeBtn = $("sheet-close");
+  header.insertBefore(btn, closeBtn);
+}
+
+// ===========================================================================
+// PHASE 3: GRAPH VIEW
+// ===========================================================================
+
+let currentView = "map"; // 'map' | 'graph'
+let graphRendered = false;
+let graphSim = null;
+let graphConnectMode = false; // true when showing subgraph of pinned entities
+
+function setupViewSwitch() { /* view switcher UI removed; switchView() still callable from "connect these" */ }
+
+function switchView(v) {
+  currentView = v;
+  if (v === "graph") {
+    $("map").style.display = "none";
+    $("graph").classList.add("open");
+    if (!graphRendered || graphConnectMode) renderGraph({ connectOnly: graphConnectMode });
+  } else {
+    $("graph").classList.remove("open");
+    $("map").style.display = "";
+    if (map) setTimeout(() => map.resize(), 50);
+  }
+}
+
+// ── Community colour palette (20 distinct, dark-theme safe) ──────────────────
+const COMM_COLORS = [
+  "#E03E3E","#D26C2B","#C8A93E","#4CAF8A","#5B9BD5",
+  "#9B59B6","#E91E94","#00BCD4","#8BC34A","#FF5722",
+  "#3F51B5","#009688","#FF9800","#607D8B","#E040FB",
+  "#00E676","#FF6B6B","#40C4FF","#FFEB3B","#A5D6A7",
+];
+function commColor(cid) {
+  if (cid == null || cid < 0) return "#3A3E48";
+  return COMM_COLORS[cid % COMM_COLORS.length];
+}
+
+// Build node + edge dataset from DB. No incident nodes — cleaner graph.
+function buildGraphData({ connectOnly = false } = {}) {
+  const nodes = new Map();
+  const edges = [];
+
+  function addNode(type, id, label, extra = {}) {
+    const key = `${type}:${id}`;
+    if (!nodes.has(key)) nodes.set(key, { id: key, type, dbId: id, label, ...extra });
+    return key;
+  }
+
+  function sevColor(rank) {
+    if (rank >= 4) return "#E03E3E";
+    if (rank >= 3) return "#D26C2B";
+    if (rank >= 2) return "#C8A93E";
+    return "#6E737A";
+  }
+
+  // ── LAYER 1: All incident-linked people (perpetrators / enablers) ──────────
+  const anchorRows = q(`
+    SELECT p.id, p.full_name, p.photo_local_url,
+      COALESCE(p.betweenness, 0) AS betweenness,
+      COALESCE(p.eigenvector, 0) AS eigenvector,
+      COALESCE(p.degree_w,   0) AS degree_w,
+      COALESCE(p.community_id, -1) AS community_id,
+      COALESCE(p.kcore, 0)       AS kcore,
+      SUM(CASE i.severity
+        WHEN 'convicted' THEN 10 WHEN 'indicted' THEN 8
+        WHEN 'charged' THEN 5 WHEN 'settled' THEN 3
+        WHEN 'investigation' THEN 2 ELSE 1 END) AS score,
+      MAX(CASE i.severity
+        WHEN 'convicted' THEN 4 WHEN 'indicted' THEN 3
+        WHEN 'charged' THEN 2 WHEN 'settled' THEN 1 ELSE 0 END) AS sev_rank
+    FROM people p
+    JOIN incident_people ip ON ip.person_id = p.id
+    JOIN incidents i ON i.id = ip.incident_id
+    WHERE p.full_name NOT LIKE '%Unnamed%' AND p.full_name NOT LIKE '%Unknown%'
+    GROUP BY p.id
+    ORDER BY score DESC
+  `);
+
+  const anchorIds = new Set(anchorRows.map(r => r.id));
+
+  // ── LAYER 2: 1-hop associates — people sharing a house with any anchor ─────
+  // These are innocents/associates that reveal the broader network
+  let associateRows = [];
+  if (anchorIds.size) {
+    const aq = `(${[...anchorIds].map(()=>'?').join(',')})`;
+    try {
+      associateRows = q(`
+        SELECT DISTINCT p.id, p.full_name, p.photo_local_url,
+          COALESCE(p.betweenness, 0) AS betweenness,
+          COALESCE(p.community_id, -1) AS community_id,
+          COALESCE(p.kcore, 0) AS kcore,
+          0 AS score, 0 AS sev_rank
+        FROM people p
+        JOIN house_roles hr ON hr.person_id = p.id
+        WHERE hr.house_id IN (
+          SELECT house_id FROM house_roles WHERE person_id IN ${aq}
+        )
+        AND p.id NOT IN ${aq}
+        AND p.full_name NOT LIKE '%Unnamed%' AND p.full_name NOT LIKE '%Unknown%'
+        ORDER BY p.betweenness DESC NULLS LAST
+        LIMIT 400
+      `, [...anchorIds, ...anchorIds]);
+    } catch(e) {}
+  }
+
+  // ── LAYER 3: person_relations targets not yet included ────────────────────
+  let relationTargetRows = [];
+  if (anchorIds.size) {
+    const aq = `(${[...anchorIds].map(()=>'?').join(',')})`;
+    try {
+      relationTargetRows = q(`
+        SELECT DISTINCT p.id, p.full_name, p.photo_local_url,
+          COALESCE(p.betweenness, 0) AS betweenness,
+          COALESCE(p.community_id, -1) AS community_id,
+          COALESCE(p.kcore, 0) AS kcore,
+          0 AS score, 0 AS sev_rank
+        FROM people p
+        WHERE p.id IN (
+          SELECT CASE WHEN person_a IN ${aq} THEN person_b ELSE person_a END
+          FROM person_relations
+          WHERE person_a IN ${aq} OR person_b IN ${aq}
+        )
+        AND p.id NOT IN ${aq}
+        AND p.full_name NOT LIKE '%Unnamed%'
+      `, [...anchorIds, ...anchorIds, ...anchorIds, ...anchorIds]);
+    } catch(e) {}
+  }
+
+  // ── Merge all people ───────────────────────────────────────────────────────
+  const allPeopleMap = new Map();
+  anchorRows.forEach(r => allPeopleMap.set(r.id, { ...r, role: "anchor" }));
+  associateRows.forEach(r => { if (!allPeopleMap.has(r.id)) allPeopleMap.set(r.id, { ...r, role: "associate" }); });
+  relationTargetRows.forEach(r => { if (!allPeopleMap.has(r.id)) allPeopleMap.set(r.id, { ...r, role: "associate" }); });
+  const allPeopleRows = [...allPeopleMap.values()];
+
+  // ── HOUSES: all houses that have at least one anchor person ───────────────
+  let houseRows = [];
+  if (anchorIds.size) {
+    const aq = `(${[...anchorIds].map(()=>'?').join(',')})`;
+    try {
+      houseRows = q(`
+        SELECT h.id, h.name, h.color_band, h.incident_count,
+          COALESCE(h.betweenness, 0) AS betweenness,
+          COALESCE(h.eigenvector, 0) AS eigenvector,
+          COALESCE(h.community_id, -1) AS community_id,
+          COALESCE(h.kcore, 0) AS kcore
+        FROM houses h
+        WHERE h.id IN (
+          SELECT DISTINCT house_id FROM house_roles WHERE person_id IN ${aq}
+        )
+        ORDER BY COALESCE(h.incident_count,0) DESC
+        LIMIT 300
+      `, [...anchorIds]);
+    } catch(e) {}
+  }
+
+  const pIds = allPeopleRows.map(r => r.id);
+  const hIds = houseRows.map(r => r.id);
+  const pSet = new Set(pIds);
+  const hSet = new Set(hIds);
+
+  // ── Add people nodes ───────────────────────────────────────────────────────
+  allPeopleRows.forEach(p => {
+    const isAnchor = p.role === "anchor";
+    const r = isAnchor
+      ? Math.max(9, Math.min(26, 7 + Math.sqrt(p.score || 1) * 2.2))
+      : 6;
+    addNode("person", p.id, p.full_name || `#${p.id}`, {
+      score:       p.score || 0,
+      sevRank:     p.sev_rank || 0,
+      ringColor:   isAnchor ? sevColor(p.sev_rank || 0) : "#3A3F47",
+      photo:       p.photo_local_url || null,
+      radius:      r,
+      betweenness: p.betweenness || 0,
+      communityId: p.community_id != null ? p.community_id : -1,
+      kcore:       p.kcore || 0,
+      isBridge:    (p.betweenness || 0) > 0.03,
+      role:        p.role || "associate",
+    });
+  });
+
+  // ── Add house nodes ────────────────────────────────────────────────────────
+  houseRows.forEach(h => {
+    const band = h.color_band || "black";
+    const c = band === "red" ? "#E03E3E"
+            : band === "orange" ? "#D26C2B"
+            : band === "yellow" ? "#C8A93E"
+            : "#2E333B";
+    addNode("house", h.id, h.name || `#${h.id}`, {
+      houseColor:   c,
+      incidentCount: h.incident_count || 0,
+      radius:       Math.max(8, Math.min(28, 7 + Math.sqrt(h.incident_count || 0.5) * 2.5)),
+      betweenness:  h.betweenness || 0,
+      communityId:  h.community_id != null ? h.community_id : -1,
+      kcore:        h.kcore || 0,
+      isBridge:     (h.betweenness || 0) > 0.05,
+      band,
+    });
+  });
+
+  // ── Edges: person → house membership ──────────────────────────────────────
+  if (pIds.length) {
+    const pq = `(${pIds.map(()=>'?').join(',')})`;
+    try {
+      q(`SELECT person_id, house_id FROM house_roles WHERE person_id IN ${pq}`, pIds)
+        .forEach(r => {
+          if (hSet.has(r.house_id))
+            edges.push({ source: `person:${r.person_id}`, target: `house:${r.house_id}`, rel: "house", weight: 0.5 });
+        });
+    } catch(e) {}
+  }
+
+  // ── Edges: co-defendants via incident_people ───────────────────────────────
+  if (anchorIds.size) {
+    const aq = `(${[...anchorIds].map(()=>'?').join(',')})`;
+    try {
+      q(`SELECT a.person_id AS pa, b.person_id AS pb, COUNT(*) AS shared
+         FROM incident_people a JOIN incident_people b
+           ON a.incident_id = b.incident_id AND a.person_id < b.person_id
+         WHERE a.person_id IN ${aq}
+         GROUP BY a.person_id, b.person_id`, [...anchorIds])
+        .forEach(r => {
+          if (pSet.has(r.pa) && pSet.has(r.pb))
+            edges.push({ source: `person:${r.pa}`, target: `person:${r.pb}`, rel: "codefendant", weight: r.shared * 2 });
+        });
+    } catch(e) {}
+  }
+
+  // ── Edges: family_relations ────────────────────────────────────────────────
+  if (pIds.length) {
+    const pq = `(${pIds.map(()=>'?').join(',')})`;
+    try {
+      q(`SELECT person_a, person_b FROM family_relations
+         WHERE person_a IN ${pq} OR person_b IN ${pq}`, [...pIds, ...pIds])
+        .forEach(r => {
+          if (pSet.has(r.person_a) && pSet.has(r.person_b))
+            edges.push({ source: `person:${r.person_a}`, target: `person:${r.person_b}`, rel: "family", weight: 2 });
+        });
+    } catch(e) {}
+  }
+
+  // ── Edges: person_relations (codefendant, family, supervisor, financial, etc.)
+  if (pIds.length) {
+    const pq = `(${pIds.map(()=>'?').join(',')})`;
+    try {
+      q(`SELECT person_a, person_b, rel_type FROM person_relations
+         WHERE person_a IN ${pq} OR person_b IN ${pq}`, [...pIds, ...pIds])
+        .forEach(r => {
+          if (pSet.has(r.person_a) && pSet.has(r.person_b)) {
+            const relMap = { codefendant:"codefendant", family:"family", supervisor:"supervisor",
+                             financial:"financial", rabbinical:"rabbinical", attorney:"attorney" };
+            edges.push({ source: `person:${r.person_a}`, target: `person:${r.person_b}`,
+                         rel: relMap[r.rel_type] || "associate", weight: 1.5 });
+          }
+        });
+    } catch(e) {}
+  }
+
+  return { nodes: [...nodes.values()], edges };
+}
+
+let graphFocusId = null; // currently focused node key
+
+function renderGraph(opts = {}) {
+  const container = $("graph");
+  container.innerHTML = "";
+  graphFocusId = null;
+  hideWPanel();
+
+  const svgNS = "http://www.w3.org/2000/svg";
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight - 88;
+
+  // Controls
+  const controls = document.createElement("div");
+  controls.className = "g-controls";
+  container.appendChild(controls);
+
+  // Legend
+  const legend = document.createElement("div");
+  legend.className = "g-legend";
+  legend.innerHTML = `
+    <div class="leg-row"><span class="leg-dot" style="background:#E03E3E;"></span>Convicted/Indicted</div>
+    <div class="leg-row"><span class="leg-dot" style="background:#D26C2B;"></span>Charged/Settled</div>
+    <div class="leg-row"><span class="leg-dot" style="background:#C8A93E;"></span>Allegation</div>
+    <div class="leg-row"><span class="leg-dot" style="background:#3A3F47;border:1px solid #555;"></span>Associate/Innocent</div>
+    <div class="leg-row"><span class="leg-dot" style="border-radius:3px;background:#1A1E24;border:1.5px solid #C8A93E;width:14px;height:10px;"></span>Institution</div>
+    <div style="margin-top:6px;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;">Connections</div>
+    <div class="leg-row"><span class="leg-line" style="background:#E03E3E;opacity:0.8;"></span>Co-defendant</div>
+    <div class="leg-row"><span class="leg-line" style="background:#FFD700;opacity:0.7;"></span>Financial</div>
+    <div class="leg-row"><span class="leg-line" style="background:#7EB8FF;opacity:0.7;border-top:2px dashed #7EB8FF;height:0;"></span>Family</div>
+    <div class="leg-row"><span class="leg-line" style="background:#FF8C00;opacity:0.6;border-top:2px dashed #FF8C00;height:0;"></span>Rabbinical</div>
+    <div class="leg-row"><span class="leg-line" style="background:#A0A0FF;opacity:0.6;border-top:2px dashed #A0A0FF;height:0;"></span>Supervisor</div>
+    <div class="leg-row"><span class="leg-line" style="background:#90EE90;opacity:0.5;"></span>Attorney</div>
+    <div class="leg-row"><span class="leg-line" style="background:#C8A93E;opacity:0.4;"></span>Membership</div>
+  `;
+  container.appendChild(legend);
+
+  // SVG
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  container.appendChild(svg);
+
+  // Defs for clip paths
+  const defs = document.createElementNS(svgNS, "defs");
+  svg.appendChild(defs);
+
+  const root = document.createElementNS(svgNS, "g");
+  svg.appendChild(root);
+  const edgeLayer = document.createElementNS(svgNS, "g"); root.appendChild(edgeLayer);
+  const nodeLayer = document.createElementNS(svgNS, "g"); root.appendChild(nodeLayer);
+
+  const { nodes, edges } = buildGraphData(opts);
+  const nodeMap = new Map(nodes.map(n => [n.id, n]));
+
+  // Precompute neighbor sets for ego mode
+  const neighbors = new Map(nodes.map(n => [n.id, new Set()]));
+  edges.forEach(e => {
+    const sid = typeof e.source === "object" ? e.source.id : e.source;
+    const tid = typeof e.target === "object" ? e.target.id : e.target;
+    neighbors.get(sid)?.add(tid);
+    neighbors.get(tid)?.add(sid);
+  });
+
+  // ── Colour mode state ────────────────────────────────────────────────────
+  let colorMode = "severity";   // 'severity' | 'community' | 'betweenness'
+  let edgeVis   = { house: true, codefendant: true, family: true };
+  let pathMode  = false;
+  let pathNodes = [];            // [nodeKey, nodeKey] selected for path
+
+  controls.innerHTML = `
+    <span class="g-stat" id="g-stat">${nodes.length} nodes · ${edges.length} edges</span>
+    <span style="color:var(--mute);margin:0 4px;">|</span>
+    <span style="font:600 10px var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.06em;">Color:</span>
+    <button id="g-col-sev"    data-active="1">Severity</button>
+    <button id="g-col-comm"   data-active="0">Community</button>
+    <button id="g-col-bet"    data-active="0">Bridges</button>
+    <span style="color:var(--mute);margin:0 4px;">|</span>
+    <span style="font:600 10px var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.06em;">Edges:</span>
+    <button id="g-edge-house"  data-active="1">House</button>
+    <button id="g-edge-codef"  data-active="1">Co-def</button>
+    <button id="g-edge-fam"    data-active="1">Family</button>
+    <span style="color:var(--mute);margin:0 4px;">|</span>
+    <button id="g-path"        data-active="0">Path Finder</button>
+    <button id="g-focus-clear" style="display:none;">Clear Focus</button>
+    <button id="g-redraw">↺</button>
+    <button id="g-fit">Fit</button>
+  `;
+  const fitBtn = controls.querySelector("#g-fit");
+  controls.querySelector("#g-redraw").addEventListener("click", () => { graphRendered = false; renderGraph(opts); });
+  fitBtn.addEventListener("click", () => fitGraph());
+  controls.querySelector("#g-focus-clear").addEventListener("click", () => clearFocus());
+
+  // Colour mode buttons
+  function setColorMode(m) {
+    colorMode = m;
+    ["sev","comm","bet"].forEach(k => {
+      controls.querySelector(`#g-col-${k}`).dataset.active = k === { severity:"sev", community:"comm", betweenness:"bet" }[m] ? "1" : "0";
+    });
+    recolorNodes();
+  }
+  controls.querySelector("#g-col-sev").addEventListener("click",  () => setColorMode("severity"));
+  controls.querySelector("#g-col-comm").addEventListener("click", () => setColorMode("community"));
+  controls.querySelector("#g-col-bet").addEventListener("click",  () => setColorMode("betweenness"));
+
+  // Edge toggles
+  function toggleEdgeType(rel, btnId) {
+    edgeVis[rel] = !edgeVis[rel];
+    controls.querySelector(`#${btnId}`).dataset.active = edgeVis[rel] ? "1" : "0";
+    edgeEls.forEach((el, i) => {
+      if (edges[i].rel === rel) el.style.display = edgeVis[rel] ? "" : "none";
+    });
+  }
+  controls.querySelector("#g-edge-house").addEventListener("click", () => toggleEdgeType("house",      "g-edge-house"));
+  controls.querySelector("#g-edge-codef").addEventListener("click", () => toggleEdgeType("codefendant","g-edge-codef"));
+  controls.querySelector("#g-edge-fam").addEventListener("click",   () => toggleEdgeType("family",     "g-edge-fam"));
+
+  // Path-finder toggle
+  const pathBtn = controls.querySelector("#g-path");
+  pathBtn.addEventListener("click", () => {
+    pathMode = !pathMode;
+    pathNodes = [];
+    pathBtn.dataset.active = pathMode ? "1" : "0";
+    pathBtn.textContent = pathMode ? "Path Finder ✕" : "Path Finder";
+    if (!pathMode) clearPath();
+    else $("g-tooltip").innerHTML = `<b>Path finder ON</b><br><span style="color:var(--mute)">Click two nodes</span>`;
+  });
+
+  if (!nodes.length) {
+    const t = document.createElementNS(svgNS, "text");
+    t.setAttribute("x", w/2); t.setAttribute("y", h/2);
+    t.setAttribute("fill", "#6E737A"); t.setAttribute("text-anchor", "middle");
+    t.setAttribute("font-family", "IBM Plex Mono"); t.setAttribute("font-size", "13");
+    t.textContent = "no nodes to render";
+    svg.appendChild(t); return;
+  }
+
+  // Edge elements
+  const edgeEls = edges.map(e => {
+    const line = document.createElementNS(svgNS, "line");
+    line.classList.add("g-edge");
+    line.setAttribute("data-rel", e.rel);
+    const w = e.rel === "codefendant" ? Math.min(4, 1 + (e.weight || 1) * 0.5) : 1;
+    line.setAttribute("stroke-width", w);
+    edgeLayer.appendChild(line);
+    return line;
+  });
+
+  // Node elements
+  const nodeEls = nodes.map(n => {
+    const g = document.createElementNS(svgNS, "g");
+    g.classList.add("g-node", n.type);
+    const r = n.radius || 10;
+    const safeId = n.id.replace(/[^a-zA-Z0-9]/g, "_");
+
+    if (n.type === "person") {
+      // Background circle (dark fill)
+      const bg = document.createElementNS(svgNS, "circle");
+      bg.setAttribute("r", r);
+      bg.setAttribute("fill", "#1A1D23");
+      bg.setAttribute("stroke", n.ringColor || "#6E737A");
+      bg.setAttribute("stroke-width", "2.5");
+      g.appendChild(bg);
+
+      // Photo avatar (if available)
+      if (n.photo) {
+        const clip = document.createElementNS(svgNS, "clipPath");
+        clip.setAttribute("id", `cp_${safeId}`);
+        const clipC = document.createElementNS(svgNS, "circle");
+        clipC.setAttribute("r", r - 1);
+        clip.appendChild(clipC);
+        defs.appendChild(clip);
+        const img = document.createElementNS(svgNS, "image");
+        img.setAttribute("href", `public/${n.photo}`);
+        img.setAttribute("x", -(r - 1)); img.setAttribute("y", -(r - 1));
+        img.setAttribute("width", (r - 1) * 2); img.setAttribute("height", (r - 1) * 2);
+        img.setAttribute("clip-path", `url(#cp_${safeId})`);
+        img.setAttribute("preserveAspectRatio", "xMidYMid slice");
+        g.appendChild(img);
+      } else {
+        // Initials fallback
+        const initials = (n.label || "?").split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
+        const it = document.createElementNS(svgNS, "text");
+        it.textContent = initials;
+        it.setAttribute("fill", n.ringColor || "#6E737A");
+        it.setAttribute("font-family", "IBM Plex Mono");
+        it.setAttribute("font-size", Math.max(7, r * 0.55));
+        it.setAttribute("font-weight", "600");
+        it.setAttribute("text-anchor", "middle");
+        it.setAttribute("dominant-baseline", "central");
+        it.style.pointerEvents = "none";
+        g.appendChild(it);
+      }
+
+    } else {
+      // House = rounded rect
+      const hw = r * 2.2, hh = r * 1.1;
+      const rect = document.createElementNS(svgNS, "rect");
+      rect.setAttribute("x", -hw/2); rect.setAttribute("y", -hh/2);
+      rect.setAttribute("width", hw); rect.setAttribute("height", hh);
+      rect.setAttribute("rx", "4");
+      rect.setAttribute("fill", (n.houseColor || "#C8A93E") + "22");
+      rect.setAttribute("stroke", n.houseColor || "#C8A93E");
+      rect.setAttribute("stroke-width", "1.5");
+      g.appendChild(rect);
+    }
+
+    // Label below
+    const label = document.createElementNS(svgNS, "text");
+    const shortLabel = (n.label || "").replace(/^(rabbi|mrs?\.?)\s+/i, "").slice(0, 22);
+    label.textContent = shortLabel;
+    label.setAttribute("y", r + 4);
+    g.appendChild(label);
+
+    // Events
+    g.addEventListener("mouseenter", ev => showGTooltip(n, ev));
+    g.addEventListener("mousemove",  ev => moveGTooltip(ev));
+    g.addEventListener("mouseleave", hideGTooltip);
+    g.addEventListener("click", ev => {
+      ev.stopPropagation();
+      if (pathMode) {
+        // Path-finder: collect two nodes then run BFS
+        if (!pathNodes.includes(n.id)) pathNodes.push(n.id);
+        if (pathNodes.length >= 2) { runPathFinder(pathNodes[0], pathNodes[1]); pathNodes = []; }
+        else {
+          $("g-tooltip").innerHTML = `<b>Path from: ${escapeHtml(n.label)}</b><br><span style="color:var(--mute)">Click destination node</span>`;
+          $("g-tooltip").classList.add("open");
+        }
+        return;
+      }
+      if (graphFocusId === n.id) { clearFocus(); hideWPanel(); return; }
+      setFocus(n.id);
+      showWPanel(n);
+    });
+
+    nodeLayer.appendChild(g);
+    return g;
+  });
+
+  // Click SVG background → clear focus
+  svg.addEventListener("click", () => { clearFocus(); hideWPanel(); });
+
+  function setFocus(nodeId) {
+    graphFocusId = nodeId;
+    const nbrs = neighbors.get(nodeId) || new Set();
+    controls.querySelector("#g-focus-clear").style.display = "";
+    nodeEls.forEach((el, i) => {
+      const nid = nodes[i].id;
+      const active = nid === nodeId || nbrs.has(nid);
+      el.classList.toggle("dimmed", !active);
+      el.classList.toggle("focused", active);
+    });
+    edgeEls.forEach((el, i) => {
+      const e = edges[i];
+      const sid = typeof e.source === "object" ? e.source.id : e.source;
+      const tid = typeof e.target === "object" ? e.target.id : e.target;
+      const active = sid === nodeId || tid === nodeId;
+      el.classList.toggle("dimmed", !active);
+    });
+  }
+
+  function clearFocus() {
+    graphFocusId = null;
+    controls.querySelector("#g-focus-clear").style.display = "none";
+    nodeEls.forEach(el => { el.classList.remove("dimmed", "focused", "path-node"); });
+    edgeEls.forEach(el => { el.classList.remove("dimmed", "path-edge"); el.removeAttribute("data-path"); });
+  }
+
+  // ── Re-colour nodes based on current colorMode ────────────────────────────
+  function recolorNodes() {
+    const maxBetLocal = Math.max(0.001, ...nodes.map(n => n.betweenness || 0));
+    nodeEls.forEach((el, i) => {
+      const n = nodes[i];
+      if (n.type === "person") {
+        const circle = el.querySelector("circle");
+        if (!circle) return;
+        let stroke;
+        if (colorMode === "community") stroke = commColor(n.communityId);
+        else if (colorMode === "betweenness") {
+          const t = (n.betweenness || 0) / maxBetLocal;
+          // interpolate mute → red
+          const r = Math.round(110 + 130 * t), g2 = Math.round(115 - 77 * t), b2 = Math.round(122 - 84 * t);
+          stroke = `rgb(${r},${g2},${b2})`;
+        } else stroke = n.ringColor || "#6E737A";
+        circle.setAttribute("stroke", stroke);
+        circle.setAttribute("stroke-width", n.isBridge && colorMode === "betweenness" ? "4.5" : "2.5");
+      } else {
+        const rect = el.querySelector("rect");
+        if (!rect) return;
+        let stroke;
+        if (colorMode === "community") stroke = commColor(n.communityId);
+        else if (colorMode === "betweenness") {
+          const t = (n.betweenness || 0) / maxBetLocal;
+          const r = Math.round(110 + 130 * t), g2 = Math.round(115 - 77 * t), b2 = Math.round(122 - 84 * t);
+          stroke = `rgb(${r},${g2},${b2})`;
+        } else stroke = n.houseColor || "#C8A93E";
+        rect.setAttribute("stroke", stroke);
+        rect.setAttribute("fill", stroke + "22");
+        rect.setAttribute("stroke-width", n.isBridge && colorMode === "betweenness" ? "3" : "1.5");
+      }
+    });
+  }
+
+  // ── Path finder (BFS over adjacency list) ─────────────────────────────────
+  function runPathFinder(startId, endId) {
+    // Build adjacency from current edges (respecting edge visibility)
+    const adj = new Map();
+    nodes.forEach(n => adj.set(n.id, []));
+    edges.forEach((e, i) => {
+      if (!edgeVis[e.rel]) return;
+      const sid = typeof e.source === "object" ? e.source.id : e.source;
+      const tid = typeof e.target === "object" ? e.target.id : e.target;
+      adj.get(sid)?.push({ to: tid, idx: i });
+      adj.get(tid)?.push({ to: sid, idx: i });
+    });
+
+    // BFS
+    const prev = new Map(), prevEdge = new Map(), visited = new Set();
+    const queue = [startId];
+    visited.add(startId);
+    while (queue.length) {
+      const cur = queue.shift();
+      if (cur === endId) break;
+      for (const { to, idx } of (adj.get(cur) || [])) {
+        if (!visited.has(to)) {
+          visited.add(to); prev.set(to, cur); prevEdge.set(to, idx); queue.push(to);
+        }
+      }
+    }
+    if (!prev.has(endId) && startId !== endId) {
+      $("g-tooltip").innerHTML = `<b>No path found</b><br><span style="color:var(--mute)">Nodes are in disconnected clusters</span>`;
+      $("g-tooltip").classList.add("open");
+      return;
+    }
+
+    // Reconstruct path
+    clearFocus();
+    const pathEdgeIdxs = new Set(), pathNodeIds = new Set([startId, endId]);
+    let cur = endId;
+    while (prev.has(cur)) {
+      pathEdgeIdxs.add(prevEdge.get(cur));
+      cur = prev.get(cur);
+      pathNodeIds.add(cur);
+    }
+
+    const hops = pathNodeIds.size - 1;
+    nodeEls.forEach((el, i) => {
+      const inPath = pathNodeIds.has(nodes[i].id);
+      el.classList.toggle("dimmed", !inPath);
+      el.classList.toggle("path-node", inPath);
+    });
+    edgeEls.forEach((el, i) => {
+      const inPath = pathEdgeIdxs.has(i);
+      el.classList.toggle("dimmed", !inPath);
+      if (inPath) el.setAttribute("data-path", "1");
+    });
+
+    const startLabel = nodeMap.get(startId)?.label || startId;
+    const endLabel   = nodeMap.get(endId)?.label   || endId;
+    $("g-tooltip").innerHTML = `<b>${hops}-hop path found</b><br><span style="color:var(--mute)">${escapeHtml(startLabel)} → ${escapeHtml(endLabel)}</span>`;
+    $("g-tooltip").classList.add("open");
+    controls.querySelector("#g-focus-clear").style.display = "";
+  }
+
+  function clearPath() {
+    nodeEls.forEach(el => el.classList.remove("path-node", "dimmed", "focused"));
+    edgeEls.forEach(el => { el.classList.remove("path-edge", "dimmed"); el.removeAttribute("data-path"); });
+    $("g-tooltip")?.classList.remove("open");
+  }
+
+  // Force simulation — house nodes as gravity wells
+  if (graphSim) graphSim.stop();
+
+  // Assign primary house per person for clustering
+  const personHouse = new Map();
+  edges.forEach(e => {
+    if (e.rel === "house") {
+      const sid = typeof e.source === "string" ? e.source : e.source.id;
+      const tid = typeof e.target === "string" ? e.target : e.target.id;
+      const pid = sid.startsWith("person:") ? sid : tid;
+      const hid = sid.startsWith("house:") ? sid : tid;
+      if (!personHouse.has(pid)) personHouse.set(pid, hid);
+    }
+  });
+
+  function clusterForce(alpha) {
+    nodes.forEach(d => {
+      if (d.type !== "person") return;
+      const houseId = personHouse.get(d.id);
+      if (!houseId) return;
+      const house = nodeMap.get(houseId);
+      if (!house || house.x == null) return;
+      d.vx += (house.x - d.x) * alpha * 0.06;
+      d.vy += (house.y - d.y) * alpha * 0.06;
+    });
+  }
+
+  graphSim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(edges).id(d => d.id)
+      .distance(e => e.rel === "house" ? 70 : e.rel === "family" ? 45 : 60)
+      .strength(e => e.rel === "house" ? 0.5 : 0.3))
+    .force("charge", d3.forceManyBody().strength(d => d.type === "house" ? -300 : -120))
+    .force("center", d3.forceCenter(w/2, h/2))
+    .force("collide", d3.forceCollide().radius(d => (d.radius || 10) + 5))
+    .force("cluster", { initialize(ns) {}, [Symbol.iterator]: undefined })
+    .alphaDecay(0.025);
+
+  // Patch in custom cluster force
+  graphSim.force("cluster", null);
+  graphSim.on("tick.cluster", () => clusterForce(graphSim.alpha()));
+  graphSim.on("tick", () => {
+    clusterForce(graphSim.alpha());
+    edges.forEach((e, i) => {
+      const l = edgeEls[i];
+      const sx = e.source.x || 0, sy = e.source.y || 0;
+      const tx = e.target.x || 0, ty = e.target.y || 0;
+      l.setAttribute("x1", sx); l.setAttribute("y1", sy);
+      l.setAttribute("x2", tx); l.setAttribute("y2", ty);
+    });
+    nodes.forEach((n, i) => {
+      nodeEls[i].setAttribute("transform", `translate(${n.x||0},${n.y||0})`);
+    });
+  });
+
+  // Zoom & pan
+  const zoom = d3zoom.zoom().scaleExtent([0.1, 5]).on("zoom", ev => {
+    root.setAttribute("transform", ev.transform.toString());
+  });
+  d3sel.select(svg).call(zoom);
+
+  // Drag
+  d3sel.select(nodeLayer).selectAll(".g-node").data(nodes).call(
+    d3drag.drag()
+      .on("start", (ev, d) => { if (!ev.active) graphSim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on("drag",  (ev, d) => { d.fx = ev.x; d.fy = ev.y; })
+      .on("end",   (ev, d) => { if (!ev.active) graphSim.alphaTarget(0); d.fx = null; d.fy = null; })
+  );
+
+  function fitGraph() {
+    const pad = 60;
+    const xs = nodes.map(n => n.x).filter(isFinite);
+    const ys = nodes.map(n => n.y).filter(isFinite);
+    if (!xs.length) return;
+    const xMin = Math.min(...xs), xMax = Math.max(...xs);
+    const yMin = Math.min(...ys), yMax = Math.max(...ys);
+    const gw = xMax - xMin || 1, gh = yMax - yMin || 1;
+    const scale = Math.min((w - pad*2) / gw, (h - pad*2) / gh, 2);
+    const tx = pad - xMin * scale + (w - 2*pad - gw*scale)/2;
+    const ty = pad - yMin * scale + (h - 2*pad - gh*scale)/2;
+    d3sel.select(svg).transition().duration(600)
+      .call(zoom.transform, d3zoom.zoomIdentity.translate(tx, ty).scale(scale));
+  }
+
+  setTimeout(fitGraph, 1400);
+  graphRendered = true;
+}
+
+// W-mode side panel
+function showWPanel(n) {
+  const panel = $("w-panel");
+  const body = $("wp-body");
+  if (!panel || !body) return;
+
+  const betPct  = ((n.betweenness || 0) * 100).toFixed(2);
+  const eigPct  = ((n.eigenvector || 0) * 100).toFixed(1);
+  const commBadge = n.communityId >= 0
+    ? `<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${commColor(n.communityId)};margin-right:4px;vertical-align:middle;"></span>Cluster ${n.communityId}`
+    : "—";
+  const bridgeBadge = n.isBridge ? `<span style="color:#00E5FF;font:600 10px var(--mono);text-transform:uppercase;letter-spacing:.06em;">⬡ BRIDGE NODE</span>` : "";
+
+  if (n.type === "person") {
+    const rows = q(`
+      SELECT i.type, i.severity, i.occurred_on, i.summary, i.location
+      FROM incidents i JOIN incident_people ip ON ip.incident_id = i.id
+      WHERE ip.person_id = ? ORDER BY i.occurred_on DESC LIMIT 6`, [n.dbId]);
+    const photoStyle = n.photo ? `background-image:url('public/${n.photo}')` : "";
+    body.innerHTML = `
+      <div class="wp-type">Person ${bridgeBadge}</div>
+      <div class="wp-avatar" style="${photoStyle}"></div>
+      <div class="wp-name">${escapeHtml(n.label)}</div>
+      <div class="wp-meta">
+        ${rows.length} incident${rows.length !== 1 ? "s" : ""} on record<br>
+        <span style="color:var(--mute);font:400 10px var(--mono);">
+          Betweenness: ${betPct}% · Influence: ${eigPct}% · k-core: ${n.kcore||0}<br>
+          Community: ${commBadge}
+        </span>
+      </div>
+      <div class="wp-incidents">
+        ${rows.map(r => `
+          <div class="wp-inc" data-sev="${r.severity}">
+            <b>${escapeHtml(r.type || "incident")} · ${r.occurred_on ? r.occurred_on.slice(0,4) : "?"}</b><br>
+            ${escapeHtml((r.summary || "").slice(0, 120))}
+          </div>`).join("")}
+      </div>
+      <button class="wp-open-full" id="wp-open-full">Open full dossier →</button>
+    `;
+    document.getElementById("wp-open-full").addEventListener("click", () => {
+      navigate(`person=${n.dbId}`); switchMode("D");
+    });
+  } else {
+    const rows = q(`SELECT name, color_band, incident_count FROM v_house_summary WHERE house_id = ?`, [n.dbId]);
+    const h = rows[0] || {};
+    body.innerHTML = `
+      <div class="wp-type">Institution ${bridgeBadge}</div>
+      <div class="wp-name">${escapeHtml(n.label)}</div>
+      <div class="wp-meta">
+        ${h.incident_count || 0} incidents · ${(h.color_band || "").toUpperCase()}<br>
+        <span style="color:var(--mute);font:400 10px var(--mono);">
+          Betweenness: ${betPct}% · Influence: ${eigPct}% · k-core: ${n.kcore||0}<br>
+          Community: ${commBadge}
+        </span>
+      </div>
+      <button class="wp-open-full" id="wp-open-full">Open full dossier →</button>
+    `;
+    document.getElementById("wp-open-full").addEventListener("click", () => {
+      navigate(`house=${n.dbId}`); switchMode("D");
+    });
+  }
+  panel.classList.add("open");
+}
+
+function hideWPanel() {
+  $("w-panel")?.classList.remove("open");
+}
+
+// Graph tooltip
+function showGTooltip(n, ev) {
+  const tt = $("g-tooltip"); if (!tt) return;
+  const sevLabel = n.sevRank >= 4 ? "Convicted" : n.sevRank >= 3 ? "Indicted" : n.sevRank >= 2 ? "Charged" : "Allegation";
+  const betStr  = ((n.betweenness || 0) * 100).toFixed(2) + "% bridge";
+  const commStr = n.communityId >= 0 ? `Cluster ${n.communityId}` : "";
+  const bridgeMark = n.isBridge ? " ⬡" : "";
+  const sub = n.type === "person"
+    ? `${sevLabel} · ${betStr}${commStr ? " · " + commStr : ""}${bridgeMark}`
+    : `${n.incidentCount || "?"} inc · ${betStr}${commStr ? " · " + commStr : ""}${bridgeMark}`;
+  tt.innerHTML = `<b>${escapeHtml(n.label)}</b><br><span style="color:var(--mute)">${sub}</span>`;
+  tt.classList.add("open");
+  moveGTooltip(ev);
+}
+function moveGTooltip(ev) {
+  const tt = $("g-tooltip"); if (!tt) return;
+  tt.style.left = (ev.clientX + 14) + "px";
+  tt.style.top  = (ev.clientY + 14) + "px";
+}
+function hideGTooltip() { $("g-tooltip")?.classList.remove("open"); }
+
+// ===========================================================================
+// MODES (M / W / D) — three separate dashboards
+// ===========================================================================
+let mode = "M";
+let dSubtab = "browse";
+
+function setupBrandHome() {
+  const a = $("brand-home");
+  if (!a) return;
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    trail = [];
+    if (location.hash) { history.replaceState(null, "", location.pathname); }
+    switchMode("M");
+    route();
+  });
+}
+
+function setupModes() {
+  document.querySelectorAll("#topbar .mode-switch button").forEach(btn => {
+    btn.addEventListener("click", () => switchMode(btn.dataset.mode));
+  });
+  document.querySelectorAll("#d-subtabs button").forEach(btn => {
+    btn.addEventListener("click", () => switchDSub(btn.dataset.sub));
+  });
+  // Map popup close
+  $("mp-close").addEventListener("click", hideMapPopup);
+  // W-panel close
+  const wpc = $("wp-close"); if (wpc) wpc.addEventListener("click", () => { hideWPanel(); });
+}
+
+function switchMode(m) {
+  if (m === mode) return;
+  mode = m;
+  document.querySelectorAll("#topbar .mode-switch button").forEach(b => {
+    b.dataset.active = b.dataset.mode === m ? "1" : "0";
+  });
+  document.querySelectorAll(".mode-pane").forEach(p => {
+    p.classList.toggle("active", p.id === `mode-${m}`);
+  });
+  hideMapPopup();
+  if (m === "M" && map) setTimeout(() => map.resize(), 50);
+  if (m === "W") { if (!graphRendered) renderGraph({ connectOnly: false }); }
+
+  if (m === "D" && dSubtab === "stats") renderStats();
+}
+
+function switchDSub(s) {
+  dSubtab = s;
+  document.querySelectorAll("#d-subtabs button").forEach(b => {
+    b.dataset.active = b.dataset.sub === s ? "1" : "0";
+  });
+  $("d-browse-pane").style.display = s === "browse" ? "flex" : "none";
+  $("d-stats").hidden = s !== "stats";
+  if (s === "stats") renderStats();
+}
+
+// In-map popup (replaces dossier in M mode)
+let mPopupAnchor = null;
+function showMapPopup(feature, point) {
+  const p = feature.properties;
+  $("mp-name").textContent = p.name || "(unnamed)";
+  $("mp-loc").textContent = [p.city, p.country].filter(Boolean).join(", ");
+  const band = p.band || "black";
+  const sevBadge = (band && band !== "black")
+    ? `<span class="mp-sev" data-band="${band}">${band}</span>` : "";
+  $("mp-row").innerHTML = `${sevBadge}<span>${p.inc||0} INC · SEV ${p.score||0}</span>`;
+  $("mp-open").onclick = () => {
+    switchMode("D");
+    navigate(`house=${p.id}`);
+  };
+  $("m-popup").classList.add("open");
+  mPopupAnchor = { lng: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] };
+  positionMapPopup();
+}
+function positionMapPopup() {
+  if (!mPopupAnchor || !map) return;
+  const px = map.project([mPopupAnchor.lng, mPopupAnchor.lat]);
+  const el = $("m-popup");
+  const w = el.offsetWidth, h = el.offsetHeight;
+  const left = Math.min(Math.max(px.x + 14, 10), window.innerWidth - w - 10);
+  const top  = Math.min(Math.max(px.y - h/2, 10), window.innerHeight - h - 10);
+  el.style.left = left + "px"; el.style.top = top + "px";
+}
+function hideMapPopup() { $("m-popup")?.classList.remove("open"); mPopupAnchor = null; }
+
+// ===========================================================================
+// STATS subpage
+// ===========================================================================
+function renderStats() {
+  const stats = $("d-stats");
+  const incidents = q(`SELECT COUNT(*) AS n FROM incidents`)[0]?.n || 0;
+  const people    = q(`SELECT COUNT(*) AS n FROM people`)[0]?.n || 0;
+  const houses    = q(`SELECT COUNT(*) AS n FROM houses`)[0]?.n || 0;
+  const photos    = q(`SELECT COUNT(*) AS n FROM people WHERE photo_url IS NOT NULL`)[0]?.n || 0;
+  const fam       = q(`SELECT COUNT(*) AS n FROM family_relations`)[0]?.n || 0;
+  const sources   = q(`SELECT COUNT(*) AS n FROM sources`)[0]?.n || 0;
+  const red       = q(`SELECT COUNT(*) AS n FROM houses WHERE color_band='red'`)[0]?.n || 0;
+  const orange    = q(`SELECT COUNT(*) AS n FROM houses WHERE color_band='orange'`)[0]?.n || 0;
+  const yellow    = q(`SELECT COUNT(*) AS n FROM houses WHERE color_band='yellow'`)[0]?.n || 0;
+  const flaggedPeople = q(`SELECT COUNT(DISTINCT person_id) AS n FROM incident_people`)[0]?.n || 0;
+  const sevBreak  = q(`SELECT severity, COUNT(*) AS n FROM incidents GROUP BY severity ORDER BY n DESC`);
+  const typeBreak = q(`SELECT type, COUNT(*) AS n FROM incidents GROUP BY type ORDER BY n DESC LIMIT 10`);
+  const _rawCountries = q(`SELECT COALESCE(location,'') AS location FROM incidents WHERE location IS NOT NULL AND location != ''`);
+  const _countryMap = {};
+  _rawCountries.forEach(r => {
+    const parts = r.location.split(",").map(s => s.trim()).filter(Boolean);
+    const c = parts[parts.length - 1] || "(unknown)";
+    _countryMap[c] = (_countryMap[c] || 0) + 1;
+  });
+  const topCountries = Object.entries(_countryMap).sort((a,b) => b[1]-a[1]).slice(0,10).map(([country,n]) => ({country,n}));
+
+  stats.innerHTML = `
+    <h2>Corpus</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-n">${incidents}</div><div class="stat-k">incidents</div></div>
+      <div class="stat-card"><div class="stat-n">${houses}</div><div class="stat-k">entities (houses)</div></div>
+      <div class="stat-card"><div class="stat-n">${people}</div><div class="stat-k">people indexed</div></div>
+      <div class="stat-card"><div class="stat-n">${flaggedPeople}</div><div class="stat-k">people tied to incidents</div></div>
+      <div class="stat-card"><div class="stat-n">${photos}</div><div class="stat-k">photos</div></div>
+      <div class="stat-card"><div class="stat-n">${fam}</div><div class="stat-k">family relations</div></div>
+      <div class="stat-card"><div class="stat-n">${sources}</div><div class="stat-k">source URLs</div></div>
+    </div>
+    <h2>Entity severity bands</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-n" style="color:var(--sev-high)">${red}</div><div class="stat-k">RED · conviction/indictment</div></div>
+      <div class="stat-card"><div class="stat-n" style="color:var(--sev-mid)">${orange}</div><div class="stat-k">ORANGE · charges/settlement</div></div>
+      <div class="stat-card"><div class="stat-n" style="color:var(--sev-low)">${yellow}</div><div class="stat-k">YELLOW · allegation/investigation</div></div>
+    </div>
+    <h2>Incident severity outcomes</h2>
+    <div class="stat-grid">
+      ${sevBreak.map(r => `<div class="stat-card"><div class="stat-n">${r.n}</div><div class="stat-k">${escapeHtml(r.severity||"unknown")}</div></div>`).join("")}
+    </div>
+    <h2>Timeline · incidents per year</h2>
+    <div style="position:relative; height:80px; border:1px solid var(--line); padding:8px;" id="tl-canvas-stats"></div>
+    <h2>Top crime types</h2>
+    <div class="stat-grid">
+      ${typeBreak.map(r => `<div class="stat-card"><div class="stat-n">${r.n}</div><div class="stat-k">${escapeHtml((r.type||"other").replace(/_/g," "))}</div></div>`).join("")}
+    </div>
+    <h2>Top countries</h2>
+    <div class="stat-grid">
+      ${topCountries.map(r => `<div class="stat-card"><div class="stat-n">${r.n}</div><div class="stat-k">${escapeHtml(r.country||"unknown")}</div></div>`).join("")}
+    </div>
+  `;
+  // Render timeline bars in stats canvas
+  const canvas = $("tl-canvas-stats");
+  const _tlBounds = q(`SELECT MIN(CAST(substr(COALESCE(occurred_on,''),1,4) AS INT)) AS mn, MAX(CAST(substr(COALESCE(occurred_on,''),1,4) AS INT)) AS mx FROM incidents WHERE occurred_on IS NOT NULL AND occurred_on != '' AND CAST(substr(occurred_on,1,4) AS INT) > 1900`)[0] || {};
+  const tlMinYear = Math.max(1990, _tlBounds.mn || 1990);
+  const tlMaxYear = Math.max(new Date().getFullYear(), _tlBounds.mx || new Date().getFullYear());
+  const rows = q(`
+    SELECT CAST(substr(COALESCE(occurred_on,''),1,4) AS INT) AS yr,
+           CASE WHEN severity IN ('convicted','indicted') THEN 'red'
+                WHEN severity IN ('charged','settled') THEN 'orange'
+                WHEN severity IN ('investigation','allegation') THEN 'yellow'
+                ELSE NULL END AS band,
+           COUNT(*) AS n
+    FROM incidents WHERE band IS NOT NULL AND yr BETWEEN ${tlMinYear} AND ${tlMaxYear}
+    GROUP BY yr, band
+  `);
+  const byYear = {};
+  rows.forEach(r => { (byYear[r.yr] ||= {red:0,orange:0,yellow:0})[r.band] = r.n; });
+  const years = Array.from({length: tlMaxYear-tlMinYear+1}, (_,i) => tlMinYear+i);
+  const maxStack = Math.max(1, ...years.map(y => {
+    const yb = byYear[y] || {}; return (yb.red||0)+(yb.orange||0)+(yb.yellow||0);
+  }));
+  const wPct = 100 / years.length;
+  canvas.innerHTML = years.map((y, idx) => {
+    const yb = byYear[y] || {};
+    const stacked = [{band:"red",n:yb.red||0},{band:"orange",n:yb.orange||0},{band:"yellow",n:yb.yellow||0}];
+    let yOff = 0, bars = "";
+    for (const s of stacked) {
+      if (!s.n) continue;
+      const h = (s.n / maxStack) * 55;
+      bars += `<div class="tl-bar" data-band="${s.band}" title="${y}: ${s.n} ${s.band}"
+              style="left:${(idx*wPct).toFixed(3)}%; width:${(wPct*0.85).toFixed(3)}%; height:${h.toFixed(1)}px; bottom:${yOff.toFixed(1)}px;"></div>`;
+      yOff += h;
+    }
+    const label = y % 5 === 0 ? `<div class="tl-year-label" style="left:${(idx*wPct + wPct/2).toFixed(3)}%;">${y}</div>` : "";
+    return bars + label;
+  }).join("");
+}
+
+boot().catch(e => { $("boot-msg").textContent = "ERROR: " + e.message; console.error(e); });
+</script>
+</body>
+</html>

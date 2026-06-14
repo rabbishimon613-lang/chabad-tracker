@@ -1,0 +1,44 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Vercel local state
+.vercel
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Node
+node_modules/
+
+# Editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# SQLite transient sidecars (the DB file itself is tracked via R2 pointer, never committed)
+*.db-shm
+*.db-wal
+
+# DBs — live source-of-truth lives in R2, fetched at build time
+data/chabad.db
+data/chabad_tracker.db
+ui/public/chabad.db
+
+# Scratch outputs in data/ — ad-hoc bucket runs, fleet results, cycle payloads
+data/*.json
+data/*.jsonl
+data/*.tsv
+data/raw/
+data/parsed/
+
+# Build artifacts
+/tmp/
+*.log

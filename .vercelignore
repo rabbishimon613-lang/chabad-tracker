@@ -1,0 +1,12 @@
+data/raw/
+data/parsed/
+data/*.json
+data/*.jsonl
+data/*.tsv
+data/chabad.db
+data/chabad_tracker.db
+scrape/
+scrape/__pycache__/
+notes/
+docs/
+.env

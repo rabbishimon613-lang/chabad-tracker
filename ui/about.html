@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<title>CHABAD TRACKER · about</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0A0B0D; --surface:#14161A; --line:#1F232A; --text:#E6E4DC; --mute:#6E737A; --accent:#E03E3E;
+    --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --sans:'Public Sans', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); min-height: 100%; }
+  body { font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: var(--text); text-underline-offset: 3px; }
+  a:hover { color: var(--accent); }
+
+  header {
+    position: sticky; top: 0;
+    padding: max(env(safe-area-inset-top), 8px) 24px 8px 24px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    font: 500 14px/1.2 var(--mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    height: calc(44px + env(safe-area-inset-top));
+    display: flex; align-items: center; gap: 12px;
+  }
+  header .sep { color: var(--mute); }
+  header a.back { margin-left: auto; color: var(--mute); text-decoration: none; }
+  header a.back:hover { color: var(--text); }
+
+  main { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
+  main h1 { font: 500 32px/1.2 var(--sans); margin-bottom: 8px; }
+  main .sub { font: 400 13px var(--mono); color: var(--mute); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 32px; }
+  main h2 { font: 600 12px var(--mono); color: var(--mute); letter-spacing: 0.08em; text-transform: uppercase; margin: 32px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+  main p { margin-bottom: 14px; }
+  main ul { margin: 8px 0 14px 20px; }
+  main li { margin-bottom: 6px; }
+  main code, main .k {
+    font: 400 13px var(--mono); color: var(--accent);
+    background: var(--surface); padding: 1px 5px; border: 1px solid var(--line);
+  }
+  main .pill {
+    display: inline-block; font: 600 11px var(--mono); padding: 3px 8px;
+    border: 1px solid var(--line); color: var(--mute);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-right: 6px;
+  }
+  main .pill.red { color: #E03E3E; border-color: #E03E3E; }
+  main .pill.orange { color: #D26C2B; border-color: #D26C2B; }
+  main .pill.yellow { color: #C8A93E; border-color: #C8A93E; }
+  main .pill.black { color: var(--mute); border-color: var(--mute); }
+
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  th { font: 600 11px var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+  td.num { font-family: var(--mono); color: var(--mute); text-align: right; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" style="color:inherit; text-decoration:none;">CHABAD TRACKER</a>
+  <span class="sep">/</span>
+  <span style="color:var(--mute)">about</span>
+  <a class="back" href="index.html">← MAP</a>
+</header>
+
+<main>
+  <h1>About</h1>
+  <div class="sub">v0.2 · public repository</div>
+
+  <p>
+    <strong>Chabad Tracker</strong> is a public repository of information on the
+    Chabad Global Network, its participants, and their misdeeds. All information
+    comes from publicly available sources.
+  </p>
+
+  <h2>Support the project</h2>
+  <p>
+    If you wish to help the project continue to grow, you may send donations to
+    the following bitcoin address:
+  </p>
+  <p>
+    <code style="display:inline-block; padding: 8px 12px; word-break: break-all; user-select: all; font-size: 14px;">bc1q0xcvzfrzmw482scntfq8l0mex90vfmyy05c83c</code>
+  </p>
+
+  <h2>What the colors mean</h2>
+  <ul>
+    <li><span class="pill red">RED</span> at least one conviction or indictment among affiliated personnel</li>
+    <li><span class="pill orange">ORANGE</span> charges filed or civil settlement</li>
+    <li><span class="pill yellow">YELLOW</span> open investigation or credible allegation</li>
+    <li><span class="pill black">CLEAN</span> nothing in the corpus (hidden by default — toggle the CLEAN chip on the map legend to show)</li>
+  </ul>
+
+  <h2>Sourcing</h2>
+  <p>
+    Every incident in the dossier shows its source URLs. Incidents resting on a
+    single source carry a <span class="pill orange">SINGLE-SRC</span> badge.
+  </p>
+</main>
+
+</body>
+</html>

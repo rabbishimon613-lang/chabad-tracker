@@ -1,0 +1,80 @@
+{
+  "version": 8,
+  "name": "wire-dark",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "url": "https://demotiles.maplibre.org/tiles/tiles.json"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#0A0B0D"
+      }
+    },
+    {
+      "id": "landcover",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "paint": {
+        "fill-color": "#14161A"
+      }
+    },
+    {
+      "id": "country-boundaries",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "boundary",
+      "filter": ["all", ["==", "admin_level", 2], ["==", "maritime", 0]],
+      "paint": {
+        "line-color": "#1F232A",
+        "line-width": 0.5
+      }
+    },
+    {
+      "id": "country-labels",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "filter": ["==", "class", "country"],
+      "layout": {
+        "text-field": ["get", "name"],
+        "text-font": ["IBM Plex Mono Regular", "Noto Sans Regular"],
+        "text-size": 11,
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0.04,
+        "text-max-width": 8,
+        "symbol-placement": "point"
+      },
+      "paint": {
+        "text-color": "#E6E4DC",
+        "text-halo-color": "#0A0B0D",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "city-labels",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "filter": ["==", "class", "city"],
+      "layout": {
+        "text-field": ["get", "name"],
+        "text-font": ["IBM Plex Mono Regular", "Noto Sans Regular"],
+        "text-size": 9,
+        "text-max-width": 8,
+        "symbol-placement": "point"
+      },
+      "paint": {
+        "text-color": "#6E737A",
+        "text-halo-color": "#0A0B0D",
+        "text-halo-width": 1
+      }
+    }
+  ]
+}

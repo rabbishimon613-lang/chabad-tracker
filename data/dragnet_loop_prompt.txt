@@ -1,0 +1,43 @@
+DRAGNET LOOP — one cycle, then reschedule.
+
+STATE FILE: /Volumes/EOS_DIGITAL/chabad-tracker/data/dragnet_state.json
+PEOPLE FILE: /Volumes/EOS_DIGITAL/chabad-tracker/data/dragnet_people.tsv  (tab-sep: id\tname\ttypes\tlast_date\tn_incidents)
+DB: /Volumes/EOS_DIGITAL/chabad-tracker/data/chabad.db
+BATCH SIZE: 8 people per cycle
+
+STEP 1 — Read state, get current queue_position. Load next 8 people from dragnet_people.tsv starting at that offset. If offset >= total lines, reset to 0 (loop forever through the list).
+
+STEP 2 — Build 8 search queries: one per person.
+  Format: '"{name}" Chabad Lubavitch {primary_type} crime fraud conviction'
+  Use search_batch engine=tavily include_content=true max_results=6
+
+STEP 3 — The search results file will be huge. Save it to disk. Then use fleet_batch (role=fast, max_tokens=400) with 8 prompts, one per person:
+  "Person: {name}. Crime type: {types}. Search results: {first 600 chars of their results}.
+   Return JSON: {
+     'details': '3-5 sentence wiki narrative of what they did, when, outcome',
+     'severity': 'convicted|indicted|charged|settled|investigation|allegation',
+     'new_sources': ['url1','url2'],
+     'co_conspirators': ['Full Name'],
+     'new_cases': [{'summary':'...','type':'...','severity':'...','year':N,'location':'City, Country','source_url':'...'}]
+   }
+   Only facts from the search results. new_cases only if Chabad/Lubavitch explicit and NOT already covered by the person's known incidents."
+
+STEP 4 — Save fleet_batch results to /Volumes/EOS_DIGITAL/chabad-tracker/data/dragnet_batch_{run_number}.json
+
+STEP 5 — Save the 8 people dicts to /Volumes/EOS_DIGITAL/chabad-tracker/data/dragnet_people_batch_{run_number}.json
+
+STEP 6 — Run:
+  cd /Volumes/EOS_DIGITAL/chabad-tracker && python3 scrape/dragnet_apply.py \
+    --results data/dragnet_batch_{run_number}.json \
+    --people data/dragnet_people_batch_{run_number}.json \
+    --extracts data/dragnet_batch_{run_number}.json
+
+STEP 7 — Update dragnet_state.json: advance queue_position by 8, increment runs_completed.
+
+STEP 8 — Print the summary line from dragnet_apply.py.
+
+RULES:
+- Never pull the full search results into your context. Extract only the first 600 chars per person's results before passing to fleet_batch.
+- Never read the DB into context. Only run sqlite3 shell commands or python scripts.
+- Keep total tokens under 30k per cycle.
+- After completing, report: "CYCLE DONE: +N cases, +N relations, position X/266"
