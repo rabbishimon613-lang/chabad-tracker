@@ -1,7 +1,9 @@
 {
-  "version": 2,
-  "builds": [{ "src": "**/*", "use": "@vercel/static" }],
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
+  "framework": null,
   "headers": [
-    { "source": "/public/chabad.db", "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }] }
+    { "source": "/public/chabad.db",     "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }] },
+    { "source": "/public/snapshot.json", "headers": [{ "key": "Cache-Control", "value": "public, max-age=60"  }] }
   ]
 }

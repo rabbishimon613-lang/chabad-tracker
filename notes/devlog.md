@@ -79,9 +79,20 @@ Local preview verified: about.html renders correctly — status bar shows "data 
 | All three UI backlog items fixed and deployed | ✅ filters re-render fix, dead back button hidden on landing, stats moved to About |
 | Confidence chip + reflection mismatch warning ready to receive data | ✅ |
 
-### Blocked on user input (needed to finish Steps 2, 3, 4)
+### Steps 3 + 4 — Hash-pointer backend: GitHub Releases (R2 swapped out) ✅
 
-1. **Cloud-pool API keys** — Cerebras × 5 values, Groq × 3 values, OpenRouter × 5 values, and the explicit split of the existing Tavily × 5 / Exa × 5 keys (which 3 go to the cloud pool, which 2 stay local). I'll load them into Actions secrets per the cloud sizing in researchteam.md.
-2. **Cloudflare R2 access** — once available, I'll provision the `chabad-tracker` bucket (public-read), upload the DB, write the `data/chabad.db.url` + `.sha256` pointer files, and rewrite the Vercel prebuild step to fetch from R2 by hash. Then `ui/public/chabad.db` comes back out of git.
-3. **Vercel ↔ GitHub auto-deploy** — small dashboard step on the user's side so future pushes to `main` deploy automatically.
+User declined to put a payment card on Cloudflare R2 (free tier still requires card on file). Swapped to **GitHub Releases as the asset backend** — same hash-pointer pattern, different storage. Free for public repos, no auth needed for public-read, asset URLs are stable.
+
+- Created release `db-675fcb3f7894` with `chabad-675fcb3f7894.db` attached (976 incidents, 6.97MB, sha256 `675fcb3f7894a52402187a21d8f09c9612ece12369010f3fdf7bd7e4e0cc8546`).
+- `data/chabad.db.url` and `data/chabad.db.sha256` committed (the only DB-related files in git).
+- `ui/public/chabad.db` removed from git tracking; added back to `.gitignore`.
+- `ui/build.sh` — Vercel prebuild script. Reads pointer files, fetches the URL, verifies sha256, writes to `public/chabad.db`. Fails build on hash mismatch.
+- `ui/package.json` gains `"build": "./build.sh"`; `ui/vercel.json` rewritten to use `buildCommand: npm run build` (replaces legacy `@vercel/static`).
+- Buildroad amended in two spots to reflect the R2 → GH Releases swap.
+
+When the Archivist publishes a new DB version (Phase 2's atomic ritual), it'll: (1) upload a new release asset tagged `db-<sha12>`, (2) update `data/chabad.db.url` and `.sha256`, (3) commit + push, (4) Vercel auto-rebuilds. Old releases preserved forever ([[feedback_never_delete_originals]] aligns).
+
+### Still on user's plate
+
+- **Vercel ↔ GitHub auto-deploy** — 30-second dashboard step: link the `chabad-tracker` Vercel project to the new `rabbishimon613-lang/chabad-tracker` repo so future pushes to `main` deploy automatically. Right now I'm pushing via `vercel --prod` from CLI.
 

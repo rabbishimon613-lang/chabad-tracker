@@ -19,7 +19,7 @@ These three calls shape every choice below. They are not revisitable mid-build.
 ## Consultant Headline Takeaways
 
 **Platform & Reliability**
-- R2 hash-pointer for the DB, not Git LFS, not raw commits.
+- Hash-pointer for the DB, not Git LFS, not raw commits. *(Implementation note: R2 was the original plan but requires a payment card on file even for free-tier; swapped to GitHub Releases as the asset backend. Same pattern — `data/chabad.db.url` + `data/chabad.db.sha256` committed; the DB blob lives at the release URL. See [devlog](devlog.md) 2026-06-14.)*
 - `OPS_HALT` kill-switch file as the only manual brake.
 - `concurrency:` group on every workflow to serialize writes (SQLite + git cannot survive concurrent writers).
 - Lead `claimed_at` + 15min reclaim = the entire self-healing story for in-flight work.
@@ -59,8 +59,8 @@ The consultants' reordering reorganizes the phases from [researchteam.md](resear
 - All cloud-pool keys loaded into Actions secrets (Cerebras × 4, Groq × 2, OpenRouter × 3, Tavily × 3, Exa × 3).
 - `OPS_HALT` kill-switch file convention defined. (Touch the file from any device → all workflows early-exit.)
 - `concurrency:` group rule documented for every workflow file.
-- Cloudflare R2 bucket provisioned. Hash-pointer convention: commit only `data/chabad.db.sha256` + `data/chabad.db.url`. The DB itself lives at `r2://chabad-tracker/db/<sha>.db`.
-- Vercel build step modified to pull DB by hash from R2 into `ui/public/chabad.db`.
+- GitHub Releases used as the DB asset backend (R2 declined: requires payment card). Hash-pointer convention: commit only `data/chabad.db.sha256` + `data/chabad.db.url`. The DB itself lives at `https://github.com/rabbishimon613-lang/chabad-tracker/releases/download/db-<sha12>/chabad-<sha12>.db`.
+- Vercel build step modified to pull DB by URL into `ui/public/chabad.db` and verify sha256. See [ui/build.sh](../ui/build.sh).
 - **UI: status bar + freshness banner.** Every page. `data as of <ts> · <count> incidents · cycle <N> min ago`. Soft-refresh toast on data change, never auto-refresh.
 - **UI: backlog fixed** — filters on left work, dead back button removed from DB landing, stats relocated from DB page to About page.
 - **UI: confidence chip component** (skeleton — wired in Phase 1).
