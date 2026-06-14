@@ -128,7 +128,12 @@ def main() -> int:
              "--db", str(vacuumed), "--out", str(args.ui_public)],
             check=True, env=env,
         )
-        print("[4/6] snapshot.json + quarantine.json generated")
+        subprocess.run(
+            [sys.executable, "tools/compute_constellations.py",
+             "--db", str(vacuumed), "--out", str(args.ui_public / "constellations.json")],
+            check=True, env=env,
+        )
+        print("[4/6] snapshot.json + quarantine.json + constellations.json generated")
 
         # Step 5 — write pointer files. Atomic via temp-then-rename.
         url_file = Path("data/chabad.db.url")

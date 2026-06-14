@@ -654,6 +654,32 @@
   /* ===== PEOPLE WEB (W mode) ===== */
   #mode-W { display: none; }
   #mode-W.active { display: block; }
+
+  /* Constellation entry — the curated landing for People Web. */
+  #constellations-entry {
+    position: absolute; inset: var(--topbar-h) 0 0 0;
+    background: var(--bg); overflow-y: auto;
+    z-index: 4; padding: 24px 24px 64px;
+  }
+  #constellations-entry.hidden { display: none; }
+  #constellations-entry .ce-header { max-width: 1100px; margin: 0 auto 18px; display: flex; align-items: baseline; gap: 14px; }
+  #constellations-entry h2 { font: 500 24px/1.15 var(--sans); }
+  #constellations-entry .ce-sub { font: 400 12px var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+  #constellations-entry #ce-show-graph {
+    margin-left: auto;
+    font: 500 12px var(--mono); color: var(--mute);
+    background: transparent; border: 1px solid var(--line);
+    padding: 6px 12px; cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  #constellations-entry #ce-show-graph:hover { color: var(--text); border-color: var(--text); }
+  #ce-grid { max-width: 1100px; margin: 0 auto; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .ce-card { background: var(--surface); border: 1px solid var(--line); padding: 16px 18px; cursor: pointer; transition: border-color 0.12s; }
+  .ce-card:hover { border-color: var(--accent); }
+  .ce-card .ce-rank { font: 600 11px var(--mono); color: var(--mute); letter-spacing: 0.06em; text-transform: uppercase; }
+  .ce-card .ce-anchor { font: 500 18px var(--sans); color: var(--text); margin: 4px 0 8px; }
+  .ce-card .ce-oneline { font: 400 13px/1.45 var(--sans); color: var(--mute); margin-bottom: 12px; }
+  .ce-card .ce-stats { font: 400 11px var(--mono); color: var(--mute); display: flex; gap: 14px; flex-wrap: wrap; letter-spacing: 0.04em; }
+  .ce-card .ce-stats .n { color: var(--text); font-weight: 600; }
   #graph {
     position: absolute; inset: 0;
     background: var(--bg); overflow: hidden;
@@ -929,6 +955,15 @@
   </section>
 
   <section id="mode-W" class="mode-pane">
+    <!-- Constellation entry — shown by default; click a card to drop into the graph view. -->
+    <div id="constellations-entry">
+      <div class="ce-header">
+        <h2>People Web · curated constellations</h2>
+        <div class="ce-sub">density-scored sub-graphs · named perps clustered by family + co-defendant ties</div>
+        <button id="ce-show-graph">show full web →</button>
+      </div>
+      <div id="ce-grid">loading…</div>
+    </div>
     <div id="graph"></div>
     <div id="w-panel">
       <button class="wp-close" id="wp-close">✕</button>
@@ -3425,6 +3460,56 @@ async function startSnapshotPolling() {
   setInterval(() => refreshSnapshotPanel(), 5 * 60 * 1000);
 }
 startSnapshotPolling();
+
+// ===========================================================================
+// Phase 10 — People Web constellation entry (curated cards, not hairball)
+// ===========================================================================
+async function loadConstellations() {
+  const grid = $("ce-grid");
+  if (!grid) return;
+  let data;
+  try {
+    const r = await fetch("public/constellations.json?_=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    data = await r.json();
+  } catch (e) {
+    grid.innerHTML = `<div style="color:var(--mute);font:400 12px var(--mono);">no constellation data available — Researcher hasn't published yet.</div>`;
+    return;
+  }
+  const items = data.constellations || [];
+  if (!items.length) {
+    grid.innerHTML = `<div style="color:var(--mute);font:400 12px var(--mono);">no constellations scored yet.</div>`;
+    return;
+  }
+  grid.innerHTML = items.map(c => `
+    <div class="ce-card" data-anchor-id="${c.anchor_id || ""}" data-node-ids='${escapeAttr(JSON.stringify(c.node_ids))}'>
+      <div class="ce-rank">#${c.rank} · score ${c.score}</div>
+      <div class="ce-anchor">${escapeHtml(c.anchor || "(unnamed)")}</div>
+      <div class="ce-oneline">${escapeHtml(c.one_line || "")}</div>
+      <div class="ce-stats">
+        <span><span class="n">${c.node_count}</span> nodes</span>
+        <span><span class="n">${c.named_perps}</span> named perps</span>
+        <span><span class="n">${c.edge_count}</span> edges</span>
+        ${c.photoed ? `<span><span class="n">${c.photoed}</span> photoed</span>` : ""}
+        ${c.ghosts ? `<span><span class="n">${c.ghosts}</span> ghosts</span>` : ""}
+      </div>
+    </div>
+  `).join("");
+  // Click → navigate to the anchor's dossier (drops the user inside the cluster).
+  grid.querySelectorAll(".ce-card").forEach(el => {
+    el.addEventListener("click", () => {
+      const id = el.dataset.anchorId;
+      if (id) { document.querySelector("#constellations-entry").classList.add("hidden"); navigate(`person=${id}`); }
+    });
+  });
+  const showGraphBtn = $("ce-show-graph");
+  if (showGraphBtn) {
+    showGraphBtn.onclick = () => {
+      document.querySelector("#constellations-entry").classList.add("hidden");
+    };
+  }
+}
+loadConstellations();
 
 // Mirror the module-level `db` onto window so the snapshot panel can read it
 // after boot finishes. boot() was already called above; this poller catches up.
