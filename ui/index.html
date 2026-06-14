@@ -1727,7 +1727,7 @@ function renderPerson(id) {
       <section>
         <h2>Same name (${sameNamed.length})</h2>
         <div style="color:var(--mute);font:400 var(--fs-xs)/1.4 var(--mono); margin-bottom: 8px;">
-          ${sameNamed.length} OTHER ${sameNamed.length===1?”PERSON”:”PEOPLE”} WITH THIS NAME — distinct individuals, not duplicates of this record.
+          ${sameNamed.length} OTHER ${sameNamed.length===1?"PERSON":"PEOPLE"} WITH THIS NAME — distinct individuals, not duplicates of this record.
         </div>
         ${sameNamed.map(r => `
           <div class="row" data-href="person=${r.id}">
