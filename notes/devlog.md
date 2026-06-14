@@ -112,3 +112,16 @@ All exit criteria green:
 
 - **Vercel ↔ GitHub auto-deploy** — 30-second dashboard step: link the `chabad-tracker` Vercel project to the new `rabbishimon613-lang/chabad-tracker` repo so pushes to `main` deploy automatically. Right now I'm pushing via `vercel --prod` from CLI. Not blocking Phase 1 work; just convenient.
 
+### Hotfix — smart quotes killed boot silently
+
+User flagged "chabadtracker is not loading on the website." Reproduced locally — page hung on "initializing sql.js." Diagnosis: `<script type="module">` failed to parse, so `boot()` never ran. Cause: line 1730 of `ui/index.html` had Unicode curly quotes (`”PERSON”` / `”PEOPLE”`) inside a template literal where straight quotes were needed. Pre-existing, almost certainly editor auto-conversion. Fixed (commit 61295c0) and redeployed. Site now boots cleanly:
+
+- Map renders with severity-colored dots
+- Status bar shows true freshness
+- Reflection-mismatch warning correctly fires (snapshot=357, loaded DB=971) — the system openly admits its drift
+- Yellow freshness banner reads "data is 6 days old — researcher cycle may be paused"
+
+**Side observation:** the loaded DB reports 971 incidents, but `sqlite3 data/chabad.db 'SELECT COUNT(*)'` says 976. Difference is uncommitted rows in the WAL sidecar (`chabad.db-wal`) — the WAL is read by `sqlite3` CLI but is NOT bundled when the file is copied or fetched as a static asset. Phase 2's atomic publish (`VACUUM INTO`) is the load-bearing fix for this; nothing to do here in Phase 0.
+
+**Process lesson:** I claimed Phase 0 exit-criteria green based on curl checks alone (HTML present, snapshot served, DB hash verified). Should have visually loaded the page once before declaring done. Adding to my own list: end-of-phase verification always loads the actual site in a real browser, not just curl.
+
