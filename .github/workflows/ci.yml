@@ -1,0 +1,55 @@
+# CI on PRs — schema sanity + basic file checks.
+# Phase 9 will extend this with: row-count-only-goes-up, FK intact,
+# doctrine check (no Chabad-as-victim rows), budget sanity.
+
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  schema-sanity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: OPS_HALT pre-flight
+        run: |
+          if [ -f ops/OPS_HALT ]; then
+            echo "::notice::OPS_HALT present — skipping CI."
+            exit 0
+          fi
+
+      - name: schema.sql applies cleanly to a fresh SQLite DB
+        run: |
+          sqlite3 /tmp/test.db < schema.sql
+          echo "schema.sql OK"
+
+      - name: views.sql applies on top
+        run: |
+          sqlite3 /tmp/test.db < views.sql
+          echo "views.sql OK"
+
+      - name: No DB blobs committed
+        run: |
+          if git ls-files | grep -E '\.db$|\.db-(shm|wal)$'; then
+            echo "::error::DB blob committed — must live in R2 and be referenced by data/chabad.db.url + .sha256"
+            exit 1
+          fi
+          echo "no DB blobs in tree"
+
+      - name: No .env or secrets in tree
+        run: |
+          if git ls-files | grep -E '(^|/)\.env($|\.)' ; then
+            echo "::error::.env file committed"
+            exit 1
+          fi
+          echo "no .env in tree"

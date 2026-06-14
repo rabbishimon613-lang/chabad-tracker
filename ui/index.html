@@ -43,9 +43,9 @@
   button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
   a { color: inherit; }
 
-  /* ----- TOP BAR (two-row) ----- */
-  :root { --topbar-h: 88px; }
-  @media (max-width: 1199px) { :root { --topbar-h: 72px; } }
+  /* ----- TOP BAR (three-row: brand / search / status) ----- */
+  :root { --topbar-h: 112px; }
+  @media (max-width: 1199px) { :root { --topbar-h: 96px; } }
   #topbar {
     position: fixed; top: 0; left: 0; right: 0;
     background: var(--bg);
@@ -68,9 +68,79 @@
     padding: 6px 12px;
     height: 44px;
   }
+  #topbar .row3 {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 12px;
+    height: 24px;
+    font: 400 11px/1.2 var(--mono);
+    letter-spacing: 0.04em;
+    color: var(--mute);
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  }
+  #topbar .row3 .dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: #5DAE6E; margin-right: 4px; vertical-align: middle;
+  }
+  #topbar .row3 .dot.stale  { background: #C8A93E; }
+  #topbar .row3 .dot.broken { background: var(--accent); }
+  #topbar .row3 .sep { color: var(--line); margin: 0 2px; }
+  #topbar .row3 .n { color: var(--text); }
+  #topbar .row3 .grow { flex: 1; }
+  #topbar .row3 a.refresh-link { color: var(--mute); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+  #topbar .row3 a.refresh-link:hover { color: var(--text); }
   @media (max-width: 1199px) {
     #topbar .row1, #topbar .row2 { height: 36px; padding: 4px 10px; }
+    #topbar .row3 { height: 22px; font-size: 10px; padding: 3px 10px; }
   }
+
+  /* ----- FRESHNESS BANNER (>24h stale) ----- */
+  #freshness-banner {
+    position: fixed; top: calc(var(--topbar-h) + env(safe-area-inset-top)); left: 0; right: 0;
+    background: #3A2E12; color: #E8C97A;
+    border-bottom: 1px solid #C8A93E;
+    padding: 8px 14px;
+    font: 500 12px/1.3 var(--mono);
+    letter-spacing: 0.03em;
+    z-index: 28;
+    display: none;
+  }
+  #freshness-banner.show { display: block; }
+
+  /* ----- REFLECTION MISMATCH WARNING (footer) ----- */
+  #reflection-warning {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #3A1212; color: #F7B0B0;
+    border-top: 1px solid var(--accent);
+    padding: 8px 14px;
+    font: 500 12px/1.3 var(--mono);
+    letter-spacing: 0.03em;
+    z-index: 28;
+    display: none;
+  }
+  #reflection-warning.show { display: block; }
+
+  /* ----- CONFIDENCE CHIP (skeleton — wired in Phase 1) ----- */
+  .conf-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 2px 8px; border: 1px solid var(--line);
+    font: 500 11px var(--mono); letter-spacing: 0.04em;
+    color: var(--mute); background: var(--surface);
+    position: relative; cursor: help;
+  }
+  .conf-chip[data-band="high"] { color: #5DAE6E; border-color: #2F5A3A; }
+  .conf-chip[data-band="mid"]  { color: #C8A93E; border-color: #4A3E1A; }
+  .conf-chip[data-band="low"]  { color: var(--accent); border-color: #4A1A1A; }
+  .conf-chip .conf-n { color: inherit; font-weight: 600; }
+  .conf-chip .conf-popover {
+    display: none; position: absolute; top: 100%; left: 0; margin-top: 4px;
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 10px 12px; min-width: 220px; z-index: 50;
+    color: var(--text); font: 400 11px/1.5 var(--mono);
+    white-space: normal;
+  }
+  .conf-chip:hover .conf-popover { display: block; }
   #topbar .grow { flex: 1; }
   #topbar .mode-switch { display: flex; gap: 0; }
   #topbar .mode-switch button {
@@ -827,7 +897,21 @@
              placeholder="Search" />
     </form>
   </div>
+  <div class="row3" id="status-bar" aria-live="polite">
+    <span class="dot" id="status-dot" title="data freshness"></span>
+    <span>data as of <span class="n" id="status-asof">—</span></span>
+    <span class="sep">·</span>
+    <span><span class="n" id="status-count">—</span> incidents</span>
+    <span class="sep">·</span>
+    <span>cycle <span class="n" id="status-cycle">—</span></span>
+    <span class="grow"></span>
+    <a class="refresh-link" id="status-refresh" hidden>↻ new data — reload</a>
+  </div>
 </header>
+
+<div id="freshness-banner" role="status">
+  <span id="freshness-banner-msg">data is more than 24 hours old</span>
+</div>
 
 <div id="search-dropdown"></div>
 <div id="hover"></div>
@@ -1313,6 +1397,9 @@ function openSheetForDossier() { /* sheet retired — D mode is full-screen */ }
 // ----- VIEWS -----
 function renderTopList() {
   trail = [];
+  // Phase 0: defensively hide the back-arrow on the DB landing — it has nowhere
+  // to go. setSheetHeader hides it via trail.length, but be explicit.
+  const _back = $("sheet-back"); if (_back) _back.hidden = true;
   setSheetHeader("HOME · INVESTIGATION CONSOLE", { showClose: false });
   const tabs = [
     { id: "severity",   label: "Top severity" },
@@ -1872,12 +1959,15 @@ function applyMapFilter() {
   });
 }
 
-// Refresh everything visible — facets, map, home list (if shown), active chips
+// Refresh everything visible — facets, map, home list, active chips.
+// Phase 0 fix: drop the `!location.hash` gate so filter clicks always re-query
+// the home list. Previously, filters silently no-op'd whenever any hash was set
+// (which is most of the time). Idempotent on dossier routes; safe to always call.
 function refreshAll() {
   applyMapFilter();
   renderFacets();
   renderTimeline();
-  if (!location.hash) renderHomeTab(); // refresh home list filtering
+  if ($("home-list")) renderHomeTab();
 }
 
 // ----- FACETS -----
@@ -3164,6 +3254,171 @@ function renderStats() {
 }
 
 boot().catch(e => { $("boot-msg").textContent = "ERROR: " + e.message; console.error(e); });
+
+// ===========================================================================
+// STATUS BAR + FRESHNESS BANNER + REFLECTION MISMATCH (Phase 0 — honesty pass)
+// ===========================================================================
+// Reads snapshot.json (the manifest) and:
+//   1. Renders "data as of <ts> · <N> incidents · cycle <X> min ago" in topbar
+//   2. Shows a yellow banner if the snapshot is >24h old
+//   3. Shows a red footer warning if snapshot.incidents !== rowcount(loaded chabad.db)
+//   4. Polls every 5 min for a newer snapshot; offers soft-reload toast
+// =============================================================================
+
+let __snapshot = null;
+let __snapshotEtag = null;
+
+function fmtRelative(ts) {
+  if (!ts) return "—";
+  const then = new Date(ts).getTime();
+  if (!isFinite(then)) return "—";
+  const sec = Math.max(0, Math.round((Date.now() - then) / 1000));
+  if (sec < 60)        return `${sec}s ago`;
+  if (sec < 3600)      return `${Math.round(sec/60)} min ago`;
+  if (sec < 86400)     return `${Math.round(sec/3600)} h ago`;
+  return `${Math.round(sec/86400)} d ago`;
+}
+
+function fmtAbs(ts) {
+  if (!ts) return "—";
+  const d = new Date(ts);
+  if (isNaN(d)) return "—";
+  return d.toISOString().slice(0, 16).replace("T", " ") + " UTC";
+}
+
+async function fetchSnapshot() {
+  try {
+    const r = await fetch("public/snapshot.json?_=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+
+function renderStatusBar(snap) {
+  const dot   = $("status-dot");
+  const asof  = $("status-asof");
+  const cnt   = $("status-count");
+  const cyc   = $("status-cycle");
+  if (!snap) {
+    dot.className = "dot broken";
+    asof.textContent = "unknown"; cnt.textContent = "—"; cyc.textContent = "—";
+    return;
+  }
+  const ageMs = Date.now() - new Date(snap.generated_at).getTime();
+  const ageH  = ageMs / 3600000;
+  dot.className = ageH > 24 ? "dot stale" : "dot";
+  dot.title = `snapshot generated ${fmtAbs(snap.generated_at)}`;
+  asof.textContent = fmtAbs(snap.generated_at);
+  cnt.textContent  = (snap.incidents ?? "—").toLocaleString();
+  // last_cycle_at lands in Phase 7 — gracefully fall back to snapshot time.
+  cyc.textContent  = fmtRelative(snap.last_cycle_at || snap.generated_at);
+}
+
+function renderFreshnessBanner(snap) {
+  const banner = $("freshness-banner");
+  const msg    = $("freshness-banner-msg");
+  if (!snap) {
+    msg.textContent = "could not load snapshot.json — data freshness unknown";
+    banner.classList.add("show");
+    return;
+  }
+  const ageH = (Date.now() - new Date(snap.generated_at).getTime()) / 3600000;
+  if (ageH > 24) {
+    const d = Math.round(ageH / 24);
+    msg.textContent = `data is ${d > 1 ? d + " days" : "more than 24 hours"} old — researcher cycle may be paused`;
+    banner.classList.add("show");
+  } else {
+    banner.classList.remove("show");
+  }
+}
+
+function checkReflectionMismatch(snap) {
+  if (!snap || !window.db) return;
+  let dbCount;
+  try { dbCount = q(`SELECT COUNT(*) AS n FROM incidents`)[0]?.n ?? null; }
+  catch { return; }
+  if (dbCount == null) return;
+  const snapCount = snap.incidents;
+  let warnEl = $("reflection-warning");
+  if (!warnEl) {
+    warnEl = document.createElement("div");
+    warnEl.id = "reflection-warning";
+    warnEl.setAttribute("role", "alert");
+    document.body.appendChild(warnEl);
+  }
+  if (dbCount !== snapCount) {
+    warnEl.innerHTML =
+      `<strong>reflection mismatch</strong> &nbsp; ` +
+      `snapshot.json reports <span style="color:#fff">${snapCount.toLocaleString()}</span> incidents · ` +
+      `loaded DB has <span style="color:#fff">${dbCount.toLocaleString()}</span> · ` +
+      `the published triple is out of sync (atomic publish lands in Phase 2)`;
+    warnEl.classList.add("show");
+  } else {
+    warnEl.classList.remove("show");
+  }
+}
+
+async function refreshSnapshotPanel(opts = {}) {
+  const next = await fetchSnapshot();
+  if (!next) { renderStatusBar(null); renderFreshnessBanner(null); return; }
+  const newEtag = next.generated_at + "|" + next.incidents;
+  const isNew = __snapshotEtag && __snapshotEtag !== newEtag;
+  __snapshot = next;
+  __snapshotEtag = newEtag;
+  renderStatusBar(next);
+  renderFreshnessBanner(next);
+  checkReflectionMismatch(next);
+  if (isNew && !opts.silent) {
+    const link = $("status-refresh");
+    if (link) {
+      link.hidden = false;
+      link.onclick = () => location.reload();
+    }
+  }
+}
+
+// Initial render runs as soon as DB is loaded (boot() sets `db`). Also poll.
+async function startSnapshotPolling() {
+  // Wait for the DB to be ready so reflection check has a baseline.
+  for (let i = 0; i < 120 && !window.db; i++) {
+    await new Promise(r => setTimeout(r, 250));
+  }
+  await refreshSnapshotPanel({ silent: true });
+  setInterval(() => refreshSnapshotPanel(), 5 * 60 * 1000);
+}
+startSnapshotPolling();
+
+// Mirror the module-level `db` onto window so the snapshot panel can read it
+// after boot finishes. boot() was already called above; this poller catches up.
+const __dbMirror = setInterval(() => {
+  if (typeof db !== "undefined" && db && !window.db) {
+    window.db = db;
+    if (__snapshot) checkReflectionMismatch(__snapshot);
+    clearInterval(__dbMirror);
+  }
+}, 250);
+
+// ===========================================================================
+// CONFIDENCE CHIP — skeleton (Phase 0). Wired with real data in Phase 1.
+// ===========================================================================
+window.renderConfidenceChip = function({ score, passedChecks = [], failedChecks = [] } = {}) {
+  if (score == null) return "";
+  const band = score >= 80 ? "high" : score >= 50 ? "mid" : "low";
+  const label = band === "high" ? "verified" : band === "mid" ? "low confidence" : "quarantined";
+  const passList = passedChecks.length
+    ? `<div style="color:#5DAE6E">passed: ${passedChecks.map(c => `<span>${c}</span>`).join(", ")}</div>` : "";
+  const failList = failedChecks.length
+    ? `<div style="color:var(--accent);margin-top:4px">failed: ${failedChecks.map(c => `<span>${c}</span>`).join(", ")}</div>` : "";
+  return `<span class="conf-chip" data-band="${band}">
+    <span>${label}</span>
+    <span class="conf-n">${score}</span>
+    <span class="conf-popover">
+      Confidence score: ${score}/100
+      <div style="color:var(--mute);margin-top:6px">12-layer Verifier</div>
+      ${passList}${failList}
+    </span>
+  </span>`;
+};
 </script>
 </body>
 </html>

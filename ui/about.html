@@ -11,6 +11,7 @@
 <style>
   :root {
     --bg:#0A0B0D; --surface:#14161A; --line:#1F232A; --text:#E6E4DC; --mute:#6E737A; --accent:#E03E3E;
+    --sev-low:#C8A93E; --sev-mid:#D26C2B; --sev-high:var(--accent);
     --mono:'IBM Plex Mono', ui-monospace, Menlo, monospace;
     --sans:'Public Sans', system-ui, sans-serif;
   }
@@ -22,22 +23,55 @@
 
   header {
     position: sticky; top: 0;
-    padding: max(env(safe-area-inset-top), 8px) 24px 8px 24px;
     background: var(--bg);
     border-bottom: 1px solid var(--line);
+    z-index: 30;
+    padding-top: env(safe-area-inset-top);
+  }
+  header .row1 {
+    padding: 8px 24px;
+    height: 44px;
     font: 500 14px/1.2 var(--mono);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    height: calc(44px + env(safe-area-inset-top));
     display: flex; align-items: center; gap: 12px;
   }
   header .sep { color: var(--mute); }
   header a.back { margin-left: auto; color: var(--mute); text-decoration: none; }
   header a.back:hover { color: var(--text); }
+  header .row3 {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 24px;
+    height: 24px;
+    font: 400 11px/1.2 var(--mono);
+    letter-spacing: 0.04em;
+    color: var(--mute);
+    border-top: 1px solid var(--line);
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  }
+  header .row3 .dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: #5DAE6E; margin-right: 4px; vertical-align: middle;
+  }
+  header .row3 .dot.stale  { background: #C8A93E; }
+  header .row3 .dot.broken { background: var(--accent); }
+  header .row3 .sep { color: var(--line); margin: 0 2px; }
+  header .row3 .n { color: var(--text); }
+  header .row3 .grow { flex: 1; }
 
-  main { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
+  #freshness-banner {
+    background: #3A2E12; color: #E8C97A;
+    border-bottom: 1px solid #C8A93E;
+    padding: 8px 24px;
+    font: 500 12px/1.3 var(--mono);
+    letter-spacing: 0.03em;
+    display: none;
+  }
+  #freshness-banner.show { display: block; }
+
+  main { max-width: 720px; margin: 0 auto; padding: 32px 24px 96px; }
   main h1 { font: 500 32px/1.2 var(--sans); margin-bottom: 8px; }
-  main .sub { font: 400 13px var(--mono); color: var(--mute); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 32px; }
+  main .sub { font: 400 13px var(--mono); color: var(--mute); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 24px; }
   main h2 { font: 600 12px var(--mono); color: var(--mute); letter-spacing: 0.08em; text-transform: uppercase; margin: 32px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
   main p { margin-bottom: 14px; }
   main ul { margin: 8px 0 14px 20px; }
@@ -56,20 +90,37 @@
   main .pill.yellow { color: #C8A93E; border-color: #C8A93E; }
   main .pill.black { color: var(--mute); border-color: var(--mute); }
 
-  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
-  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
-  th { font: 600 11px var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
-  td.num { font-family: var(--mono); color: var(--mute); text-align: right; }
+  /* High-level stat grid — moved here from DB page (Phase 0 honesty pass). */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 4px 0 4px; }
+  .stat-card { border: 1px solid var(--line); padding: 14px 16px; background: var(--surface); }
+  .stat-n { font: 500 28px/1 var(--sans); color: var(--text); }
+  .stat-k { font: 400 11px var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; }
+  .stat-card.disclaim .stat-n { font-size: 14px; color: var(--mute); line-height: 1.4; }
 </style>
 </head>
 <body>
 
 <header>
-  <a href="index.html" style="color:inherit; text-decoration:none;">CHABAD TRACKER</a>
-  <span class="sep">/</span>
-  <span style="color:var(--mute)">about</span>
-  <a class="back" href="index.html">← MAP</a>
+  <div class="row1">
+    <a href="index.html" style="color:inherit; text-decoration:none;">CHABAD TRACKER</a>
+    <span class="sep">/</span>
+    <span style="color:var(--mute)">about</span>
+    <a class="back" href="index.html">← MAP</a>
+  </div>
+  <div class="row3" id="status-bar" aria-live="polite">
+    <span class="dot" id="status-dot" title="data freshness"></span>
+    <span>data as of <span class="n" id="status-asof">—</span></span>
+    <span class="sep">·</span>
+    <span><span class="n" id="status-count">—</span> incidents</span>
+    <span class="sep">·</span>
+    <span>cycle <span class="n" id="status-cycle">—</span></span>
+    <span class="grow"></span>
+  </div>
 </header>
+
+<div id="freshness-banner" role="status">
+  <span id="freshness-banner-msg">data is more than 24 hours old</span>
+</div>
 
 <main>
   <h1>About</h1>
@@ -80,6 +131,14 @@
     Chabad Global Network, its participants, and their misdeeds. All information
     comes from publicly available sources.
   </p>
+
+  <h2>What's in it</h2>
+  <div class="stat-grid" id="about-stats">
+    <div class="stat-card"><div class="stat-n" id="s-incidents">—</div><div class="stat-k">incidents</div></div>
+    <div class="stat-card"><div class="stat-n" id="s-houses">—</div><div class="stat-k">entities (houses)</div></div>
+    <div class="stat-card"><div class="stat-n" id="s-people">—</div><div class="stat-k">people indexed</div></div>
+    <div class="stat-card"><div class="stat-n" id="s-families">—</div><div class="stat-k">family relations</div></div>
+  </div>
 
   <h2>Support the project</h2>
   <p>
@@ -104,6 +163,62 @@
     single source carry a <span class="pill orange">SINGLE-SRC</span> badge.
   </p>
 </main>
+
+<script>
+// Mirrors index.html's snapshot panel; about.html has no DB load so no
+// reflection check here — that lives on the main page.
+function fmtRelative(ts) {
+  if (!ts) return "—";
+  const sec = Math.max(0, Math.round((Date.now() - new Date(ts).getTime()) / 1000));
+  if (sec < 60)    return `${sec}s ago`;
+  if (sec < 3600)  return `${Math.round(sec/60)} min ago`;
+  if (sec < 86400) return `${Math.round(sec/3600)} h ago`;
+  return `${Math.round(sec/86400)} d ago`;
+}
+function fmtAbs(ts) {
+  const d = new Date(ts);
+  if (isNaN(d)) return "—";
+  return d.toISOString().slice(0, 16).replace("T", " ") + " UTC";
+}
+async function loadSnapshot() {
+  try {
+    const r = await fetch("public/snapshot.json?_=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+async function renderAbout() {
+  const snap = await loadSnapshot();
+  const dot = document.getElementById("status-dot");
+  if (!snap) {
+    dot.className = "dot broken";
+    document.getElementById("status-asof").textContent  = "unknown";
+    document.getElementById("freshness-banner-msg").textContent = "could not load snapshot.json — data freshness unknown";
+    document.getElementById("freshness-banner").classList.add("show");
+    return;
+  }
+  const ageH = (Date.now() - new Date(snap.generated_at).getTime()) / 3600000;
+  dot.className = ageH > 24 ? "dot stale" : "dot";
+  dot.title = `snapshot generated ${fmtAbs(snap.generated_at)}`;
+  document.getElementById("status-asof").textContent  = fmtAbs(snap.generated_at);
+  document.getElementById("status-count").textContent = (snap.incidents ?? "—").toLocaleString();
+  document.getElementById("status-cycle").textContent = fmtRelative(snap.last_cycle_at || snap.generated_at);
+
+  document.getElementById("s-incidents").textContent = (snap.incidents ?? "—").toLocaleString();
+  document.getElementById("s-houses").textContent    = (snap.houses    ?? "—").toLocaleString();
+  document.getElementById("s-people").textContent    = (snap.people    ?? "—").toLocaleString();
+  document.getElementById("s-families").textContent  = (snap.families  ?? "—").toLocaleString();
+
+  if (ageH > 24) {
+    const d = Math.round(ageH / 24);
+    document.getElementById("freshness-banner-msg").textContent =
+      `data is ${d > 1 ? d + " days" : "more than 24 hours"} old — researcher cycle may be paused`;
+    document.getElementById("freshness-banner").classList.add("show");
+  }
+}
+renderAbout();
+setInterval(renderAbout, 5 * 60 * 1000);
+</script>
 
 </body>
 </html>

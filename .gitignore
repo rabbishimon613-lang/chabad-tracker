@@ -30,7 +30,10 @@ node_modules/
 # DBs — live source-of-truth lives in R2, fetched at build time
 data/chabad.db
 data/chabad_tracker.db
-ui/public/chabad.db
+# ui/public/chabad.db is intentionally TRACKED as a Phase 0 bridge until R2
+# wiring lands in Step 3. Remove from tree (and stop tracking) once Vercel's
+# prebuild step fetches from R2 by hash. See notes/devlog.md.
+# ui/public/chabad.db
 
 # Scratch outputs in data/ — ad-hoc bucket runs, fleet results, cycle payloads
 data/*.json

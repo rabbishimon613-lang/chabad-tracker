@@ -1,0 +1,48 @@
+# =============================================================================
+# WORKFLOW TEMPLATE — copy this file (drop .example) when adding a new workflow.
+# Every workflow in this repo MUST carry the four discipline rules below.
+# =============================================================================
+#
+# 1. timeout-minutes: 10 — hung cycle dies on its own.
+# 2. concurrency: group — serialize writes; SQLite + git cannot survive
+#    concurrent writers. Choose group: cycle | rss | graph | audit | publish.
+# 3. OPS_HALT pre-flight — manual brake without revoking secrets.
+#    Touch ops/OPS_HALT in the repo and every workflow early-exits on next tick.
+# 4. Pre-flight budget check (Phase 5+) — abort cleanly if budget exhausted.
+#
+# See notes/buildroad.md §"The Watertight Self-Healing Pattern" for the full
+# 10 mechanisms.
+# =============================================================================
+
+name: example-workflow
+
+on:
+  # workflow_dispatch:
+  # schedule:
+  #   - cron: '0 * * * *'
+
+concurrency:
+  # PICK ONE: cycle | rss | graph | audit | publish | ci-${{ github.ref }}
+  group: example
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: OPS_HALT pre-flight
+        run: |
+          if [ -f ops/OPS_HALT ]; then
+            echo "::notice::OPS_HALT file present — exiting cleanly without work."
+            cat ops/OPS_HALT 2>/dev/null || true
+            exit 0
+          fi
+
+      # - name: Budget pre-flight
+      #   run: python scrape/preflight_budget.py  # Phase 5+
+
+      - name: Do the work
+        run: echo "placeholder"
