@@ -6,9 +6,9 @@
 
 set -euo pipefail
 
-URL_FILE="../data/chabad.db.url"
-SHA_FILE="../data/chabad.db.sha256"
-OUT="public/chabad.db"
+URL_FILE="data/chabad.db.url"
+SHA_FILE="data/chabad.db.sha256"
+OUT="ui/public/chabad.db"
 
 if [ ! -f "$URL_FILE" ] || [ ! -f "$SHA_FILE" ]; then
   echo "::error::Missing hash-pointer files ($URL_FILE / $SHA_FILE). Cannot fetch DB."
@@ -17,6 +17,8 @@ fi
 
 URL="$(tr -d '\n\r ' < "$URL_FILE")"
 EXPECTED_SHA="$(tr -d '\n\r ' < "$SHA_FILE")"
+
+mkdir -p "$(dirname "$OUT")"
 
 echo "Fetching DB from $URL"
 curl -sSfL --retry 3 --retry-delay 2 "$URL" -o "$OUT"
