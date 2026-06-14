@@ -125,3 +125,44 @@ User flagged "chabadtracker is not loading on the website." Reproduced locally �
 
 **Process lesson:** I claimed Phase 0 exit-criteria green based on curl checks alone (HTML present, snapshot served, DB hash verified). Should have visually loaded the page once before declaring done. Adding to my own list: end-of-phase verification always loads the actual site in a real browser, not just curl.
 
+---
+
+## 2026-06-14 — Phases 1 → 11 (autonomous loop is live)
+
+Single session push. Architecture sketch in commit order:
+
+- **Phase 1 Week 1 spine** — `verify/` package: Layer 1 url_liveness, Layer 2 name_on_page, Layer 3 verbatim_quote (skipped for legacy rows w/o quote), Layer 10 wayback fire-and-forget. Raw HTTP only, per-process `/tmp` cache so multiple layers share a single GET. 20 pytest fixtures (10 good + 10 bad), all green.
+- **Audit beat** — `audit-legacy.yml` runs every 2h, processes 50 unaudited rows per tick. Pile of 670 sourceable rows clears in ~1.5 days at 600/day cap.
+- **Phase 2 atomic publish (early)** — `scrape/atomic_publish.py` is the 5-step ritual: VACUUM INTO, sha256, GH release upload, snapshot+quarantine+constellations regen from the *vacuumed* copy (proves derivation), atomic pointer rename, meta_publish row. Had to land now because copying a SQLite DB during background writes captured inconsistent state — the same 976/971/357 drift class.
+- **Phase 4 leads** — `leads`, `lead_results`, `staging_incidents` tables. `scrape/generate_leads.py` ships 5 SQL-only Investigator beats (cold-path relatives, hot-house rosters, institution hoppers, amount collisions, family bridges). 82 leads bootstrapped on first run.
+- **Phase 5 Researcher** — `scrape/research_one_lead.py`. Pops top-scored claimable lead, sets `claimed_at` for the 15-min reclaim mechanism, calls `search.both(query)` (Tavily + Exa dedup) and `fleet.chat(extraction_prompt)`, hallucination clamp (every proper noun must appear in snippets, quote must too), writes `staging_incidents` row. `ops/budget.json` updated in `finally`.
+- **Phase 6 Archivist** — `scrape/archivist.py`. Promotes verified staging rows → live `incidents`, runs the Verifier on the just-promoted row, spawns child cold-path-relative leads for relatives without incidents.
+- **Phase 9 cloud** — `researcher-cycle.yml` runs hourly: Investigator → Researcher → Archivist → atomic publish → commit. All 15 cloud-pool secrets wired through env. **Vercel ↔ GitHub auto-deploy connected via `vercel git connect`** — every push to main triggers a rebuild.
+- **Phase 1 Layers 11 + 12** — Layer 12 perpetrator-only hard-reject (200-char window around name; victim-side keywords without perp-side keywords → quarantine, name redacted). Layer 11 confidence score 0-100 synthesized from layer weights, written to `incidents.audit_score`. Confidence chip in dossier now uses real numbers. 26 tests total, all green.
+- **Phase 10 People Web** — `tools/compute_constellations.py` scores connected sub-graphs by named perps + severity-weighted co-defendant edges + photo coverage − ghost penalty. W mode lands on curated cards (top 10 by score). Click → drops into the anchor's dossier. "Show full web" toggle reveals the hairball. **Top 5 production constellations: Andre T., David Cyprys, Mordchai Fish, Rabbi Yisroel Goldstein, Simon Goldbrener.**
+- **Phase 11 pixel office shell** — Lightweight HTML+SVG bureau on `/about`. 5 stations (Investigator/Researcher/Verifier/Archivist/Publisher), each with a colored sprite placeholder and a live mindbox reading `snapshot.json` + the latest `cycles.jsonl` line. Color-coded log lines per buildroad. Asset pack and React+Canvas engine swap is follow-up.
+
+### What's live at https://chabad-tracker.vercel.app
+
+- 978 incidents · 41 quarantined publicly · 59 passed_partial · 2 fully passed (real new extraction).
+- Verifier 12 layers — 6 implemented (1, 2, 3, 10, 11, 12). Remaining 6 (4 triangulation, 5 role classifier, 6 severity ladder, 7 source class, 8 cross-source, 9 second-pass LLM) are Phase 1 Week 2-3 work.
+- Public `/quarantine` route, noindexed, plain-English failure reasons.
+- People Web entry: 10 curated constellation cards.
+- About page: live 5-station bureau scene.
+
+### The loop runs without me from here
+
+- `researcher-cycle.yml` — every hour, full cycle.
+- `audit-legacy.yml` — every 2h, 50 rows.
+- `OPS_HALT` — touch `ops/OPS_HALT` and push to halt everything.
+
+### Still TODO (queued for follow-up sessions)
+
+- Verifier Week 2-3 (layers 4, 5, 6, 7, 8, 9) and Phase 1 calibration.
+- Phase 3 data cleanup (orphan triage, person_match_candidates, photo coverage).
+- Pixel office: fork `rolandal/pixel-agents-standalone`, swap shell for real engine, drop Penzilla + Anokolisa packs.
+- Mindbox topic-gravity gate (Phase 12).
+- a11y: text-only office mirror, `prefers-reduced-motion` handling.
+- More Investigator beats: DOJ RSS, state AGs, CourtListener new dockets, JCW.
+- Per-cycle search budget bug (currently only daily counter; fine for now).
+
