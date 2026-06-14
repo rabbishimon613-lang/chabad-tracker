@@ -1145,6 +1145,26 @@ async function boot() {
     center: [-40, 35], zoom: 2.2,
     attributionControl: { compact: true },
   });
+  // Phase 0 grew the topbar to 3 rows. MapLibre caches the container size at
+  // construction; if the CSS finishes laying out after `new Map`, or if the
+  // browser reports a transient 0×0 viewport (some sandboxed iframes do),
+  // the canvas sticks at its first measurement (400×300). Watch the box and
+  // resize whenever it actually grows.
+  map.once("load", () => map.resize());
+  requestAnimationFrame(() => map.resize());
+  window.addEventListener("resize", () => map.resize());
+  const _mapBox = document.getElementById("map");
+  if (window.ResizeObserver && _mapBox) {
+    new ResizeObserver(() => map.resize()).observe(_mapBox);
+  }
+  // Belt-and-suspenders: poll every 250ms for the first 4s. Some sandboxed
+  // iframes report viewport=0 transiently — neither rAF nor ResizeObserver
+  // catches the moment the real size appears.
+  let _polls = 0;
+  const _mapPoll = setInterval(() => {
+    map.resize();
+    if (++_polls >= 16) clearInterval(_mapPoll);
+  }, 250);
   // (zoom controls removed — pinch/scroll only)
 
   // Add sources/layers after a tick — map renders tiles immediately even before events fire
