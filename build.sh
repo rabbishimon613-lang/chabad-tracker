@@ -41,3 +41,10 @@ echo "DB verified: $(stat -f%z "$OUT" 2>/dev/null || stat -c%s "$OUT") bytes, sh
 echo "Generating snapshot.json + quarantine.json from fetched DB..."
 python3 tools/export_snapshot.py --db "$OUT" --out ui/public
 python3 tools/compute_constellations.py --db "$OUT" --out ui/public/constellations.json
+
+# Expose the last 100 cycle log lines for the pixel office mindboxes.
+if [ -f ops/cycles.jsonl ]; then
+  tail -n 100 ops/cycles.jsonl > ui/public/cycles.jsonl
+else
+  : > ui/public/cycles.jsonl
+fi

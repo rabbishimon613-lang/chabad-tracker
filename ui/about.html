@@ -96,6 +96,75 @@
   .stat-n { font: 500 28px/1 var(--sans); color: var(--text); }
   .stat-k { font: 400 11px var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; }
   .stat-card.disclaim .stat-n { font-size: 14px; color: var(--mute); line-height: 1.4; }
+
+  /* ----- Pixel office shell (Phase 11) ----- */
+  #office {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 12px 0 18px;
+    filter: saturate(0.7);
+  }
+  @media (max-width: 760px) { #office { grid-template-columns: repeat(2, 1fr); } }
+
+  .station {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 14px 12px 12px;
+    display: flex; flex-direction: column; gap: 10px;
+    min-height: 220px;
+  }
+  .station .sprite {
+    position: relative;
+    width: 100%; height: 90px;
+    background: #0E1116;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font: 700 28px var(--mono);
+    color: var(--mute);
+    overflow: hidden;
+  }
+  .station .sprite::after {
+    /* faux floor planks for a top-down feel */
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
+    background: repeating-linear-gradient(90deg, #14161A 0 12px, #1F232A 12px 14px);
+    opacity: 0.6;
+  }
+  .station[data-role="investigator"] .sprite { color: #E8C97A; }
+  .station[data-role="researcher"]   .sprite { color: #B8D0E8; }
+  .station[data-role="verifier"]     .sprite { color: var(--accent); }
+  .station[data-role="archivist"]    .sprite { color: #C8C7B8; }
+  .station[data-role="publisher"]    .sprite { color: #9DD0A1; }
+
+  .station .label {
+    font: 600 11px var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--mute);
+  }
+  .station .mindbox {
+    background: rgba(20,20,24,0.92);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 8px 9px;
+    font: 400 11px/1.45 var(--mono);
+    color: var(--text);
+    min-height: 56px;
+  }
+  .station .mindbox .ts  { color: var(--mute); }
+  .station .mindbox .nm  { color: #E6E4DC; }
+  .station .mindbox .num { color: #B8D0E8; }
+  .station .mindbox .ok  { color: #5DAE6E; }
+  .station .mindbox .bad { color: var(--accent); }
+  .station .mindbox .amber { color: #C8A93E; }
+
+  #office-credits {
+    font: 400 11px var(--mono);
+    color: var(--mute);
+    margin-top: 4px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
 </style>
 </head>
 <body>
@@ -170,6 +239,16 @@
     Failures don't get deleted — they go to a public <a href="quarantine.html">quarantine
     feed</a> with plain-English reasons. That feed is the integrity proof of the dataset.
   </p>
+
+  <h2>The bureau · live</h2>
+  <p style="color:var(--mute); font-size:14px;">
+    This is the autonomous research office. Each station polls
+    <code style="color:var(--accent); background:var(--surface); border:1px solid var(--line); padding:1px 4px; font-size:12px;">snapshot.json</code>
+    every few minutes; the mindbox below each character shows the most recent activity.
+    The work it represents is real. Pixel-art layer comes later — for now it's
+    the floor plan and the log lines.
+  </p>
+  <div id="office" aria-label="autonomous research office, currently active">loading…</div>
 </main>
 
 <script>
@@ -226,6 +305,92 @@ async function renderAbout() {
 }
 renderAbout();
 setInterval(renderAbout, 5 * 60 * 1000);
+
+// ===========================================================================
+// Phase 11 — Pixel office shell.
+// Lightweight HTML+CSS bureau (pixel art layer comes later). Reads
+// snapshot.json + the last cycle log line and assembles a mindbox per station.
+// ===========================================================================
+const STATIONS = [
+  {
+    role: "investigator", emoji: "I",
+    label: "Investigator",
+    mindbox: (s, last) => {
+      const pendLeads = s.leads_pending ?? "—";
+      return `<span class="ts">[live]</span> reading the wires. <span class="num">${pendLeads}</span> leads queued. `
+           + (s.audit?.unaudited ? `<span class="num">${s.audit.unaudited}</span> legacy rows still to audit.` : "quiet on the legacy front.");
+    }
+  },
+  {
+    role: "researcher", emoji: "R",
+    label: "Researcher",
+    mindbox: (s, last) => {
+      const c = s.incidents ?? 0;
+      return `<span class="ts">[live]</span> on the desk: extracting structured facts. corpus now <span class="num">${c}</span> incidents.`;
+    }
+  },
+  {
+    role: "verifier", emoji: "V",
+    label: "Verifier",
+    mindbox: (s, last) => {
+      const passed = s.audit?.passed ?? 0;
+      const partial = s.audit?.passed_partial ?? 0;
+      const quar = s.audit?.quarantined ?? 0;
+      return `<span class="ts">[live]</span> stamping. `
+           + `<span class="ok">${passed} PASS</span> · `
+           + `<span class="amber">${partial} partial</span> · `
+           + `<span class="bad">${quar} quarantined</span>.`;
+    }
+  },
+  {
+    role: "archivist", emoji: "A",
+    label: "Archivist",
+    mindbox: (s, last) => {
+      const ppl = s.people ?? 0;
+      const fam = s.families ?? 0;
+      return `<span class="ts">[live]</span> filing. <span class="num">${ppl.toLocaleString()}</span> people on record, <span class="num">${fam.toLocaleString()}</span> family edges.`;
+    }
+  },
+  {
+    role: "publisher", emoji: "P",
+    label: "Publisher",
+    mindbox: (s, last) => {
+      const ts = s.generated_at ? new Date(s.generated_at) : null;
+      const ago = ts ? fmtRelative(ts.toISOString()) : "—";
+      return `<span class="ts">[live]</span> last push <span class="num">${ago}</span>. `
+           + (last?.run_id ? `cycle <span class="num">#${last.run_id}</span> shipped.` : "watching the wires.");
+    }
+  },
+];
+
+async function renderOffice() {
+  const root = document.getElementById("office");
+  if (!root) return;
+  const snap = await loadSnapshot();
+  if (!snap) {
+    root.innerHTML = `<div style="color:var(--mute); padding: 20px; grid-column: 1 / -1; font: 400 12px var(--mono);">office offline — could not load snapshot.json</div>`;
+    return;
+  }
+  // Try to read the last cycle line (best-effort; field may not exist yet).
+  let last = null;
+  try {
+    const r = await fetch("public/cycles.jsonl?_=" + Date.now(), { cache: "no-store" });
+    if (r.ok) {
+      const txt = await r.text();
+      const lines = txt.trim().split("\n").filter(Boolean);
+      if (lines.length) last = JSON.parse(lines[lines.length - 1]);
+    }
+  } catch {}
+  root.innerHTML = STATIONS.map(st => `
+    <div class="station" data-role="${st.role}">
+      <div class="sprite" aria-hidden="true">${st.emoji}</div>
+      <div class="label">The ${st.label}</div>
+      <div class="mindbox" aria-live="polite">${st.mindbox(snap, last)}</div>
+    </div>
+  `).join("");
+}
+renderOffice();
+setInterval(renderOffice, 60 * 1000);
 </script>
 
 </body>
