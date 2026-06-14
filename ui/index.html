@@ -1012,6 +1012,35 @@ function escapeHtml(s) {
 }
 function escapeAttr(s) { return escapeHtml(s).replace(/'/g,"&#39;"); }
 
+// Phase 1: render the audit-status badge for an incident dossier.
+// `status` is one of: unaudited | passed | passed_partial | quarantined | no_source.
+// `score` is a 0-100 confidence number (nullable). `failures` is an array of
+// { layer, layer_name, reason } rows pulled from the quarantine table.
+function renderAuditBadge(status, score, failures) {
+  if (!status) return "";
+  const LABEL = {
+    unaudited:       { txt: "legacy · pending review", band: "mid" },
+    passed:          { txt: "verified",                band: "high" },
+    passed_partial:  { txt: "verified (partial)",      band: "high" },
+    quarantined:     { txt: "quarantined",             band: "low" },
+    no_source:       { txt: "no source on file",       band: "mid" },
+  };
+  const meta = LABEL[status] || { txt: status, band: "mid" };
+  const passList = (status === "passed" || status === "passed_partial")
+    ? ["url_liveness", "name_on_page", "verbatim_quote"] : [];
+  const failList = (failures || []).map(f => f.layer_name);
+  // Render with the Phase-0 chip helper; it takes a numeric score so we fake one
+  // when the Verifier doesn't have a real Layer 11 number yet.
+  const fakeScore = score != null ? score
+                   : status === "passed"         ? 90
+                   : status === "passed_partial" ? 75
+                   : status === "quarantined"    ? 30
+                   : 50;
+  return window.renderConfidenceChip
+    ? window.renderConfidenceChip({ score: fakeScore, passedChecks: passList, failedChecks: failList })
+    : `<span class="badge">${meta.txt}</span>`;
+}
+
 // db helper — returns array of row objects with named columns
 function q(sql, params) {
   const stmt = db.prepare(sql);
@@ -1745,6 +1774,13 @@ function renderPerson(id) {
 function renderIncident(id) {
   const i = q(`SELECT * FROM incidents WHERE id = ?`, [id])[0];
   if (!i) { setSheetHeader("INCIDENT NOT FOUND", { showClose:true }); $("sheet-body").innerHTML = `<div style="color:var(--mute)">no record</div>`; return; }
+  // Audit metadata (Phase 1). Older DBs may lack the columns; fail soft.
+  let auditStatus = null, auditScore = null, qFailures = [];
+  try {
+    auditStatus = i.audit_status || null;
+    auditScore  = i.audit_score ?? null;
+    qFailures = q(`SELECT layer, layer_name, reason FROM quarantine WHERE incident_id = ? ORDER BY layer`, [id]);
+  } catch (e) {}
   const sources = q(`
     SELECT s.url, COALESCE(s.title,'') AS title
     FROM incident_sources isc JOIN sources s ON s.id = isc.source_id
@@ -1782,6 +1818,7 @@ function renderIncident(id) {
         <span class="badge">${sources.length} SOURCES</span>
         ${sources.length === 1 ? `<span class="badge warn">SINGLE-SOURCE</span>` : ""}
         <span class="badge">${perps.length} NAMED</span>
+        ${renderAuditBadge(auditStatus, auditScore, qFailures)}
       </div>
       <section>
         <h2>Summary</h2>
