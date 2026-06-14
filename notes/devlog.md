@@ -21,16 +21,18 @@ Running notes on what got built, what got decided, and what hit a wall. Append-o
 - Repo created: https://github.com/rabbishimon613-lang/chabad-tracker (public).
 - Branch protection on `main`: no force-push, no deletion. Status checks deferred to Phase 9.
 
-### Step 2 — Cloud-pool API keys into Actions secrets ⏸️ BLOCKED
+### Step 2 — Cloud-pool API keys into Actions secrets ✅
 
-Blocked on user supplying:
-- Cerebras × 5 key values (the buildroad calls for 4 cloud + 1 local; I need all 5 to know which goes where, or the user to pre-split).
-- Groq × 3 key values (2 cloud + 1 local).
-- OpenRouter × 5 key values (3 cloud + 2 local).
-- Which 3 of the 5 Tavily keys in `.env` are cloud-pool, which 2 are local. (`TAVILY_KEYS` is currently comma-joined.)
-- Which 3 of the 5 Exa keys in `.env` are cloud-pool, which 2 are local. (`EXA_KEYS` same.)
+Source: `/Volumes/EOS_DIGITAL/llm-fleet/.env` (the local fleet's config). Loaded as numbered GH Actions secrets:
 
-Will load into Actions secrets as `CEREBRAS_KEY_1..4`, `GROQ_KEY_1..2`, `OPENROUTER_KEY_1..3`, `TAVILY_KEY_1..3`, `EXA_KEY_1..3` per cloud-pool sizing.
+- `GROQ_KEY_1`, `GROQ_KEY_2` — first 2 of 3 total
+- `OPENROUTER_KEY_1`, `_2`, `_3` — first 3 of 5 total
+- `TAVILY_KEY_1`, `_2`, `_3` — first 3 of 5 total
+- `EXA_KEY_1`, `_2`, `_3` — first 3 of 5 total
+
+**No Cerebras keys** exist on disk; researchteam.md's "5 Cerebras keys" was aspirational. Cloud pool runs without them. Cerebras can be added later as `CEREBRAS_KEY_1..N` whenever provisioned — `fleet_batch` already accepts the fallback.
+
+**Doctrine drift:** these same keys are still in the local fleet's `.env`. The "keys never overlap" rule is violated in this Phase 0 state. Practical impact: if cloud cycles burn a shared key's daily rate limit, the local fleet sees the limit too. Acceptable bridge while we're not yet running cloud cycles. Cleanup options: (a) physically split — push first-N to Actions and rewrite fleet `.env` to keep only the last-M; (b) provision fresh keys for cloud and revoke the shared ones from local. To revisit once cloud cycles start firing.
 
 ### Step 5 — Workflows with concurrency + OPS_HALT discipline ✅
 
