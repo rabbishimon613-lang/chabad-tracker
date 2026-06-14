@@ -1,0 +1,83 @@
+# audit-legacy — burn down the legacy 'unaudited' pile, 50 rows at a time.
+# Runs every 2h. At 12 runs/day × 50 rows = 600/day cap — clears the
+# original 670 in ~1.5 days. Self-healing: a crashed cycle leaves rows
+# 'unaudited'; the next tick picks them up. No DLQs.
+
+name: audit-legacy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */2 * * *'   # offset 17 min so it doesn't collide with cycle/rss windows
+
+concurrency:
+  group: audit
+  cancel-in-progress: false
+
+permissions:
+  contents: write           # to commit the published JSON + pointer files
+  pull-requests: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: OPS_HALT pre-flight
+        run: |
+          if [ -f ops/OPS_HALT ]; then
+            echo "::notice::OPS_HALT present — exiting cleanly."
+            cat ops/OPS_HALT 2>/dev/null || true
+            exit 0
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: |
+          pip install --quiet requests
+
+      - name: Fetch current DB from hash-pointer
+        env:
+          URL_FILE: data/chabad.db.url
+          SHA_FILE: data/chabad.db.sha256
+        run: |
+          URL=$(tr -d '\n\r ' < "$URL_FILE")
+          EXPECTED=$(tr -d '\n\r ' < "$SHA_FILE")
+          echo "Fetching $URL"
+          curl -sSfL --retry 3 "$URL" -o data/chabad.db
+          ACTUAL=$(sha256sum data/chabad.db | awk '{print $1}')
+          if [ "$ACTUAL" != "$EXPECTED" ]; then
+            echo "::error::sha256 mismatch — refusing to write to a tampered DB."
+            exit 1
+          fi
+
+      - name: Verifier batch (50 unaudited rows)
+        run: |
+          python -m verify --batch 50 --status unaudited --quiet
+
+      - name: Atomic publish (VACUUM → release → snapshot+quarantine → pointers)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # gh release needs GH_TOKEN
+          python scrape/atomic_publish.py --cycle-id "${GITHUB_RUN_ID}"
+
+      - name: Commit pointer + JSON updates
+        run: |
+          git config user.name  "chabad-tracker-bot"
+          git config user.email "bot@chabad-tracker.local"
+          git add data/chabad.db.url data/chabad.db.sha256 ui/public/snapshot.json ui/public/quarantine.json
+          if git diff --staged --quiet; then
+            echo "No publish drift this cycle."
+            exit 0
+          fi
+          git commit -m "audit-legacy: cycle ${GITHUB_RUN_ID} batch ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push
