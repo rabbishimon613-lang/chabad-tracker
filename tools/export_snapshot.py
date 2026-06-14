@@ -34,12 +34,25 @@ def export(db_path: str, out_dir: str) -> None:
             "FROM incidents GROUP BY audit_status"
         ).fetchall()
     )
+    # Leads queue depth — surfaces in the pixel office Investigator mindbox.
+    try:
+        leads_pending = cur.execute(
+            "SELECT COUNT(*) FROM leads WHERE status='pending'"
+        ).fetchone()[0]
+        leads_claimed = cur.execute(
+            "SELECT COUNT(*) FROM leads WHERE status='claimed'"
+        ).fetchone()[0]
+    except Exception:
+        leads_pending = None
+        leads_claimed = None
 
     now = datetime.now(timezone.utc).isoformat()
     snapshot = {
         **counts,
-        "generated_at": now,
-        "audit": audit_counts,
+        "generated_at":  now,
+        "audit":         audit_counts,
+        "leads_pending": leads_pending,
+        "leads_claimed": leads_claimed,
     }
     Path(out_dir, "snapshot.json").write_text(json.dumps(snapshot, indent=2))
 
