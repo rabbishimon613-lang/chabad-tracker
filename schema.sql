@@ -167,10 +167,17 @@ CREATE TABLE incidents (
   jurisdiction TEXT,
   location     TEXT,
   summary      TEXT,
-  notes        TEXT
+  notes        TEXT,
+  -- Phase 1: Verifier audit state.
+  -- unaudited / passed / passed_partial / quarantined / no_source
+  audit_status      TEXT DEFAULT 'unaudited',
+  audit_score       INTEGER,        -- 0-100 confidence (Layer 11)
+  audit_at          TEXT,
+  quarantine_reason TEXT
 );
 CREATE INDEX idx_incidents_type ON incidents(type);
 CREATE INDEX idx_incidents_severity ON incidents(severity);
+CREATE INDEX idx_incidents_audit_status ON incidents(audit_status);
 
 CREATE TABLE incident_people (
   id          INTEGER PRIMARY KEY,
@@ -191,7 +198,34 @@ CREATE TABLE incident_houses (
 );
 
 CREATE TABLE incident_sources (
-  incident_id INTEGER NOT NULL REFERENCES incidents(id),
-  source_id   INTEGER NOT NULL REFERENCES sources(id),
+  incident_id    INTEGER NOT NULL REFERENCES incidents(id),
+  source_id      INTEGER NOT NULL REFERENCES sources(id),
+  -- Phase 1: per-source artifacts used by the Verifier.
+  verbatim_quote TEXT,           -- 10-30 word quote the Researcher extracted
+  wayback_url    TEXT,           -- snapshot URL after Layer 10 fire-and-forget
+  wayback_at     TEXT,
   PRIMARY KEY (incident_id, source_id)
+);
+
+-- Phase 1: quarantine — full per-failure record (preserved forever).
+CREATE TABLE quarantine (
+  id           INTEGER PRIMARY KEY,
+  incident_id  INTEGER NOT NULL REFERENCES incidents(id),
+  layer        INTEGER NOT NULL,   -- 1..12 — which layer rejected
+  layer_name   TEXT NOT NULL,      -- e.g. 'url_liveness'
+  reason       TEXT NOT NULL,      -- plain English, public-facing
+  details      TEXT,               -- JSON: layer-specific failure metadata
+  redact_name  INTEGER NOT NULL DEFAULT 0, -- 1 → public quarantine redacts name
+  failed_at    TEXT NOT NULL
+);
+CREATE INDEX idx_quarantine_incident ON quarantine(incident_id);
+CREATE INDEX idx_quarantine_layer    ON quarantine(layer);
+
+-- Phase 2 forward-decl: meta_publish lets the UI self-check post-load.
+CREATE TABLE meta_publish (
+  id              INTEGER PRIMARY KEY,
+  sha256          TEXT NOT NULL,
+  snapshot_count  INTEGER NOT NULL,
+  published_at    TEXT NOT NULL,
+  cycle_id        TEXT
 );
