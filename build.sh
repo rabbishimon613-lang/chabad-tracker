@@ -33,3 +33,10 @@ if [ "$ACTUAL_SHA" != "$EXPECTED_SHA" ]; then
 fi
 
 echo "DB verified: $(stat -f%z "$OUT" 2>/dev/null || stat -c%s "$OUT") bytes, sha256 ok."
+
+# Regenerate snapshot.json + quarantine.json from the just-fetched DB so the
+# three reflections (DB, snapshot, quarantine) can never disagree at deploy
+# time. Phase 2's atomic publish makes this a no-op at runtime; for now the
+# build step is the alignment point.
+echo "Generating snapshot.json + quarantine.json from fetched DB..."
+python3 scrape/export_snapshot.py --db "$OUT" --out ui/public
