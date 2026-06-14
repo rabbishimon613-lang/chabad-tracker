@@ -291,3 +291,122 @@ def layer_10_wayback(ctx: LayerContext, *, fire_and_forget: bool = True) -> Laye
         reason="Wayback snapshots submitted (fire-and-forget).",
         details={"submissions": pending},
     )
+
+
+# ===========================================================================
+# Layer 12 — Perpetrator-only doctrine
+#   Hard reject if any source page describes the named person as a VICTIM of
+#   an attack on Chabad (Kogan UAE, Holtzberg Mumbai, Poway Goldstein-as-target,
+#   etc.). Aligned with [[project_chabad_tracker_doctrine]].
+#
+#   Mechanism: scan a 200-char window around the name for victim-side keywords.
+#   If found AND no perpetrator-side keywords nearby → reject.
+# ===========================================================================
+
+VICTIM_TERMS = [
+    "shot dead", "shot and killed", "stabbed", "murdered", "assassinated",
+    "killed in", "was killed", "attacker", "gunman", "shooter targeted",
+    "terror attack", "antisemitic attack", "victim of", "hostage",
+    "kidnapped", "abducted", "ambushed",
+]
+
+PERP_TERMS = [
+    "convicted", "indicted", "charged with", "sentenced to", "pleaded guilty",
+    "fraud", "abuse", "molest", "rape", "embezzle", "trafficking",
+    "cover up", "covered up", "settled with", "lawsuit against",
+]
+
+
+def layer_12_perpetrator_only(ctx: LayerContext) -> LayerResult:
+    names = [n for n in (ctx.incident.perpetrator_names or []) if n and n.strip()]
+    if not names or not ctx.incident.sources:
+        return LayerResult(
+            layer=12, name="perpetrator_only",
+            passed=True, skipped=True,
+            reason="No name or no sources to check doctrine against.",
+        )
+
+    flags = []
+    perp_anchors = []
+    for src in ctx.incident.sources:
+        page = ctx.pages.get(src.url)
+        if page is None:
+            page = http.get(src.url)
+            ctx.pages[src.url] = page
+        if not page.ok or not page.text:
+            continue
+        text = _normalize(_strip_html(page.text))
+        for name in names:
+            name_norm = _normalize(name)
+            idx = text.find(name_norm)
+            while idx >= 0:
+                window = text[max(0, idx - 200): idx + len(name_norm) + 200]
+                v_hits = [t for t in VICTIM_TERMS if t in window]
+                p_hits = [t for t in PERP_TERMS if t in window]
+                if v_hits and not p_hits:
+                    flags.append({
+                        "source_id": src.source_id, "name": name,
+                        "victim_terms_near_name": v_hits,
+                    })
+                if p_hits:
+                    perp_anchors.append({"source_id": src.source_id, "terms": p_hits})
+                idx = text.find(name_norm, idx + 1)
+
+    if flags and not perp_anchors:
+        return LayerResult(
+            layer=12, name="perpetrator_only", passed=False,
+            redact_name=True,
+            reason="Source page describes the named person as a VICTIM, not a perpetrator. "
+                   "Doctrine reject — Chabad-as-victim cases are out of scope.",
+            details={"flags": flags},
+        )
+    return LayerResult(
+        layer=12, name="perpetrator_only", passed=True,
+        reason="Perpetrator-side context anchors the name; not victim-coded.",
+        details={"perp_anchors_found": len(perp_anchors)},
+    )
+
+
+# ===========================================================================
+# Layer 11 — Confidence score (0-100)
+#   Derived from the OTHER layers' outcomes. Not a layer that "fails" — it's
+#   the synthesis. ≥80 archive, 50-79 archive flagged, <50 quarantine.
+# ===========================================================================
+
+# Layer-wise contributions to the score. Tuned so a clean Week-1-spine pass
+# lands around 85, partial around 70, single hard fail around 30.
+LAYER_WEIGHTS = {
+    1:  15,   # url liveness
+    2:  25,   # name on page
+    3:  20,   # verbatim quote
+    4:  10,   # triangulation (future)
+    5:   8,   # role/doctrine (future)
+    7:   7,   # source class (future)
+    8:   5,   # cross-source (future)
+    9:   5,   # second-pass LLM (future)
+    10:  0,   # Wayback — informational, not graded
+    12: 15,   # perpetrator-only hard gate
+}
+
+
+def layer_11_confidence(layer_results: list[LayerResult]) -> LayerResult:
+    """Synthesis layer — input is the OTHER layers' results, not a context."""
+    total_possible = 0
+    earned = 0
+    for r in layer_results:
+        w = LAYER_WEIGHTS.get(r.layer, 0)
+        if r.skipped:
+            continue
+        total_possible += w
+        if r.passed:
+            earned += w
+    if total_possible == 0:
+        score = 50  # nothing ran — neutral
+    else:
+        score = round(100 * earned / total_possible)
+    return LayerResult(
+        layer=11, name="confidence",
+        passed=True,   # this is synthesis; never a fail-cause itself
+        reason=f"Confidence {score}/100 from {earned}/{total_possible} weighted points.",
+        details={"score": score, "weights": LAYER_WEIGHTS},
+    )

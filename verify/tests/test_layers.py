@@ -265,6 +265,67 @@ class TestLayer3Quote:
 # Layer 10 — Wayback freeze (must NEVER fail an audit)
 # ===========================================================================
 
+class TestLayer12Perpetrator:
+    def test_good_perp_context(self):
+        u = "https://news.example/story"
+        page = "<p>Federal court documents show Mendel Goldberg pleaded guilty to wire fraud.</p>"
+        src = IncidentSource(source_id=1, url=u)
+        ctx = _ctx(sources=[src], pages={u: _r(u, 200, page)}, names=["Mendel Goldberg"])
+        r = layers.layer_12_perpetrator_only(ctx)
+        assert r.passed
+
+    def test_bad_victim_context_no_perp(self):
+        u = "https://news.example/story"
+        page = "<p>Mendel Goldberg was shot dead by an attacker outside the synagogue.</p>"
+        src = IncidentSource(source_id=1, url=u)
+        ctx = _ctx(sources=[src], pages={u: _r(u, 200, page)}, names=["Mendel Goldberg"])
+        r = layers.layer_12_perpetrator_only(ctx)
+        assert not r.passed
+        assert r.redact_name
+
+    def test_mixed_perp_anchors_wins(self):
+        u = "https://news.example/story"
+        # Person is named near both attack words AND conviction words → perp anchors win.
+        page = "<p>Mendel Goldberg was charged with fraud after victim of identity theft scheme came forward.</p>"
+        src = IncidentSource(source_id=1, url=u)
+        ctx = _ctx(sources=[src], pages={u: _r(u, 200, page)}, names=["Mendel Goldberg"])
+        r = layers.layer_12_perpetrator_only(ctx)
+        assert r.passed
+
+
+class TestLayer11Confidence:
+    def test_full_pass_high_score(self):
+        results = [
+            layers.LayerResult(layer=1,  name="url_liveness",   passed=True),
+            layers.LayerResult(layer=2,  name="name_on_page",   passed=True),
+            layers.LayerResult(layer=3,  name="verbatim_quote", passed=True),
+            layers.LayerResult(layer=12, name="perpetrator_only", passed=True),
+        ]
+        r = layers.layer_11_confidence(results)
+        assert r.passed
+        assert r.details["score"] >= 80
+
+    def test_one_hard_fail_low_score(self):
+        results = [
+            layers.LayerResult(layer=1, name="url_liveness", passed=True),
+            layers.LayerResult(layer=2, name="name_on_page", passed=False),
+        ]
+        r = layers.layer_11_confidence(results)
+        assert r.details["score"] < 50
+
+    def test_legacy_partial_credits(self):
+        # Layer 3 skipped (legacy row without quote) — score shouldn't count it.
+        results = [
+            layers.LayerResult(layer=1,  name="url_liveness",   passed=True),
+            layers.LayerResult(layer=2,  name="name_on_page",   passed=True),
+            layers.LayerResult(layer=3,  name="verbatim_quote", passed=True, skipped=True),
+            layers.LayerResult(layer=12, name="perpetrator_only", passed=True),
+        ]
+        r = layers.layer_11_confidence(results)
+        # 15+25+15 earned / 15+25+15 possible = 100
+        assert r.details["score"] == 100
+
+
 class TestLayer10Wayback:
     def test_good_10_wayback_never_fails(self, monkeypatch):
         # Even if Wayback's save endpoint errors, the layer must pass.

@@ -1029,9 +1029,10 @@ function renderAuditBadge(status, score, failures) {
   const passList = (status === "passed" || status === "passed_partial")
     ? ["url_liveness", "name_on_page", "verbatim_quote"] : [];
   const failList = (failures || []).map(f => f.layer_name);
-  // Render with the Phase-0 chip helper; it takes a numeric score so we fake one
-  // when the Verifier doesn't have a real Layer 11 number yet.
-  const fakeScore = score != null ? score
+  // Layer 11 (confidence) writes a real 0-100 score when it runs. Fall back
+  // to a status-derived guess for legacy rows that pre-date Layer 11.
+  const realScore = score != null && score !== "" ? Number(score) : null;
+  const fakeScore = realScore != null ? realScore
                    : status === "passed"         ? 90
                    : status === "passed_partial" ? 75
                    : status === "quarantined"    ? 30

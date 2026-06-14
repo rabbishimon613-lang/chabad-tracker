@@ -17,9 +17,9 @@ from . import layers
 from .layers import IncidentRow, IncidentSource, LayerContext, LayerResult
 
 
-# Hard-failing layers (Week 1 spine): if any of these return passed=False
-# AND skipped=False, the incident is quarantined.
-HARD_LAYERS = {1, 2, 3}
+# Hard-failing layers: if any of these return passed=False AND skipped=False,
+# the incident is quarantined.
+HARD_LAYERS = {1, 2, 3, 12}
 
 
 @dataclass
@@ -112,11 +112,16 @@ def _save_result(
     now = datetime.now(timezone.utc).isoformat()
     cur = conn.cursor()
 
+    # Pull the Layer 11 score (if present) — written alongside audit_status.
+    score = None
+    for lr in layer_results:
+        if lr.layer == 11 and isinstance(lr.details, dict):
+            score = lr.details.get("score")
     cur.execute(
         "UPDATE incidents "
-        "SET audit_status = ?, audit_at = ?, quarantine_reason = ? "
+        "SET audit_status = ?, audit_at = ?, quarantine_reason = ?, audit_score = ? "
         "WHERE id = ?",
-        (result.audit_status, now, result.quarantine_reason, result.incident_id),
+        (result.audit_status, now, result.quarantine_reason, score, result.incident_id),
     )
 
     # Append quarantine rows for any hard fail. Preserve forever; don't delete
@@ -198,9 +203,12 @@ def verify_incident(
         layers.layer_1_url_liveness(ctx),
         layers.layer_2_name_on_page(ctx),
         layers.layer_3_verbatim_quote(ctx),
+        layers.layer_12_perpetrator_only(ctx),
     ]
     if do_wayback:
         layer_results.append(layers.layer_10_wayback(ctx))
+    # Layer 11 synthesises the others — must run last.
+    layer_results.append(layers.layer_11_confidence(layer_results))
 
     hard_fails = [r for r in layer_results if r.layer in HARD_LAYERS and not r.passed and not r.skipped]
     any_skipped = any(r.skipped for r in layer_results if r.layer in HARD_LAYERS)
