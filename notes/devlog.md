@@ -23,14 +23,15 @@ Running notes on what got built, what got decided, and what hit a wall. Append-o
 
 ### Step 2 — Cloud-pool API keys into Actions secrets ✅
 
-Source: `/Volumes/EOS_DIGITAL/llm-fleet/.env` (the local fleet's config). Loaded as numbered GH Actions secrets:
+Sources: `/Volumes/EOS_DIGITAL/llm-fleet/.env` for Groq/OR/Tavily/Exa; Cerebras keys supplied by user mid-session. Loaded as numbered GH Actions secrets:
 
-- `GROQ_KEY_1`, `GROQ_KEY_2` — first 2 of 3 total
-- `OPENROUTER_KEY_1`, `_2`, `_3` — first 3 of 5 total
-- `TAVILY_KEY_1`, `_2`, `_3` — first 3 of 5 total
-- `EXA_KEY_1`, `_2`, `_3` — first 3 of 5 total
+- `CEREBRAS_KEY_1..4` — 4 of 5 (the 5th goes to local fleet, no overlap)
+- `GROQ_KEY_1..2` — first 2 of 3 total
+- `OPENROUTER_KEY_1..3` — first 3 of 5 total
+- `TAVILY_KEY_1..3` — first 3 of 5 total
+- `EXA_KEY_1..3` — first 3 of 5 total
 
-**No Cerebras keys** exist on disk; researchteam.md's "5 Cerebras keys" was aspirational. Cloud pool runs without them. Cerebras can be added later as `CEREBRAS_KEY_1..N` whenever provisioned — `fleet_batch` already accepts the fallback.
+The 5th Cerebras key was appended to `llm-fleet/.env` as `CEREBRAS_API_KEYS` so the local fleet has one of its own.
 
 **Doctrine drift:** these same keys are still in the local fleet's `.env`. The "keys never overlap" rule is violated in this Phase 0 state. Practical impact: if cloud cycles burn a shared key's daily rate limit, the local fleet sees the limit too. Acceptable bridge while we're not yet running cloud cycles. Cleanup options: (a) physically split — push first-N to Actions and rewrite fleet `.env` to keep only the last-M; (b) provision fresh keys for cloud and revoke the shared ones from local. To revisit once cloud cycles start firing.
 
