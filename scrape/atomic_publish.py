@@ -124,7 +124,7 @@ def main() -> int:
         # JSON is provably derived from the same bytes the hash points to.
         env = os.environ.copy()
         subprocess.run(
-            [sys.executable, "scrape/export_snapshot.py",
+            [sys.executable, "tools/export_snapshot.py",
              "--db", str(vacuumed), "--out", str(args.ui_public)],
             check=True, env=env,
         )

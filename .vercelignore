@@ -6,13 +6,9 @@ data/*.tsv
 data/chabad.db
 data/chabad_tracker.db
 
-# scrape/ — most of the bucket scripts are noise for Vercel, but the
-# build-time snapshot generator must be deployable.
+# scrape/ is internal — never deployed to Vercel.
+# Build-time helpers live in tools/ instead.
 scrape/
-!scrape/export_snapshot.py
-!scrape/atomic_publish.py
-!scrape/migrations/
-!scrape/migrations/**
 
 notes/
 docs/

@@ -39,4 +39,4 @@ echo "DB verified: $(stat -f%z "$OUT" 2>/dev/null || stat -c%s "$OUT") bytes, sh
 # time. Phase 2's atomic publish makes this a no-op at runtime; for now the
 # build step is the alignment point.
 echo "Generating snapshot.json + quarantine.json from fetched DB..."
-python3 scrape/export_snapshot.py --db "$OUT" --out ui/public
+python3 tools/export_snapshot.py --db "$OUT" --out ui/public
