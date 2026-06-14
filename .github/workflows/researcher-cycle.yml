@@ -1,0 +1,125 @@
+# researcher-cycle — the actual research loop.
+#
+# One run = one full cycle:
+#   1. Investigator (cheap SQL) generates fresh leads
+#   2. Researcher pops top-scored lead, search+fleet, writes staging
+#   3. Archivist promotes verified staging → live incidents, spawns child leads
+#   4. Atomic publish (VACUUM → release → snapshot+quarantine → pointers)
+#
+# Runs every hour. Hard caps per cycle: 8 searches, 40 fleet calls, 90s/dive.
+# Pre-flight budget check at cycle entry; over budget → exit 0 cleanly.
+
+name: researcher-cycle
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 * * * *'
+
+concurrency:
+  group: cycle
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CEREBRAS_KEY_1:   ${{ secrets.CEREBRAS_KEY_1 }}
+      CEREBRAS_KEY_2:   ${{ secrets.CEREBRAS_KEY_2 }}
+      CEREBRAS_KEY_3:   ${{ secrets.CEREBRAS_KEY_3 }}
+      CEREBRAS_KEY_4:   ${{ secrets.CEREBRAS_KEY_4 }}
+      GROQ_KEY_1:       ${{ secrets.GROQ_KEY_1 }}
+      GROQ_KEY_2:       ${{ secrets.GROQ_KEY_2 }}
+      OPENROUTER_KEY_1: ${{ secrets.OPENROUTER_KEY_1 }}
+      OPENROUTER_KEY_2: ${{ secrets.OPENROUTER_KEY_2 }}
+      OPENROUTER_KEY_3: ${{ secrets.OPENROUTER_KEY_3 }}
+      TAVILY_KEY_1:     ${{ secrets.TAVILY_KEY_1 }}
+      TAVILY_KEY_2:     ${{ secrets.TAVILY_KEY_2 }}
+      TAVILY_KEY_3:     ${{ secrets.TAVILY_KEY_3 }}
+      EXA_KEY_1:        ${{ secrets.EXA_KEY_1 }}
+      EXA_KEY_2:        ${{ secrets.EXA_KEY_2 }}
+      EXA_KEY_3:        ${{ secrets.EXA_KEY_3 }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: OPS_HALT pre-flight
+        run: |
+          if [ -f ops/OPS_HALT ]; then
+            echo "::notice::OPS_HALT present — exiting cleanly."
+            cat ops/OPS_HALT 2>/dev/null || true
+            exit 0
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install --quiet requests
+
+      - name: Fetch current DB
+        run: |
+          URL=$(tr -d '\n\r ' < data/chabad.db.url)
+          EXPECTED=$(tr -d '\n\r ' < data/chabad.db.sha256)
+          curl -sSfL --retry 3 "$URL" -o data/chabad.db
+          ACTUAL=$(sha256sum data/chabad.db | awk '{print $1}')
+          [ "$ACTUAL" = "$EXPECTED" ] || { echo "::error::sha mismatch"; exit 1; }
+
+      - name: Pre-flight budget check
+        run: |
+          python -m scrape.research_one_lead --budget-check-only
+
+      - name: Investigator — refresh leads
+        run: |
+          python scrape/generate_leads.py
+
+      - name: Researcher — one dive
+        run: |
+          python -m scrape.research_one_lead || true
+
+      - name: Archivist — promote verified staging
+        run: |
+          python -m scrape.archivist --limit 5
+
+      - name: Atomic publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scrape/atomic_publish.py --cycle-id "${GITHUB_RUN_ID}"
+
+      - name: Record cycle log
+        if: always()
+        run: |
+          mkdir -p ops
+          python -c "
+          import json, os, sqlite3
+          from datetime import datetime, timezone
+          conn = sqlite3.connect('data/chabad.db')
+          c = conn.cursor()
+          line = {
+            'run_id': os.environ.get('GITHUB_RUN_ID'),
+            'at': datetime.now(timezone.utc).isoformat(),
+            'incidents': c.execute('SELECT COUNT(*) FROM incidents').fetchone()[0],
+            'leads_pending': c.execute(\"SELECT COUNT(*) FROM leads WHERE status='pending'\").fetchone()[0],
+            'quarantine': c.execute('SELECT COUNT(*) FROM quarantine').fetchone()[0],
+          }
+          with open('ops/cycles.jsonl','a') as f: f.write(json.dumps(line)+'\n')
+          "
+
+      - name: Commit results
+        run: |
+          git config user.name  "chabad-tracker-bot"
+          git config user.email "bot@chabad-tracker.local"
+          git add data/chabad.db.url data/chabad.db.sha256 \
+                  ui/public/snapshot.json ui/public/quarantine.json \
+                  ops/cycles.jsonl
+          if git diff --staged --quiet; then exit 0; fi
+          git commit -m "cycle: ${GITHUB_RUN_ID} $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
