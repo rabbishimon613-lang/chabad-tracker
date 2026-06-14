@@ -51,7 +51,34 @@ Edits in `ui/index.html` and `ui/about.html`:
 
 Local preview verified: about.html renders correctly — status bar shows "data as of 2026-06-08 03:35 UTC · 357 incidents · cycle 6 d ago" with stale dot; banner reads "data is 6 days old — researcher cycle may be paused"; 4-card stats grid shows 357 / 4,173 / 9,687 / 837.
 
-### Step 7 — Deploy + verify exit criteria — in progress
+### Step 7 — Deploy + verify exit criteria ✅ (partial — see below)
 
 **Phase 0 bridge:** committed `ui/public/chabad.db` (the live 976-incident DB) to git so the Vercel auto-deploy doesn't break before R2 is wired. `.gitignore` has the line commented with a TODO. **Remove this commit when Step 3 (R2) lands.**
+
+**Vercel project linking:** the `ui/.vercel/` link had drifted to a stray `chabadtracker` project (no hyphen). Relinked to the canonical `chabad-tracker` project at the same org. Production alias `https://chabad-tracker.vercel.app` now serves the new build.
+
+**GitHub ↔ Vercel auto-deploy:** the existing Vercel project pre-dates this GitHub repo and isn't wired to it. For now I'm pushing via `vercel --prod` from CLI. Connecting the Vercel project to `rabbishimon613-lang/chabad-tracker` is a 30-second dashboard step the user should do so subsequent commits to `main` auto-deploy.
+
+**Verified on production (`https://chabad-tracker.vercel.app`):**
+- `/about.html` returns 200 with the new status bar, freshness banner, and 4-card stat grid.
+- `/public/snapshot.json` still says `incidents: 357` (the lie — left intact, will be fixed in Phase 2 by the atomic publish rewrite).
+- `/public/chabad.db` returns 200, ~6.7MB — the live 976-incident DB.
+- `/` (index.html) HTML source contains the new `status-bar`, `reflection-warning`, `freshness-banner`, and `renderConfidenceChip` markers.
+- Reflection-mismatch warning will fire as soon as a visitor's browser loads `/` because `snapshot=357 ≠ db=976`. The system now tells the truth about its own drift.
+
+### Phase 0 exit criteria scorecard
+
+| Criterion | Status |
+|---|---|
+| Repo + secrets + R2 + Vercel wired | ⏸️ partial — repo + Vercel ✅; secrets + R2 blocked on user creds |
+| `concurrency:` group rule applied to every workflow | ✅ `ci.yml` has it; `_template.yml.example` documents it |
+| Status bar live on deployed site, showing current data freshness | ✅ |
+| All three UI backlog items fixed and deployed | ✅ filters re-render fix, dead back button hidden on landing, stats moved to About |
+| Confidence chip + reflection mismatch warning ready to receive data | ✅ |
+
+### Blocked on user input (needed to finish Steps 2, 3, 4)
+
+1. **Cloud-pool API keys** — Cerebras × 5 values, Groq × 3 values, OpenRouter × 5 values, and the explicit split of the existing Tavily × 5 / Exa × 5 keys (which 3 go to the cloud pool, which 2 stay local). I'll load them into Actions secrets per the cloud sizing in researchteam.md.
+2. **Cloudflare R2 access** — once available, I'll provision the `chabad-tracker` bucket (public-read), upload the DB, write the `data/chabad.db.url` + `.sha256` pointer files, and rewrite the Vercel prebuild step to fetch from R2 by hash. Then `ui/public/chabad.db` comes back out of git.
+3. **Vercel ↔ GitHub auto-deploy** — small dashboard step on the user's side so future pushes to `main` deploy automatically.
 
