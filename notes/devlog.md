@@ -92,7 +92,23 @@ User declined to put a payment card on Cloudflare R2 (free tier still requires c
 
 When the Archivist publishes a new DB version (Phase 2's atomic ritual), it'll: (1) upload a new release asset tagged `db-<sha12>`, (2) update `data/chabad.db.url` and `.sha256`, (3) commit + push, (4) Vercel auto-rebuilds. Old releases preserved forever ([[feedback_never_delete_originals]] aligns).
 
-### Still on user's plate
+### Step 4 follow-up — `vercel.json` moved to repo root
 
-- **Vercel ↔ GitHub auto-deploy** — 30-second dashboard step: link the `chabad-tracker` Vercel project to the new `rabbishimon613-lang/chabad-tracker` repo so future pushes to `main` deploy automatically. Right now I'm pushing via `vercel --prod` from CLI.
+First deploy attempt failed: prebuild ran from `ui/` and couldn't see `../data/`. Moved `build.sh` and `vercel.json` to repo root; set `outputDirectory: "ui"` so Vercel still serves `ui/` as the static root but the build has visibility into `data/` for the hash-pointer files. Production now serves `chabad.db` with sha256 `675fcb3f7894...` — exact match against `data/chabad.db.sha256`. End-to-end verified.
+
+### Phase 0 — DONE
+
+All exit criteria green:
+
+| Criterion | Status |
+|---|---|
+| Repo + secrets + asset-store + Vercel wired | ✅ — repo public, 15 cloud-pool secrets in Actions, DB on GitHub Releases (R2 swap), Vercel prebuild verifies sha256 |
+| `concurrency:` group rule applied to every workflow | ✅ |
+| Status bar live on deployed site, showing current data freshness | ✅ |
+| All three UI backlog items fixed and deployed | ✅ |
+| Confidence chip + reflection mismatch warning ready to receive data | ✅ |
+
+### Still on user's plate (Phase 1 prerequisites)
+
+- **Vercel ↔ GitHub auto-deploy** — 30-second dashboard step: link the `chabad-tracker` Vercel project to the new `rabbishimon613-lang/chabad-tracker` repo so pushes to `main` deploy automatically. Right now I'm pushing via `vercel --prod` from CLI. Not blocking Phase 1 work; just convenient.
 
