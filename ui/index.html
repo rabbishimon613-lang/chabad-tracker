@@ -3515,12 +3515,27 @@ async function loadConstellations() {
       </div>
     </div>
   `).join("");
-  // Click → navigate to the anchor's dossier (drops the user inside the cluster).
+  // Click → switch to DB mode and open the anchor's dossier. The card grid
+  // disappears so a return to W later shows the cards again (we re-show on
+  // mode switch back to W via the mode-switch handler below).
   grid.querySelectorAll(".ce-card").forEach(el => {
     el.addEventListener("click", () => {
       const id = el.dataset.anchorId;
-      if (id) { document.querySelector("#constellations-entry").classList.add("hidden"); navigate(`person=${id}`); }
+      if (!id) return;
+      document.querySelector("#constellations-entry").classList.add("hidden");
+      // Switch to D mode so the dossier sheet is visible.
+      document.querySelectorAll("#topbar .mode-switch button").forEach(b => {
+        b.dataset.active = b.dataset.mode === "D" ? "1" : "0";
+      });
+      document.querySelectorAll(".mode-pane").forEach(p => {
+        p.classList.toggle("active", p.id === "mode-D");
+      });
+      navigate(`person=${id}`);
     });
+  });
+  // When the user clicks back to W, re-show the cards.
+  document.querySelector('#topbar .mode-switch button[data-mode="W"]')?.addEventListener("click", () => {
+    document.querySelector("#constellations-entry")?.classList.remove("hidden");
   });
   const showGraphBtn = $("ce-show-graph");
   if (showGraphBtn) {
