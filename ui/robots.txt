@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /quarantine.html
 Disallow: /public/quarantine.json
 
 Sitemap: https://chabad-tracker.vercel.app/sitemap.xml

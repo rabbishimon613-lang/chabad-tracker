@@ -1,0 +1,1760 @@
+{
+  "generated_at": "2026-06-17T01:21:56.706404+00:00",
+  "counts": {
+    "all": 129,
+    "cycles": 9,
+    "new": 60,
+    "leads": 1,
+    "quarantined": 59
+  },
+  "events": [
+    {
+      "at": "2026-06-16T18:38:49.638291+00:00",
+      "type": "cycle_complete",
+      "category": "cycles",
+      "icon": "\u21bb",
+      "color": "mute",
+      "text": "Cycle #27639746473 closed \u00b7 983 incidents \u00b7 81 leads pending \u00b7 225 quarantine",
+      "details": {
+        "run_id": "27639746473",
+        "at": "2026-06-16T18:38:49.638291+00:00",
+        "incidents": 983,
+        "leads_pending": 81,
+        "quarantine": 225
+      }
+    },
+    {
+      "at": "2026-06-16T00:15:46.890186+00:00",
+      "type": "cycle_complete",
+      "category": "cycles",
+      "icon": "\u21bb",
+      "color": "mute",
+      "text": "Cycle #27585127683 closed \u00b7 982 incidents \u00b7 81 leads pending \u00b7 127 quarantine",
+      "details": {
+        "run_id": "27585127683",
+        "at": "2026-06-16T00:15:46.890186+00:00",
+        "incidents": 982,
+        "leads_pending": 81,
+        "quarantine": 127
+      }
+    },
+    {
+      "at": "2026-06-15T18:02:11.533326+00:00",
+      "type": "cycle_complete",
+      "category": "cycles",
+      "icon": "\u21bb",
+      "color": "mute",
+      "text": "Cycle #27566003358 closed \u00b7 981 incidents \u00b7 81 leads pending \u00b7 127 quarantine",
+      "details": {
+        "run_id": "27566003358",
+        "at": "2026-06-15T18:02:11.533326+00:00",
+        "incidents": 981,
+        "leads_pending": 81,
+        "quarantine": 127
+      }
+    },
+    {
+      "at": "2026-06-14T22:21:55.604392+00:00",
+      "type": "cycle_complete",
+      "category": "cycles",
+      "icon": "\u21bb",
+      "color": "mute",
+      "text": "Cycle #27513884352 closed \u00b7 980 incidents \u00b7 81 leads pending \u00b7 89 quarantine",
+      "details": {
+        "run_id": "27513884352",
+        "at": "2026-06-14T22:21:55.604392+00:00",
+        "incidents": 980,
+        "leads_pending": 81,
+        "quarantine": 89
+      }
+    },
+    {
+      "at": "2026-06-14T18:02:24.646514+00:00",
+      "type": "cycle_complete",
+      "category": "cycles",
+      "icon": "\u21bb",
+      "color": "mute",
+      "text": "Cycle #27507398413 closed \u00b7 979 incidents \u00b7 81 leads pending \u00b7 59 quarantine",
+      "details": {
+        "run_id": "27507398413",
+        "at": "2026-06-14T18:02:24.646514+00:00",
+        "incidents": 979,
+        "leads_pending": 81,
+        "quarantine": 59
+      }
+    },
+    {
+      "at": "2026-06-14T13:14:32.230108+00:00",
+      "type": "cycle_complete",
+      "category": "cycles",
+      "icon": "\u21bb",
+      "color": "mute",
+      "text": "Cycle #27500003859 closed \u00b7 978 incidents \u00b7 81 leads pending \u00b7 59 quarantine",
+      "details": {
+        "run_id": "27500003859",
+        "at": "2026-06-14T13:14:32.230108+00:00",
+        "incidents": 978,
+        "leads_pending": 81,
+        "quarantine": 59
+      }
+    },
+    {
+      "at": "2026-06-14T12:49:47.939226+00:00",
+      "type": "cycle_complete",
+      "category": "cycles",
+      "icon": "\u21bb",
+      "color": "mute",
+      "text": "Cycle #27499365847 closed \u00b7 978 incidents \u00b7 81 leads pending \u00b7 59 quarantine",
+      "details": {
+        "run_id": "27499365847",
+        "at": "2026-06-14T12:49:47.939226+00:00",
+        "incidents": 978,
+        "leads_pending": 81,
+        "quarantine": 59
+      }
+    },
+    {
+      "at": "2026-06-14T12:49:14.526570+00:00",
+      "type": "publish",
+      "category": "cycles",
+      "icon": "\u25c7",
+      "color": "mute",
+      "text": "Publish \u00b7 db-4a89bdeb8808 \u2192 977 incidents",
+      "details": {
+        "sha": "4a89bdeb8808aa74ca0d7cd6045081fb7e976adbc5729924e36909cafa95d770",
+        "cycle_id": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:46:09.845157+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Yisroel Goldstein \u00b7 financial fraud \u00b7 Poway 2020",
+      "link": "#incident=1443",
+      "details": {
+        "incident_id": 1443,
+        "audit_status": "passed",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:44:53.222511+00:00",
+      "type": "lead_resolved",
+      "category": "leads",
+      "icon": "\u25b8",
+      "color": "amber",
+      "text": "Lead resolved \u00b7 cold path relative \u00b7 2026-06-14T12:44:53.222511+00:00: 1 staging rows",
+      "details": {
+        "lead_id": 27,
+        "kind": "cold_path_relative"
+      }
+    },
+    {
+      "at": "2026-06-14T12:32:34.256303+00:00",
+      "type": "publish",
+      "category": "cycles",
+      "icon": "\u25c7",
+      "color": "mute",
+      "text": "Publish \u00b7 db-f87fd88d202e \u2192 976 incidents",
+      "details": {
+        "sha": "f87fd88d202ef59df90d6c1234e331b5f5dc4e2a50d88fd182cdb10fb8ad0ebd",
+        "cycle_id": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:54.106787+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Colel Chabad Lubavitch Foundation of Israel \u00b7 financial fraud \u00b7 Canada 2016",
+      "link": "#incident=114",
+      "details": {
+        "incident_id": 114,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:53.696536+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Sholom Ber Krinsky \u00b7 assault \u00b7 Vilnius 2004",
+      "link": "#incident=113",
+      "details": {
+        "incident_id": 113,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:53.513148+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Sholom Ber Krinsky \u00b7 financial fraud \u00b7 Vilnius 2023",
+      "link": "#incident=112",
+      "details": {
+        "incident_id": 112,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:52.595921+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Mordechai Korf \u00b7 money laundering \u00b7 Miami Beach 2018",
+      "link": "#incident=111",
+      "details": {
+        "incident_id": 111,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:51.587519+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Los Angeles \u00b7 2002",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:47.799933+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 other \u00b7 Washington \u00b7 2018",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:47.799933+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Washington \u00b7 2018",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:47.507405+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Jerusalem \u00b7 2006",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:47.020607+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Dov Livitin \u00b7 financial fraud \u00b7 Jerusalem 2007",
+      "link": "#incident=107",
+      "details": {
+        "incident_id": 107,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:46.146490+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Levi Edrei \u00b7 financial fraud \u00b7 Jerusalem 2007",
+      "link": "#incident=106",
+      "details": {
+        "incident_id": 106,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:45.181237+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 \u05e8\u05d7\u05d1\u05d9\u05d4 \u00b7 2024",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:42.026341+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 New York \u00b7 2004",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:41.637027+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Scott (Shlomo) Elkan \u00b7 sexual abuse \u00b7 Oberlin 2024",
+      "link": "#incident=103",
+      "details": {
+        "incident_id": 103,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:41.041988+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Lubavitch of Cambridge \u00b7 other \u00b7 Cambridge 2026",
+      "link": "#incident=102",
+      "details": {
+        "incident_id": 102,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:39.958909+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 sexual abuse \u00b7 Brooklyn \u00b7 1987",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:39.958909+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 sexual abuse \u00b7 Brooklyn \u00b7 1987",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:39.697013+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Cambridge \u00b7 2025",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:39.549513+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Carol Agate \u00b7 other \u00b7 Cambridge 2025",
+      "link": "#incident=99",
+      "details": {
+        "incident_id": 99,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:39.390903+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Jim Monteverde \u00b7 other \u00b7 Cambridge 2025",
+      "link": "#incident=98",
+      "details": {
+        "incident_id": 98,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:38.210573+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Jason Ellis \u00b7 tax evasion \u00b7 Poway 2021",
+      "link": "#incident=97",
+      "details": {
+        "incident_id": 97,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:36.921687+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Levi Shemtov \u00b7 other \u00b7 Washington 2012",
+      "link": "#incident=96",
+      "details": {
+        "incident_id": 96,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:35.955171+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Mumbai",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:35.620715+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Baruch Zeltzer \u00b7 money laundering \u00b7 Seattle 1988",
+      "link": "#incident=94",
+      "details": {
+        "incident_id": 94,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:35.286091+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Avi Hazan \u00b7 money laundering \u00b7 Seattle 1988",
+      "link": "#incident=93",
+      "details": {
+        "incident_id": 93,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:34.941369+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Sergio Dias \u00b7 money laundering \u00b7 Seattle 1988",
+      "link": "#incident=92",
+      "details": {
+        "incident_id": 92,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:34.593525+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 drug trafficking \u00b7 Madrid \u00b7 2010",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:34.222191+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 drug trafficking \u00b7 Israel \u00b7 2010",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:33.881289+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 drug trafficking \u00b7 Israel \u00b7 2010",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:33.532581+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "CHEDER CHABAD \u00b7 financial fraud \u00b7 Toronto 2013",
+      "link": "#incident=88",
+      "details": {
+        "incident_id": 88,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:32.743407+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Sholom Mordechai Rubashkin \u00b7 financial fraud \u00b7 Postville 2010",
+      "link": "#incident=87",
+      "details": {
+        "incident_id": 87,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:31.435294+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Tzvi Telsner \u00b7 cover up \u00b7 Melbourne 2015",
+      "link": "#incident=86",
+      "details": {
+        "incident_id": 86,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:30.502619+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Various cities \u00b7 2000",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:30.352482+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Moscow \u00b7 2000",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:28.568707+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 cover up \u00b7 Sydney \u00b7 2015",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:26.870834+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Aryeh Goodman \u00b7 sexual abuse \u00b7 Lackawaxen Township 2001",
+      "link": "#incident=82",
+      "details": {
+        "incident_id": 82,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:24.697365+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Sholom Ber Levitin \u00b7 money laundering \u00b7 Seattle",
+      "link": "#incident=81",
+      "details": {
+        "incident_id": 81,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:23.784885+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 sexual abuse \u00b7 Washington \u00b7 2014",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:22.705149+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Village of Atlantic Beach \u00b7 other \u00b7 Atlantic Beach 2021",
+      "link": "#incident=79",
+      "details": {
+        "incident_id": 79,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:21.809700+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 money laundering \u00b7 London \u00b7 2019",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:21.122486+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Edward Cohen \u00b7 money laundering \u00b7 London 2019",
+      "link": "#incident=77",
+      "details": {
+        "incident_id": 77,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:19.195644+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Elliot Adler \u00b7 financial fraud \u00b7 San Diego 2022",
+      "link": "#incident=76",
+      "details": {
+        "incident_id": 76,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:18.996281+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 other \u00b7 Poway \u00b7 2015",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:18.996281+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Poway \u00b7 2015",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:18.714481+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 sexual abuse \u00b7 New York \u00b7 1987",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:18.714481+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 sexual abuse \u00b7 New York \u00b7 1987",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:18.424033+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Brooklyn \u00b7 2004",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:17.913176+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 tax evasion \u00b7 San Diego \u00b7 2022",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:17.913176+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 tax evasion \u00b7 San Diego \u00b7 2022",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:16.071106+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "George Segal \u00b7 financial fraud \u00b7 Kfar Chabad 2009",
+      "link": "#incident=71",
+      "details": {
+        "incident_id": 71,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:15.906913+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 tax evasion \u00b7 Kfar Chabad \u00b7 2009",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:14.656846+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Reuven Mintz \u00b7 financial fraud \u00b7 Newport Beach 2010",
+      "link": "#incident=69",
+      "details": {
+        "incident_id": 69,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:14.262892+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yossi Engel \u00b7 other \u00b7 Adelaide 2007",
+      "link": "#incident=68",
+      "details": {
+        "incident_id": 68,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:11.419098+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Sydney \u00b7 2015",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:09.066888+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Meir Levinger \u00b7 other \u00b7 Hebron 1980",
+      "link": "#incident=66",
+      "details": {
+        "incident_id": 66,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:08.925433+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rebbe Rayatz \u00b7 financial fraud \u00b7 Hebron 1922",
+      "link": "#incident=65",
+      "details": {
+        "incident_id": 65,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:08.498260+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 financial fraud \u00b7 Florida \u00b7 2022",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:08.498260+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Florida \u00b7 2022",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:08.188964+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yisroel Goldstein \u00b7 tax evasion \u00b7 Poway 2019",
+      "link": "#incident=63",
+      "details": {
+        "incident_id": 63,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:04.473178+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Israel",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:04.226480+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 tax evasion \u00b7 Ben\u2011Gurion Airport \u00b7 2007",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:03.931233+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 cover up \u00b7 Miami-Dade County \u00b7 2008",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:31:03.931233+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 cover up \u00b7 Miami-Dade County \u00b7 2008",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:30:39.715655+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 other \u00b7 Miami-Dade County \u00b7 2008",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:30:39.715655+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Miami-Dade County \u00b7 2008",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:30:15.480898+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 financial fraud \u00b7 Aventura \u00b7 2008",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:30:15.480898+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Aventura \u00b7 2008",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:51.239743+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 money laundering",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:50.882308+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yisroel Goldstein \u00b7 financial fraud \u00b7 Poway 2017",
+      "link": "#incident=55",
+      "details": {
+        "incident_id": 55,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:49.634952+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yisroel Goldstein \u00b7 financial fraud \u00b7 Poway 2011",
+      "link": "#incident=54",
+      "details": {
+        "incident_id": 54,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:48.414197+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yisroel Goldstein \u00b7 tax evasion \u00b7 Poway 2010",
+      "link": "#incident=53",
+      "details": {
+        "incident_id": 53,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:46.941562+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yisroel Goldstein \u00b7 financial fraud \u00b7 Poway 2013",
+      "link": "#incident=52",
+      "details": {
+        "incident_id": 52,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:44.760316+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Naftali Rotenstreich \u00b7 financial fraud \u00b7 New York 2024",
+      "link": "#incident=50",
+      "details": {
+        "incident_id": 50,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:44.630689+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 New York \u00b7 2018",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:44.224165+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Colel Chabad Lubavitch Foundation of Israel \u00b7 financial fraud \u00b7 Israel 2003",
+      "link": "#incident=48",
+      "details": {
+        "incident_id": 48,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:43.492333+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Towson \u00b7 2016",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:42.423265+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 sexual abuse \u00b7 Near Jerusalem/Tel Aviv \u00b7 2007",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:42.181995+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 sexual abuse \u00b7 Long Beach \u00b7 2007",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:40.915265+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yaakov Weiss \u00b7 sexual abuse \u00b7 Loudonville 2008",
+      "link": "#incident=43",
+      "details": {
+        "incident_id": 43,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:40.816767+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Harlig \u00b7 cover up \u00b7 Las Vegas 2007",
+      "link": "#incident=42",
+      "details": {
+        "incident_id": 42,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:40.608531+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Michael Segelstein \u00b7 sexual abuse \u00b7 Las Vegas 2007",
+      "link": "#incident=41",
+      "details": {
+        "incident_id": 41,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:40.397179+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi David Wakser \u00b7 sexual abuse \u00b7 Brooklyn 2007",
+      "link": "#incident=40",
+      "details": {
+        "incident_id": 40,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:39.970293+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Levi Shemtov \u00b7 financial fraud \u00b7 Washington 2024",
+      "link": "#incident=36",
+      "details": {
+        "incident_id": 36,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:39.797275+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Miguel Andr\u00e9s P\u00e9rez \u00b7 sexual abuse \u00b7 Buenos Aires",
+      "link": "#incident=35",
+      "details": {
+        "incident_id": 35,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:39.313882+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 cover up \u00b7 Melbourne \u00b7 2003",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:38.722918+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 cover up \u00b7 Melbourne",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:38.212579+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Abraham Glick \u00b7 cover up \u00b7 Melbourne 1992",
+      "link": "#incident=31",
+      "details": {
+        "incident_id": 31,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:38.117170+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 cover up \u00b7 Melbourne \u00b7 2003",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:38.044997+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi David Wakser \u00b7 sexual abuse \u00b7 New York 1978",
+      "link": "#incident=29",
+      "details": {
+        "incident_id": 29,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:37.901152+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 sexual abuse \u00b7 Brooklyn",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:37.754729+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Sender Lustig \u00b7 cover up \u00b7 Brooklyn 2003",
+      "link": "#incident=27",
+      "details": {
+        "incident_id": 27,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:37.278139+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 cover up \u00b7 Melbourne",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:37.217118+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Joseph Reizes \u00b7 sexual abuse \u00b7 Brooklyn",
+      "link": "#incident=26",
+      "details": {
+        "incident_id": 26,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:37.051697+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Velvel Karp \u00b7 assault \u00b7 Brooklyn",
+      "link": "#incident=25",
+      "details": {
+        "incident_id": 25,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:36.896268+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yudi Steiner \u00b7 other \u00b7 Washington 2024",
+      "link": "#incident=24",
+      "details": {
+        "incident_id": 24,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:36.740067+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Moshe Yaacov Sharf \u00b7 other \u00b7 Brooklyn 2001",
+      "link": "#incident=23",
+      "details": {
+        "incident_id": 23,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:36.593530+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Los Angeles \u00b7 2008",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:36.190526+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Ben Zion Sobel \u00b7 sexual abuse \u00b7 USA",
+      "link": "#incident=21",
+      "details": {
+        "incident_id": 21,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:35.776072+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Ben Zion Sobel \u00b7 sexual abuse \u00b7 Israel 1987",
+      "link": "#incident=20",
+      "details": {
+        "incident_id": 20,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:35.621611+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 sexual abuse \u00b7 Brooklyn",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:35.563968+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Baruch Mordechai Lebovits \u00b7 sexual abuse \u00b7 New York 2004",
+      "link": "#incident=19",
+      "details": {
+        "incident_id": 19,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:35.235127+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Zalmar Lipser and Avrohom Holtzberg \u00b7 other \u00b7 Brooklyn 2024",
+      "link": "#incident=16",
+      "details": {
+        "incident_id": 16,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:35.081266+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yossi Engel \u00b7 financial fraud \u00b7 Adelaide 2007",
+      "link": "#incident=14",
+      "details": {
+        "incident_id": 14,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:34.858261+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 other \u00b7 Aventura \u00b7 2008",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:34.858261+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Aventura \u00b7 2008",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:32.600926+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Los Angeles \u00b7 2008",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:27.108874+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L1 \u00b7 Every source URL on file returns an error (link rot). \u00b7 other \u00b7 Aventura \u00b7 2008",
+      "details": {
+        "layer": 1,
+        "layer_name": "url_liveness",
+        "redacted": false
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:27.108874+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 other \u00b7 Aventura \u00b7 2008",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:10.670627+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Colel Chabad Lubavitch Foundation of Israel \u00b7 financial fraud \u00b7 Canada 2013",
+      "link": "#incident=12",
+      "details": {
+        "incident_id": 12,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:10.125656+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Jerusalem \u00b7 2007",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:08.765535+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Sholom Ber Levitin \u00b7 money laundering \u00b7 1988",
+      "link": "#incident=10",
+      "details": {
+        "incident_id": 10,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:08.051955+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "David Kramer \u00b7 sexual abuse \u00b7 Melbourne 1992",
+      "link": "#incident=9",
+      "details": {
+        "incident_id": 9,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:06.793015+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Levi Shemtov \u00b7 other \u00b7 Washington 2024",
+      "link": "#incident=8",
+      "details": {
+        "incident_id": 8,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:05.917312+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yisroel Goldstein \u00b7 tax evasion \u00b7 Poway 2024",
+      "link": "#incident=4",
+      "details": {
+        "incident_id": 4,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:01.671159+00:00",
+      "type": "incident_filed",
+      "category": "new",
+      "icon": "\u2713",
+      "color": "ok",
+      "text": "Rabbi Yisroel Goldstein \u00b7 financial fraud \u00b7 Poway 2020",
+      "link": "#incident=3",
+      "details": {
+        "incident_id": 3,
+        "audit_status": "passed_partial",
+        "audit_score": null
+      }
+    },
+    {
+      "at": "2026-06-14T12:29:00.904511+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Jerusalem \u00b7 2007",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:28:58.587764+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Los Angeles \u00b7 2014",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:28:40.471738+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Los Angeles \u00b7 2014",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    },
+    {
+      "at": "2026-06-14T12:28:15.839145+00:00",
+      "type": "quarantined",
+      "category": "quarantined",
+      "icon": "\u2717",
+      "color": "bad",
+      "text": "L2 \u00b7 The named person does not appear in any source page. \u00b7 financial fraud \u00b7 Postville \u00b7 2010",
+      "details": {
+        "layer": 2,
+        "layer_name": "name_on_page",
+        "redacted": true
+      }
+    }
+  ]
+}

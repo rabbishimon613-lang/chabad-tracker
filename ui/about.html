@@ -165,6 +165,83 @@
     text-align: center;
     letter-spacing: 0.04em;
   }
+
+  /* ----- Activity feed (Phase 12 — everything-feed) ----- */
+  #feed-chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 4px 0 12px;
+  }
+  #feed-chips .chip {
+    font: 500 11px var(--mono);
+    background: transparent; border: 1px solid var(--line);
+    color: var(--mute);
+    padding: 5px 10px;
+    cursor: pointer;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: border-color 0.12s, color 0.12s;
+  }
+  #feed-chips .chip:hover { color: var(--text); }
+  #feed-chips .chip[data-active="1"] {
+    border-color: var(--text); color: var(--text);
+  }
+  #feed-chips .chip .badge {
+    margin-left: 6px; color: var(--mute);
+    font-weight: 400; font-size: 10px;
+  }
+  #feed-chips .chip[data-active="1"] .badge { color: var(--accent); }
+
+  #feed-list {
+    border-top: 1px solid var(--line);
+    margin-bottom: 8px;
+  }
+  .feed-row {
+    display: grid;
+    grid-template-columns: 64px 22px 1fr;
+    gap: 10px;
+    align-items: baseline;
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--line);
+    font: 400 12.5px/1.45 var(--mono);
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .feed-row .ts { color: var(--mute); font-size: 11px; white-space: nowrap; }
+  .feed-row .ic { font-size: 14px; line-height: 1; }
+  .feed-row[data-color="ok"]    .ic { color: #5DAE6E; }
+  .feed-row[data-color="bad"]   .ic { color: var(--accent); }
+  .feed-row[data-color="amber"] .ic { color: #C8A93E; }
+  .feed-row[data-color="mute"]  .ic { color: var(--mute); }
+  .feed-row[data-link] { cursor: pointer; }
+  .feed-row[data-link]:hover { background: rgba(255,255,255,0.03); }
+  .feed-row .tx em {
+    font-style: normal; color: var(--mute); font-size: 11px;
+  }
+
+  #feed-more {
+    width: 100%; text-align: center;
+    background: transparent; border: 1px solid var(--line);
+    color: var(--mute); padding: 10px;
+    font: 500 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: color 0.12s, border-color 0.12s;
+  }
+  #feed-more:hover { color: var(--text); border-color: var(--text); }
+  #feed-more[hidden] { display: none; }
+
+  .feed-empty {
+    color: var(--mute); padding: 18px 0; text-align: center;
+    font: 400 12px var(--mono);
+  }
+
+  #feed-fresh-toast {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    background: var(--surface); border: 1px solid var(--accent);
+    color: var(--text);
+    padding: 10px 16px;
+    font: 500 12px var(--mono); letter-spacing: 0.04em;
+    cursor: pointer;
+    display: none; z-index: 40;
+  }
+  #feed-fresh-toast.show { display: block; }
 </style>
 </head>
 <body>
@@ -236,8 +313,9 @@
   <p>
     A 12-layer automated Verifier checks every incident: URL liveness, name-on-page,
     verbatim quote, source-class weighting, perpetrator-only doctrine, and more.
-    Failures don't get deleted — they go to a public <a href="quarantine.html">quarantine
-    feed</a> with plain-English reasons. That feed is the integrity proof of the dataset.
+    Failures don't get deleted — they surface in the live activity feed below with the
+    <em>Quarantined</em> filter, plain-English reason and all. That feed is the integrity
+    proof of the dataset.
   </p>
 
   <h2>The bureau · live</h2>
@@ -249,6 +327,17 @@
     the floor plan and the log lines.
   </p>
   <div id="office" aria-label="autonomous research office, currently active">loading…</div>
+
+  <h2>Activity · live feed</h2>
+  <p style="color:var(--mute); font-size:14px;">
+    Every meaningful thing the bureau does — incidents filed, rows quarantined,
+    leads resolved, cycles closed — surfaces here. Quarantine reasons are public
+    in plain English (the dataset's integrity proof). Filter chips below scope the view.
+  </p>
+  <div id="feed-chips" role="tablist" aria-label="activity feed filters">loading…</div>
+  <div id="feed-list" role="log" aria-live="polite" aria-atomic="false"></div>
+  <button id="feed-more" hidden>show 50 more</button>
+  <div id="feed-fresh-toast" role="status">↻ new activity — click to refresh</div>
 </main>
 
 <script>
@@ -391,6 +480,152 @@ async function renderOffice() {
 }
 renderOffice();
 setInterval(renderOffice, 60 * 1000);
+
+// ===========================================================================
+// Activity feed (Phase 12 — everything feed)
+// ===========================================================================
+const FEED_CATEGORIES = [
+  { id: "all",          label: "All" },
+  { id: "new",          label: "New incidents" },
+  { id: "quarantined",  label: "Quarantined" },
+  { id: "leads",        label: "Leads" },
+  { id: "cycles",       label: "Cycles" },
+  { id: "routine",      label: "Routine" },
+];
+const FEED_PAGE_SIZE = 50;
+const FEED_HARD_CAP  = 250;
+
+let __feedAll = [];       // current full event list
+let __feedFilter = "all";
+let __feedShown  = FEED_PAGE_SIZE;
+let __feedSignature = "";
+
+function feedEscape(s) {
+  if (s == null) return "";
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+function feedHourMin(ts) {
+  const d = new Date(ts);
+  if (isNaN(d)) return "";
+  // 24h HH:MM in user-local time, so the feed reads in a natural register.
+  return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false });
+}
+function feedDayLabel(ts) {
+  const d = new Date(ts);
+  if (isNaN(d)) return "";
+  const now = new Date();
+  const diffDays = Math.floor((now - d) / (1000 * 60 * 60 * 24));
+  if (diffDays === 0) return "today";
+  if (diffDays === 1) return "yesterday";
+  if (diffDays < 7)   return `${diffDays}d ago`;
+  return d.toISOString().slice(0, 10);
+}
+function feedSignature(events) {
+  if (!events?.length) return "empty";
+  return `${events.length}:${events[0]?.at || ""}`;
+}
+
+async function loadFeed() {
+  try {
+    const r = await fetch("public/feed.json?_=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return await r.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+function renderFeedChips(counts) {
+  const wrap = document.getElementById("feed-chips");
+  if (!wrap) return;
+  wrap.innerHTML = FEED_CATEGORIES.map(c => `
+    <button class="chip" data-cat="${c.id}" data-active="${c.id === __feedFilter ? 1 : 0}"
+            role="tab" aria-selected="${c.id === __feedFilter ? "true" : "false"}">
+      ${feedEscape(c.label)}<span class="badge">${counts[c.id] ?? 0}</span>
+    </button>
+  `).join("");
+  wrap.querySelectorAll(".chip").forEach(el => {
+    el.addEventListener("click", () => {
+      __feedFilter = el.dataset.cat;
+      __feedShown = FEED_PAGE_SIZE;
+      renderFeedList();
+      wrap.querySelectorAll(".chip").forEach(b => {
+        const on = b.dataset.cat === __feedFilter;
+        b.dataset.active = on ? "1" : "0";
+        b.setAttribute("aria-selected", on ? "true" : "false");
+      });
+    });
+  });
+}
+
+function renderFeedList() {
+  const list = document.getElementById("feed-list");
+  const more = document.getElementById("feed-more");
+  if (!list) return;
+  const filtered = __feedFilter === "all"
+    ? __feedAll
+    : __feedAll.filter(e => e.category === __feedFilter);
+  if (!filtered.length) {
+    list.innerHTML = `<div class="feed-empty">no events in this filter yet.</div>`;
+    more.hidden = true;
+    return;
+  }
+  const visible = filtered.slice(0, __feedShown);
+  list.innerHTML = visible.map(e => {
+    const link = e.link ? ` data-link="${feedEscape(e.link)}"` : "";
+    return `
+      <div class="feed-row" data-color="${feedEscape(e.color || "mute")}"${link}>
+        <span class="ts">${feedHourMin(e.at)} <em>${feedDayLabel(e.at)}</em></span>
+        <span class="ic" aria-hidden="true">${feedEscape(e.icon || "·")}</span>
+        <span class="tx">${feedEscape(e.text || "")}</span>
+      </div>`;
+  }).join("");
+  more.hidden = visible.length >= filtered.length || __feedShown >= FEED_HARD_CAP;
+  if (!more.hidden) {
+    more.textContent = `show ${Math.min(FEED_PAGE_SIZE, filtered.length - __feedShown)} more`;
+  }
+  list.querySelectorAll(".feed-row[data-link]").forEach(row => {
+    row.addEventListener("click", () => {
+      const href = row.dataset.link || "";
+      if (href.startsWith("#")) {
+        // Drop into the main app's dossier route — index.html owns those hashes.
+        location.href = "index.html" + href;
+      }
+    });
+  });
+}
+
+async function refreshFeed(opts = {}) {
+  const data = await loadFeed();
+  const list = document.getElementById("feed-list");
+  if (!data) {
+    if (list && !__feedAll.length) {
+      list.innerHTML = `<div class="feed-empty">could not load feed.json — bureau is between cycles.</div>`;
+    }
+    return;
+  }
+  const sig = feedSignature(data.events || []);
+  const isNew = __feedSignature && sig !== __feedSignature;
+  __feedAll = data.events || [];
+  __feedSignature = sig;
+  renderFeedChips(data.counts || {});
+  renderFeedList();
+  if (isNew && !opts.silent) {
+    const toast = document.getElementById("feed-fresh-toast");
+    if (toast) {
+      toast.classList.add("show");
+      toast.onclick = () => { toast.classList.remove("show"); /* already re-rendered in place */ };
+    }
+  }
+}
+
+document.getElementById("feed-more")?.addEventListener("click", () => {
+  __feedShown = Math.min(__feedShown + FEED_PAGE_SIZE, FEED_HARD_CAP);
+  renderFeedList();
+});
+
+refreshFeed({ silent: true });
+setInterval(() => refreshFeed(), 60 * 1000);
 </script>
 
 </body>
