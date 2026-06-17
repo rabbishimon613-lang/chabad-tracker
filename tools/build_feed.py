@@ -35,6 +35,63 @@ PER_SOURCE_CAP = 60
 GLOBAL_CAP = 250
 
 
+# ---------------------------------------------------------------------------
+# Voice — every event reads like a newsroom dispatch in plain English.
+# No raw IDs (run_id, sha), no L# codes, no snake_case, no ISO blobs in text.
+# ---------------------------------------------------------------------------
+
+CRIME_PRETTY = {
+    "sexual_abuse":      "sexual abuse",
+    "financial_fraud":   "financial fraud",
+    "cover_up":          "cover-up",
+    "money_laundering":  "money laundering",
+    "tax_evasion":       "tax evasion",
+    "immigration_fraud": "immigration fraud",
+    "drug_trafficking":  "drug trafficking",
+    "child_exploitation":"child exploitation",
+    "child_abuse":       "child abuse",
+    "extortion_coercion":"extortion / coercion",
+    "assault":           "assault",
+    "other":             None,   # unclassified — skip crime adjective
+}
+
+LEAD_KIND_PRETTY = {
+    "hot_house_roster":   "Chabad personnel sweep",
+    "hot-house-roster":   "Chabad personnel sweep",
+    "cold_path_relative": "relative-of-known-perp trace",
+    "cold-path-relative": "relative-of-known-perp trace",
+    "cold_path_codef":    "co-defendant trace",
+    "cold-path-codef":    "co-defendant trace",
+    "hot_codef":          "co-defendant follow-up",
+    "hot-codef":          "co-defendant follow-up",
+}
+
+def _crime(s):
+    if not s: return None
+    if s in CRIME_PRETTY: return CRIME_PRETTY[s]
+    return s.replace("_", " ").replace("-", " ")
+
+def _lead_kind(s):
+    if not s: return "a tip"
+    return LEAD_KIND_PRETTY.get(s, s.replace("_", " ").replace("-", " "))
+
+def _place_year(loc, occ):
+    """Render 'Crown Heights, 2018' or 'Crown Heights' or '2018' or ''."""
+    city = (loc or "").split(",")[0].strip()
+    year = (occ or "")[:4]
+    parts = [p for p in (city, year) if p]
+    return ", ".join(parts)
+
+def _humanize_reason(reason):
+    """Quarantine reasons are already English. Lowercase the first letter,
+    drop the trailing period so it embeds in a larger sentence."""
+    if not reason: return ""
+    r = reason.strip()
+    if r and r[0].isupper():
+        r = r[0].lower() + r[1:]
+    return r.rstrip(".")
+
+
 def _safe(s, n=120):
     if s is None:
         return ""
@@ -71,13 +128,17 @@ def q_incidents_filed(cur):
     """).fetchall()
     events = []
     for r in rows:
-        name = (r["perp_name"] or "").strip() or "(unnamed)"
-        loc  = (r["location"] or "").split(",")[0].strip()
-        year = (r["occurred_on"] or "")[:4]
-        bits = [name, _safe(r["type"], 24).replace("_", " "), " ".join(filter(None, [loc, year]))]
-        text = " · ".join(filter(None, bits))
+        name  = (r["perp_name"] or "").strip()
+        who   = name or "an unnamed person"
+        crime = _crime(r["type"])
+        where = _place_year(r["location"], r["occurred_on"])
+        text  = f"Archivist closed the file on {who}."
+        crime_cap = crime[0].upper() + crime[1:] if crime else None
+        tail  = " — ".join(filter(None, [crime_cap, where]))
+        if tail:
+            text += f" {tail}."
         if r["audit_score"]:
-            text += f" · score {r['audit_score']}"
+            text += f" Confidence: {r['audit_score']}/100."
         events.append({
             "at":       r["audit_at"],
             "type":     "incident_filed",
@@ -107,14 +168,16 @@ def q_quarantined(cur):
     """).fetchall()
     events = []
     for r in rows:
-        loc  = (r["location"] or "").split(",")[0].strip()
-        year = (r["occurred_on"] or "")[:4]
-        bits = [
-            f"L{r['layer']}",
-            _safe(r["reason"], 90),
-            " · ".join(filter(None, [(r["type"] or "").replace("_", " "), loc, year])),
-        ]
-        text = " · ".join(filter(None, bits))
+        crime  = _crime(r["type"])
+        where  = _place_year(r["location"], r["occurred_on"])
+        reason = _humanize_reason(r["reason"])
+        if crime:
+            text = f"Verifier set aside one {crime} row"
+        else:
+            text = "Verifier set aside one row"
+        if where:
+            text += f" from {where}"
+        text += f" — {reason}." if reason else "."
         events.append({
             "at":       r["failed_at"],
             "type":     "quarantined",
@@ -144,28 +207,27 @@ def q_lead_transitions(cur):
         return []
     events = []
     for r in rows:
-        is_dead = (r["status"] == "dead")
-        kind_pretty = (r["kind"] or "lead").replace("_", " ")
-        if is_dead:
-            note = (r["notes"] or "").strip().split("\n")[-1][:80] if r["notes"] else "no detail"
+        kind = _lead_kind(r["kind"])
+        if r["status"] == "dead":
+            text = f"Investigator's {kind} came up empty."
             events.append({
                 "at":       r["resolved_at"],
                 "type":     "lead_dead",
                 "category": "leads",
                 "icon":     "–",
                 "color":    "mute",
-                "text":     f"Lead dead · {kind_pretty} · {note}",
+                "text":     text,
                 "details":  {"lead_id": r["id"], "kind": r["kind"]},
             })
         else:
-            note = (r["notes"] or "").strip().split("\n")[-1][:80] if r["notes"] else ""
+            text = f"Researcher closed out a {kind}."
             events.append({
                 "at":       r["resolved_at"],
                 "type":     "lead_resolved",
                 "category": "leads",
                 "icon":     "▸",
                 "color":    "amber",
-                "text":     f"Lead resolved · {kind_pretty}{' · ' + note if note else ''}",
+                "text":     text,
                 "details":  {"lead_id": r["id"], "kind": r["kind"]},
             })
     return events
@@ -183,14 +245,13 @@ def q_publishes(cur):
         return []
     events = []
     for r in rows:
-        short = (r["sha256"] or "")[:12]
         events.append({
             "at":       r["published_at"],
             "type":     "publish",
             "category": "cycles",
             "icon":     "◇",
             "color":    "mute",
-            "text":     f"Publish · db-{short} → {r['snapshot_count']} incidents",
+            "text":     f"Publisher sent a new edition to press — {r['snapshot_count']} stories on the wire.",
             "details":  {"sha": r["sha256"], "cycle_id": r["cycle_id"]},
         })
     return events
@@ -210,14 +271,14 @@ def q_waybacks(cur):
         return []
     events = []
     for r in rows:
-        dom = _domain(r["original_url"]) or "(unknown source)"
+        dom = _domain(r["original_url"]) or "an unknown source"
         events.append({
             "at":       r["wayback_at"],
             "type":     "wayback_save",
             "category": "routine",
             "icon":     "☆",
             "color":    "mute",
-            "text":     f"Wayback snapshot stored · {dom}",
+            "text":     f"Tucked a copy of {dom} into the Wayback Machine before it could disappear.",
             "details":  {"original": r["original_url"], "snapshot": r["wayback_url"]},
         })
     return events
@@ -240,13 +301,14 @@ def read_cycles_jsonl(path: Path):
         at = obj.get("at")
         if not at:
             continue
-        bits = []
-        for key, label in (("incidents", "incidents"), ("leads_pending", "leads pending"),
-                            ("quarantine", "quarantine")):
-            v = obj.get(key)
-            if v is not None:
-                bits.append(f"{v} {label}")
-        text = f"Cycle #{obj.get('run_id', '?')} closed · " + " · ".join(bits)
+        inc  = obj.get("incidents")
+        lp   = obj.get("leads_pending")
+        quar = obj.get("quarantine")
+        parts = []
+        if inc  is not None: parts.append(f"archive at {inc:,}")
+        if lp   is not None: parts.append(f"{lp} tip{'s' if lp != 1 else ''} on the desk")
+        if quar is not None: parts.append(f"{quar} row{'s' if quar != 1 else ''} set aside")
+        text = "The shift wrapped: " + ", ".join(parts) + "."
         events.append({
             "at":       at,
             "type":     "cycle_complete",
