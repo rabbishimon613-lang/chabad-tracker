@@ -4,7 +4,12 @@
   "framework": null,
   "ignoreCommand": "git diff HEAD^ HEAD --quiet -- ui data/chabad.db.url data/chabad.db.sha256 vercel.json build.sh",
   "headers": [
+    { "source": "/",                     "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, no-cache, must-revalidate" }] },
+    { "source": "/(.*\\.html)",          "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, no-cache, must-revalidate" }] },
     { "source": "/public/chabad.db",     "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }] },
-    { "source": "/public/snapshot.json", "headers": [{ "key": "Cache-Control", "value": "public, max-age=60"  }] }
+    { "source": "/public/snapshot.json", "headers": [{ "key": "Cache-Control", "value": "public, max-age=60"  }] },
+    { "source": "/public/quarantine.json",     "headers": [{ "key": "Cache-Control", "value": "public, max-age=60" }] },
+    { "source": "/public/constellations.json", "headers": [{ "key": "Cache-Control", "value": "public, max-age=60" }] },
+    { "source": "/public/cycles.jsonl",        "headers": [{ "key": "Cache-Control", "value": "public, max-age=60" }] }
   ]
 }
