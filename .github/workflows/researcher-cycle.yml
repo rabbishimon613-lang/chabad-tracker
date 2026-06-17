@@ -13,8 +13,20 @@ name: researcher-cycle
 
 on:
   workflow_dispatch:
+  push:
+    # Every code push to main triggers a cycle in addition to cron — guarantees
+    # we get fresh research on every commit, not just when GitHub's cron remembers.
+    branches: [main]
+    paths:
+      - 'scrape/**'
+      - 'tools/**'
+      - 'ui/**'
+      - '.github/workflows/researcher-cycle.yml'
   schedule:
+    # Double cron — GitHub Actions free-tier silently drops some scheduled runs.
+    # Listing two slots per hour roughly doubles the odds we actually fire.
     - cron: '7 * * * *'
+    - cron: '37 * * * *'
 
 concurrency:
   group: cycle
@@ -26,7 +38,7 @@ permissions:
 jobs:
   cycle:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       CEREBRAS_KEY_1:   ${{ secrets.CEREBRAS_KEY_1 }}
       CEREBRAS_KEY_2:   ${{ secrets.CEREBRAS_KEY_2 }}
@@ -122,4 +134,11 @@ jobs:
                   ops/cycles.jsonl
           if git diff --staged --quiet; then exit 0; fi
           git commit -m "cycle: ${GITHUB_RUN_ID} $(date -u +%Y-%m-%dT%H:%MZ)"
-          git push
+          # Race-proof push — if a human (or sibling cycle) pushed while we ran,
+          # rebase our cycle commit on top and try again. Three attempts max.
+          for i in 1 2 3; do
+            if git push; then break; fi
+            echo "::warning::push race on attempt $i — rebasing on remote"
+            git pull --rebase origin main || true
+            sleep 2
+          done

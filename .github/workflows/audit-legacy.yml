@@ -21,7 +21,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
         with:
@@ -80,4 +80,11 @@ jobs:
             exit 0
           fi
           git commit -m "audit-legacy: cycle ${GITHUB_RUN_ID} batch ($(date -u +%Y-%m-%dT%H:%MZ))"
-          git push
+          # Race-proof push — rebase + retry up to 3x if another job pushed
+          # while we were running (cycle vs audit can collide).
+          for i in 1 2 3; do
+            if git push; then break; fi
+            echo "::warning::push race on attempt $i — rebasing on remote"
+            git pull --rebase origin main || true
+            sleep 2
+          done
