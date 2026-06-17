@@ -262,6 +262,97 @@
 </head>
 <body>
 
+<!-- ===========================================================================
+     SHIMON INDUSTRIES gate. UI-only — sessionStorage-unlocked for the tab's
+     life. Password: palantir (case-insensitive). Removed from DOM on unlock.
+     =========================================================================== -->
+<style id="gate-style">
+  #gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #0A0B0D; color: #E6E4DC;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 24px; text-align: center;
+  }
+  #gate h1 {
+    font: 700 clamp(28px, 6vw, 64px) 'IBM Plex Mono', monospace;
+    letter-spacing: 0.22em;
+    margin: 0 0 22px;
+    color: #5DAE6E;
+    text-shadow: 0 0 14px rgba(93,174,110,0.55), 0 0 36px rgba(93,174,110,0.25);
+  }
+  #gate img {
+    max-width: 220px; max-height: 220px;
+    filter: drop-shadow(0 0 16px rgba(93,174,110,0.35));
+    margin-bottom: 22px;
+  }
+  #gate p {
+    color: #C8C7B8; font-size: 13px; letter-spacing: 0.04em;
+    margin: 0 0 14px; max-width: 480px;
+  }
+  #gate form { display: flex; flex-direction: column; align-items: center; }
+  #gate input {
+    background: #14161A; border: 1px solid #2A2E36; color: #E6E4DC;
+    font: 500 16px 'IBM Plex Mono', monospace;
+    letter-spacing: 0.10em; text-align: center;
+    padding: 12px 16px; min-width: 280px;
+    outline: none;
+  }
+  #gate input:focus { border-color: #5DAE6E; }
+  #gate .err {
+    color: #E03E3E; font-size: 12px; height: 14px;
+    margin-top: 10px; letter-spacing: 0.08em;
+  }
+  #gate.shake { animation: gateShake 0.4s; }
+  @keyframes gateShake {
+    0%,100% { transform: translateX(0); }
+    25%     { transform: translateX(-8px); }
+    75%     { transform: translateX(8px); }
+  }
+</style>
+<div id="gate" role="dialog" aria-modal="true" aria-label="Shimon Industries access gate">
+  <h1>SHIMON INDUSTRIES</h1>
+  <img src="/mascot.png" alt="" />
+  <p>Sensitive information ahead, please enter the password.</p>
+  <form id="gate-form" autocomplete="off">
+    <input type="password" id="gate-pw" placeholder="password" autocomplete="off" spellcheck="false" autofocus />
+    <div class="err" id="gate-err">&nbsp;</div>
+  </form>
+</div>
+<script>
+(() => {
+  if (sessionStorage.getItem("balash_unlocked") === "1") {
+    const g = document.getElementById("gate"); if (g) g.remove();
+    const s = document.getElementById("gate-style"); if (s) s.remove();
+    return;
+  }
+  document.documentElement.style.overflow = "hidden";
+  const ready = () => {
+    const f = document.getElementById("gate-form");
+    const i = document.getElementById("gate-pw");
+    const g = document.getElementById("gate");
+    const e = document.getElementById("gate-err");
+    if (!f || !i || !g || !e) return;
+    f.addEventListener("submit", ev => {
+      ev.preventDefault();
+      if (i.value.trim().toLowerCase() === "palantir") {
+        sessionStorage.setItem("balash_unlocked", "1");
+        document.documentElement.style.overflow = "";
+        g.remove();
+      } else {
+        e.textContent = "denied";
+        g.classList.add("shake");
+        setTimeout(() => g.classList.remove("shake"), 400);
+        i.select();
+      }
+    });
+  };
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ready);
+  } else { ready(); }
+})();
+</script>
+
 <header>
   <div class="row1">
     <a href="index.html" style="color:inherit; text-decoration:none;">CHABAD TRACKER</a>
