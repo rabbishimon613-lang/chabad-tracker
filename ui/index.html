@@ -1167,8 +1167,13 @@ async function boot() {
   }, 250);
   // (zoom controls removed — pinch/scroll only)
 
-  // Add sources/layers after a tick — map renders tiles immediately even before events fire
-  setTimeout(() => {
+  // Add sources/layers — must wait for the style to actually finish loading;
+  // a plain setTimeout(0) is racy in real browsers and crashes with
+  // "Style is not done loading." Wait for the `load` event (fired once on
+  // initial style ready). If the map already loaded by the time we attach,
+  // run immediately.
+  const _whenStyle = (fn) => map.isStyleLoaded() ? fn() : map.once("load", fn);
+  _whenStyle(() => {
     // SOURCE — colored only. Black dots are a separate non-clustered source so we can toggle them cheaply.
     const coloredFeatures = features.filter(f => f.properties.band !== "black");
     const blackFeatures   = features.filter(f => f.properties.band === "black");
