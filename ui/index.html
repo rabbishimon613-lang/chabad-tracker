@@ -1167,13 +1167,13 @@ async function boot() {
   }, 250);
   // (zoom controls removed — pinch/scroll only)
 
-  // Add sources/layers — must wait for the style to actually finish loading;
-  // a plain setTimeout(0) is racy in real browsers and crashes with
-  // "Style is not done loading." Wait for the `load` event (fired once on
-  // initial style ready). If the map already loaded by the time we attach,
-  // run immediately.
-  const _whenStyle = (fn) => map.isStyleLoaded() ? fn() : map.once("load", fn);
-  _whenStyle(() => {
+  // Add sources/layers — must wait for the style to actually finish loading.
+  // `isStyleLoaded()` lies (returns true before the internal `_loaded` flag
+  // is set, causing addSource() to throw "Style is not done loading.").
+  // Solution: prefer `map.loaded()` for the synchronous fast path; otherwise
+  // attach `once('load', ...)`. Belt + suspenders: if neither has fired after
+  // 8 seconds, retry — covers slow-style-load and missed events.
+  const _addMapData = () => {
     // SOURCE — colored only. Black dots are a separate non-clustered source so we can toggle them cheaply.
     const coloredFeatures = features.filter(f => f.properties.band !== "black");
     const blackFeatures   = features.filter(f => f.properties.band === "black");
@@ -1228,7 +1228,19 @@ async function boot() {
     }
     map.on("move", positionMapPopup);
     map.on("zoom", positionMapPopup);
-  });
+  };
+  // Run when style is genuinely ready. `loaded()` is the reliable flag
+  // (unlike `isStyleLoaded()`). If already loaded, run now; else wait.
+  let _addedMapData = false;
+  const _runOnce = () => { if (_addedMapData) return; _addedMapData = true; _addMapData(); };
+  if (map.loaded()) _runOnce();
+  else map.once("load", _runOnce);
+  // Belt + suspenders: poll for `loaded()` every 200ms for up to 8s.
+  let _lp = 0;
+  const _loadedPoll = setInterval(() => {
+    if (_addedMapData || ++_lp > 40) { clearInterval(_loadedPoll); return; }
+    if (map.loaded()) _runOnce();
+  }, 200);
 
   // (meta available as `meta` if needed by future widgets)
   // (legend removed — superseded by facets sidebar)
