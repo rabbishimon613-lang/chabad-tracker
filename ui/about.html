@@ -145,61 +145,42 @@
   .station {
     background: var(--surface);
     border: 1px solid var(--line);
-    padding: 14px 12px 12px;
-    display: flex; flex-direction: column; gap: 10px;
-    min-height: 220px;
+    padding: 14px 14px 12px;
+    display: flex; flex-direction: column; gap: 8px;
   }
-  .station .sprite {
-    position: relative;
-    width: 100%; height: 90px;
-    background: #0E1116;
-    border: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: center;
-    font: 700 28px var(--mono);
-    color: var(--mute);
-    overflow: hidden;
-  }
-  .station .sprite::after {
-    /* faux floor planks for a top-down feel */
-    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px;
-    background: repeating-linear-gradient(90deg, #14161A 0 12px, #1F232A 12px 14px);
-    opacity: 0.6;
-  }
-  .station[data-role="investigator"] .sprite { color: #E8C97A; }
-  .station[data-role="researcher"]   .sprite { color: #B8D0E8; }
-  .station[data-role="verifier"]     .sprite { color: var(--accent); }
-  .station[data-role="archivist"]    .sprite { color: #C8C7B8; }
-  .station[data-role="publisher"]    .sprite { color: #9DD0A1; }
-
   .station .label {
     font: 600 11px var(--mono);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.10em;
     color: var(--mute);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 6px;
   }
+  .station[data-role="investigator"] .label { color: #E8C97A; }
+  .station[data-role="researcher"]   .label { color: #B8D0E8; }
+  .station[data-role="verifier"]     .label { color: var(--accent); }
+  .station[data-role="archivist"]    .label { color: #C8C7B8; }
+  .station[data-role="publisher"]    .label { color: #9DD0A1; }
+
   .station .mindbox {
-    background: rgba(20,20,24,0.92);
+    background: rgba(14,17,22,0.92);
     border: 1px solid var(--line);
-    border-radius: 4px;
+    border-radius: 3px;
     padding: 8px 9px;
-    font: 400 11px/1.45 var(--mono);
+    font: 400 11px/1.55 var(--mono);
     color: var(--text);
-    min-height: 56px;
+    display: flex; flex-direction: column; gap: 3px;
+    min-height: 180px;
   }
-  .station .mindbox .ts  { color: var(--mute); }
+  .station .mindbox .row { display: grid; grid-template-columns: 52px 1fr; gap: 8px; align-items: baseline; }
+  .station .mindbox .ts  { color: var(--mute); white-space: nowrap; font-size: 10px; }
+  .station .mindbox .row[data-live="1"] .ts { color: #5DAE6E; }
   .station .mindbox .nm  { color: #E6E4DC; }
   .station .mindbox .num { color: #B8D0E8; }
   .station .mindbox .ok  { color: #5DAE6E; }
   .station .mindbox .bad { color: var(--accent); }
   .station .mindbox .amber { color: #C8A93E; }
-
-  #office-credits {
-    font: 400 11px var(--mono);
-    color: var(--mute);
-    margin-top: 4px;
-    text-align: center;
-    letter-spacing: 0.04em;
-  }
+  .station .mindbox .quiet { color: var(--mute); }
 
   /* ----- Activity feed (Phase 12 — everything-feed) ----- */
   #feed-chips {
@@ -355,11 +336,12 @@
 
   <h2>The bureau · live</h2>
   <p style="color:var(--mute); font-size:14px;">
-    This is the autonomous research office. Each station polls
-    <code style="color:var(--accent); background:var(--surface); border:1px solid var(--line); padding:1px 4px; font-size:12px;">snapshot.json</code>
-    every few minutes; the mindbox below each character shows the most recent activity.
-    The work it represents is real. Pixel-art layer comes later — for now it's
-    the floor plan and the log lines.
+    Five autonomous roles cooperate to keep the dataset moving:
+    Investigator queues leads, Researcher extracts structured facts, Verifier
+    runs the 12 audit layers, Archivist files the survivors, Publisher ships
+    the atomic snapshot. The thought log under each role shows what they were
+    doing in the last eight cycles — top row is live; below it, the history
+    in UTC.
   </p>
   <div id="office" aria-label="autonomous research office, currently active">loading…</div>
 
@@ -432,84 +414,137 @@ setInterval(renderAbout, 5 * 60 * 1000);
 
 // ===========================================================================
 // Phase 11 — Pixel office shell.
-// Lightweight HTML+CSS bureau (pixel art layer comes later). Reads
-// snapshot.json + the last cycle log line and assembles a mindbox per station.
+// Reads snapshot.json (live state) + last 8 lines of cycles.jsonl (history)
+// and assembles a per-role thought log. Top row is [live]; the seven below it
+// are cycle deltas with their UTC HH:MM timestamps.
 // ===========================================================================
+const HISTORY_DEPTH = 7;  // plus one live row = 8 total
+
+function utcHHMM(iso) {
+  const d = new Date(iso);
+  if (isNaN(d)) return "  :  ";
+  const h = String(d.getUTCHours()).padStart(2, "0");
+  const m = String(d.getUTCMinutes()).padStart(2, "0");
+  return `${h}:${m}`;
+}
+
+// For each role, given a cycle and its predecessor, build the thought row.
+// Returns HTML for the body of the row (the <ts> wrapper is added by the renderer).
+const ROLE_THOUGHT = {
+  investigator(curr, prev) {
+    const q = curr.leads_pending ?? 0;
+    if (!prev) return `queue at <span class="num">${q}</span> leads.`;
+    const dq = q - (prev.leads_pending ?? 0);
+    if (dq > 0)  return `queued <span class="num">+${dq}</span> · backlog <span class="num">${q}</span>.`;
+    if (dq < 0)  return `drained <span class="num">${-dq}</span> · backlog <span class="num">${q}</span>.`;
+    return `<span class="quiet">no new leads</span> · backlog <span class="num">${q}</span>.`;
+  },
+  researcher(curr, prev) {
+    const c = curr.incidents ?? 0;
+    if (!prev) return `corpus at <span class="num">${c}</span> incidents.`;
+    const di = c - (prev.incidents ?? 0);
+    if (di > 0) return `extracted <span class="num">+${di}</span> · corpus <span class="num">${c}</span>.`;
+    return `<span class="quiet">no new extractions</span> · corpus <span class="num">${c}</span>.`;
+  },
+  verifier(curr, prev) {
+    const q = curr.quarantine ?? 0;
+    if (!prev) return `quarantine register at <span class="num">${q}</span>.`;
+    const dq = q - (prev.quarantine ?? 0);
+    if (dq > 0) return `flagged <span class="bad">+${dq}</span> · register <span class="num">${q}</span>.`;
+    return `<span class="quiet">no new flags</span> · register <span class="num">${q}</span>.`;
+  },
+  archivist(curr, prev) {
+    const c = curr.incidents ?? 0;
+    if (!prev) return `archive at <span class="num">${c}</span> incidents.`;
+    const di = c - (prev.incidents ?? 0);
+    if (di > 0) return `filed <span class="ok">+${di}</span> · archive <span class="num">${c}</span>.`;
+    return `<span class="quiet">archive steady</span> · <span class="num">${c}</span>.`;
+  },
+  publisher(curr) {
+    return `cycle <span class="num">#${curr.run_id ?? "?"}</span> shipped.`;
+  },
+};
+
+// Live (top) row per role — derives from snapshot.json instead of cycles.jsonl
+// because snapshot reflects up-to-the-minute totals.
+const ROLE_LIVE = {
+  investigator(s) {
+    const q = s.leads_pending ?? 0;
+    const u = s.audit?.unaudited ?? 0;
+    return `reading the wires · <span class="num">${q}</span> queued`
+         + (u ? ` · <span class="num">${u}</span> legacy to audit.` : ".");
+  },
+  researcher(s) {
+    return `extracting structured facts · corpus <span class="num">${(s.incidents ?? 0).toLocaleString()}</span>.`;
+  },
+  verifier(s) {
+    const p = s.audit?.passed ?? 0;
+    const pp = s.audit?.passed_partial ?? 0;
+    const q = s.audit?.quarantined ?? 0;
+    return `<span class="ok">${p} PASS</span> · <span class="amber">${pp} partial</span> · <span class="bad">${q} quarantined</span>.`;
+  },
+  archivist(s) {
+    const ppl = (s.people ?? 0).toLocaleString();
+    const fam = (s.families ?? 0).toLocaleString();
+    return `<span class="num">${ppl}</span> people on record · <span class="num">${fam}</span> family edges.`;
+  },
+  publisher(s) {
+    const ts = s.generated_at ? new Date(s.generated_at) : null;
+    return `last push <span class="num">${ts ? fmtRelative(ts.toISOString()) : "—"}</span>.`;
+  },
+};
+
 const STATIONS = [
-  {
-    role: "investigator", emoji: "I",
-    label: "Investigator",
-    mindbox: (s, last) => {
-      const pendLeads = s.leads_pending ?? "—";
-      return `<span class="ts">[live]</span> reading the wires. <span class="num">${pendLeads}</span> leads queued. `
-           + (s.audit?.unaudited ? `<span class="num">${s.audit.unaudited}</span> legacy rows still to audit.` : "quiet on the legacy front.");
-    }
-  },
-  {
-    role: "researcher", emoji: "R",
-    label: "Researcher",
-    mindbox: (s, last) => {
-      const c = s.incidents ?? 0;
-      return `<span class="ts">[live]</span> on the desk: extracting structured facts. corpus now <span class="num">${c}</span> incidents.`;
-    }
-  },
-  {
-    role: "verifier", emoji: "V",
-    label: "Verifier",
-    mindbox: (s, last) => {
-      const passed = s.audit?.passed ?? 0;
-      const partial = s.audit?.passed_partial ?? 0;
-      const quar = s.audit?.quarantined ?? 0;
-      return `<span class="ts">[live]</span> stamping. `
-           + `<span class="ok">${passed} PASS</span> · `
-           + `<span class="amber">${partial} partial</span> · `
-           + `<span class="bad">${quar} quarantined</span>.`;
-    }
-  },
-  {
-    role: "archivist", emoji: "A",
-    label: "Archivist",
-    mindbox: (s, last) => {
-      const ppl = s.people ?? 0;
-      const fam = s.families ?? 0;
-      return `<span class="ts">[live]</span> filing. <span class="num">${ppl.toLocaleString()}</span> people on record, <span class="num">${fam.toLocaleString()}</span> family edges.`;
-    }
-  },
-  {
-    role: "publisher", emoji: "P",
-    label: "Publisher",
-    mindbox: (s, last) => {
-      const ts = s.generated_at ? new Date(s.generated_at) : null;
-      const ago = ts ? fmtRelative(ts.toISOString()) : "—";
-      return `<span class="ts">[live]</span> last push <span class="num">${ago}</span>. `
-           + (last?.run_id ? `cycle <span class="num">#${last.run_id}</span> shipped.` : "watching the wires.");
-    }
-  },
+  { role: "investigator", label: "Investigator" },
+  { role: "researcher",   label: "Researcher" },
+  { role: "verifier",     label: "Verifier" },
+  { role: "archivist",    label: "Archivist" },
+  { role: "publisher",    label: "Publisher" },
 ];
+
+async function loadCycles() {
+  try {
+    const r = await fetch("public/cycles.jsonl?_=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return [];
+    const txt = await r.text();
+    return txt.trim().split("\n").filter(Boolean).map(line => {
+      try { return JSON.parse(line); } catch { return null; }
+    }).filter(Boolean);
+  } catch { return []; }
+}
+
+function renderThoughtRows(role, snap, cycles) {
+  // Take the last HISTORY_DEPTH cycles for the delta rows (newest last).
+  const tail = cycles.slice(-HISTORY_DEPTH - 1);   // one extra for the first delta's predecessor
+  const rows = [];
+  // [live] row from snapshot
+  rows.push(
+    `<div class="row" data-live="1"><span class="ts">[live]</span><span>${ROLE_LIVE[role](snap)}</span></div>`
+  );
+  // Cycle deltas, newest first
+  const start = Math.max(0, tail.length - HISTORY_DEPTH);
+  for (let i = tail.length - 1; i >= start; i--) {
+    const curr = tail[i];
+    const prev = i > 0 ? tail[i - 1] : null;
+    rows.push(
+      `<div class="row"><span class="ts">${utcHHMM(curr.at)}</span><span>${ROLE_THOUGHT[role](curr, prev)}</span></div>`
+    );
+  }
+  return rows.join("");
+}
 
 async function renderOffice() {
   const root = document.getElementById("office");
   if (!root) return;
-  const snap = await loadSnapshot();
+  const [snap, cycles] = await Promise.all([loadSnapshot(), loadCycles()]);
   if (!snap) {
     root.innerHTML = `<div style="color:var(--mute); padding: 20px; grid-column: 1 / -1; font: 400 12px var(--mono);">office offline — could not load snapshot.json</div>`;
     return;
   }
-  // Try to read the last cycle line (best-effort; field may not exist yet).
-  let last = null;
-  try {
-    const r = await fetch("public/cycles.jsonl?_=" + Date.now(), { cache: "no-store" });
-    if (r.ok) {
-      const txt = await r.text();
-      const lines = txt.trim().split("\n").filter(Boolean);
-      if (lines.length) last = JSON.parse(lines[lines.length - 1]);
-    }
-  } catch {}
   root.innerHTML = STATIONS.map(st => `
     <div class="station" data-role="${st.role}">
-      <div class="sprite" aria-hidden="true">${st.emoji}</div>
       <div class="label">The ${st.label}</div>
-      <div class="mindbox" aria-live="polite">${st.mindbox(snap, last)}</div>
+      <div class="mindbox" aria-live="polite">${renderThoughtRows(st.role, snap, cycles)}</div>
     </div>
   `).join("");
 }
