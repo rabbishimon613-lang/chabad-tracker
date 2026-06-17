@@ -985,7 +985,7 @@
 <div id="gate" role="dialog" aria-modal="true" aria-label="Shimon Industries access gate">
   <h1>SHIMON INDUSTRIES</h1>
   <img src="/mascot.png" alt="" />
-  <p>Sensitive information ahead, please enter the password.</p>
+  <p>Sensitive information ahead,<br>please enter the password.</p>
   <form id="gate-form" autocomplete="off">
     <input type="password" id="gate-pw" placeholder="password" autocomplete="off" spellcheck="false" autofocus />
     <div class="err" id="gate-err">&nbsp;</div>
@@ -1038,9 +1038,9 @@
     <a class="about" href="about.html">ABOUT</a>
     <div class="grow"></div>
     <div class="mode-switch">
-      <button data-mode="M" data-active="1" title="Map"><img src="public/icon-map.png" alt="Map"></button>
+      <button data-mode="M" title="Map"><img src="public/icon-map.png" alt="Map"></button>
       <button data-mode="W" title="People Web"><img src="public/icon-web.png" alt="People Web"></button>
-      <button data-mode="D" title="Database"><img src="public/icon-db.png" alt="Database"></button>
+      <button data-mode="D" data-active="1" title="Database"><img src="public/icon-db.png" alt="Database"></button>
     </div>
   </div>
   <div class="row2">
@@ -1069,7 +1069,7 @@
 <div id="hover"></div>
 
 <main id="modes">
-  <section id="mode-M" class="mode-pane active">
+  <section id="mode-M" class="mode-pane">
     <div id="map"></div>
     <div id="m-popup">
       <button class="mp-close" id="mp-close">✕</button>
@@ -1098,7 +1098,7 @@
     <div id="g-tooltip"></div>
   </section>
 
-  <section id="mode-D" class="mode-pane">
+  <section id="mode-D" class="mode-pane active">
     <aside id="facets"><div class="facet-inner" id="facets-inner"></div></aside>
     <button id="facets-toggle">▤ FILTERS</button>
     <div id="d-content">
@@ -3310,7 +3310,7 @@ function hideGTooltip() { $("g-tooltip")?.classList.remove("open"); }
 // ===========================================================================
 // MODES (M / W / D) — three separate dashboards
 // ===========================================================================
-let mode = "M";
+let mode = "D";
 let dSubtab = "browse";
 
 function setupBrandHome() {
@@ -3320,7 +3320,7 @@ function setupBrandHome() {
     e.preventDefault();
     trail = [];
     if (location.hash) { history.replaceState(null, "", location.pathname); }
-    switchMode("M");
+    switchMode("D");
     route();
   });
 }
@@ -3677,9 +3677,10 @@ async function loadConstellations() {
     });
   });
   // When the user clicks back to W, re-show the cards.
-  document.querySelector('#topbar .mode-switch button[data-mode="W"]')?.addEventListener("click", () => {
-    document.querySelector("#constellations-entry")?.classList.remove("hidden");
-  });
+  // People Web now opens straight into the full graph; the constellations
+  // overview is hidden by default and reachable only via the "constellations"
+  // button inside the graph (see g-constellations control).
+  document.querySelector("#constellations-entry")?.classList.add("hidden");
   const showGraphBtn = $("ce-show-graph");
   if (showGraphBtn) {
     showGraphBtn.onclick = () => {
