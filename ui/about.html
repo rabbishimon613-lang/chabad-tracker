@@ -4,6 +4,41 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="dark" />
+<script>
+// Self-rescue: if the running HTML is older than the live deploy,
+// silently force-reload. `__BUILD_ID__` is replaced by build.sh.
+(() => {
+  const BUILD_ID = "__BUILD_ID__";
+  if (BUILD_ID.startsWith("__")) return;
+  const safe = () => {
+    const a = document.activeElement;
+    return !(a && /^(INPUT|TEXTAREA)$/.test(a.tagName) && a.value);
+  };
+  const reload = () => {
+    const last = +sessionStorage.getItem("ct_reloadedAt") || 0;
+    if (Date.now() - last < 10_000) return;
+    sessionStorage.setItem("ct_reloadedAt", Date.now());
+    location.reload();
+  };
+  let pending = false;
+  const tryReload = () => {
+    if (!pending) return;
+    if (document.visibilityState === "hidden" || safe()) reload();
+  };
+  const check = async () => {
+    try {
+      const r = await fetch("/build.json", { cache: "no-store" });
+      if (!r.ok) return;
+      const { id } = await r.json();
+      if (id && id !== BUILD_ID) { pending = true; tryReload(); }
+    } catch {}
+  };
+  addEventListener("load", check);
+  addEventListener("visibilitychange", tryReload);
+  addEventListener("blur", tryReload, true);
+  setInterval(check, 5 * 60 * 1000);
+})();
+</script>
 <title>CHABAD TRACKER · about</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

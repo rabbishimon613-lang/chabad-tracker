@@ -49,3 +49,19 @@ if [ -f ops/cycles.jsonl ]; then
 else
   : > ui/public/cycles.jsonl
 fi
+
+# ---------------------------------------------------------------------------
+# Build-id stamp — powers the client-side self-rescue.
+# Write ui/build.json with the commit SHA and bake the same SHA into every
+# HTML so the inline script can detect a mismatch and force a reload.
+# ---------------------------------------------------------------------------
+SHA="$(git rev-parse --short HEAD 2>/dev/null || echo dev)"
+BUILT_AT="$(date -u +%FT%TZ)"
+printf '{"id":"%s","builtAt":"%s"}\n' "$SHA" "$BUILT_AT" > ui/build.json
+# Cross-platform sed -i (Vercel runs Linux; local dev may be macOS).
+for f in ui/index.html ui/about.html; do
+  if [ -f "$f" ]; then
+    sed -i.bak "s/__BUILD_ID__/$SHA/g" "$f" && rm -f "$f.bak"
+  fi
+done
+echo "Build stamp: $SHA at $BUILT_AT"
