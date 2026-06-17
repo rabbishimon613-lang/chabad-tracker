@@ -1132,6 +1132,7 @@ import * as d3 from "https://esm.sh/d3-force@3?bundle";
 import * as d3sel from "https://esm.sh/d3-selection@3?bundle";
 import * as d3drag from "https://esm.sh/d3-drag@3?bundle";
 import * as d3zoom from "https://esm.sh/d3-zoom@3?bundle";
+import "https://esm.sh/d3-transition@3?bundle";  // attaches .transition() onto d3sel selections
 
 const $ = (id) => document.getElementById(id);
 const bootBar = $("boot-bar"), bootMsg = $("boot-msg");
