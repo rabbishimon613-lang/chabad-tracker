@@ -1128,11 +1128,12 @@
 <script type="module">
 import maplibregl from "https://esm.sh/maplibre-gl@4.7.1";
 import initSqlJs from "https://esm.sh/sql.js@1.10.3";
-import * as d3 from "https://esm.sh/d3-force@3?bundle";
-import * as d3sel from "https://esm.sh/d3-selection@3?bundle";
-import * as d3drag from "https://esm.sh/d3-drag@3?bundle";
-import * as d3zoom from "https://esm.sh/d3-zoom@3?bundle";
-import "https://esm.sh/d3-transition@3?bundle";  // attaches .transition() onto d3sel selections
+// Pull every d3 module from a single d3@7 bundle so d3-transition's
+// monkey-patch lands on the SAME Selection prototype that d3-selection
+// exports. (`?bundle` was producing one private copy per import, which
+// is why .transition() was missing on our selections.)
+import * as d3all from "https://esm.sh/d3@7";
+const d3 = d3all, d3sel = d3all, d3drag = d3all, d3zoom = d3all;
 
 const $ = (id) => document.getElementById(id);
 const bootBar = $("boot-bar"), bootMsg = $("boot-msg");
