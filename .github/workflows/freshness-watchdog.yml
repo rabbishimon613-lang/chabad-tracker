@@ -1,0 +1,74 @@
+# freshness-watchdog — self-healing trigger for the research team.
+#
+# GitHub Actions free-tier cron silently drops scheduled runs on low-traffic
+# repos. researcher-cycle has a doubled cron (:07 + :37) to fight this, but
+# we still occasionally lose 4-6 hour windows. This watchdog runs every 15
+# minutes and dispatches researcher-cycle if the last bot commit on main is
+# older than 90 minutes — so the longest "no fresh data" gap is bounded.
+#
+# It also bumps audit-legacy if THAT hasn't run in 4 hours.
+#
+# The watchdog itself is also subject to cron drops, but it's an independent
+# throttle pool — so worst case both throttles drop is unlikely, and even a
+# single watchdog fire per hour keeps us fresh.
+
+name: freshness-watchdog
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 4 chances per hour to fire — independent of researcher-cycle's slots,
+    # so we get multiple bites at the apple even when GH drops some.
+    - cron: '*/15 * * * *'
+
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: write   # to dispatch other workflows
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50          # enough to see the last few bot commits
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: How stale is the data?
+        id: stale
+        run: |
+          # Most recent bot commit (cycle: or audit-legacy:) on main.
+          LAST_CYCLE=$(git log --grep='^cycle:' --pretty=format:'%ct' -n1 || echo 0)
+          LAST_AUDIT=$(git log --grep='^audit-legacy:' --pretty=format:'%ct' -n1 || echo 0)
+          NOW=$(date -u +%s)
+          CYCLE_AGE=$(( (NOW - LAST_CYCLE) / 60 ))
+          AUDIT_AGE=$(( (NOW - LAST_AUDIT) / 60 ))
+          echo "cycle_age_min=$CYCLE_AGE" >> "$GITHUB_OUTPUT"
+          echo "audit_age_min=$AUDIT_AGE" >> "$GITHUB_OUTPUT"
+          echo "Last researcher-cycle commit: $CYCLE_AGE min ago"
+          echo "Last audit-legacy commit:     $AUDIT_AGE min ago"
+
+      - name: Kick researcher-cycle if stale > 90 min
+        if: steps.stale.outputs.cycle_age_min > 90
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "::notice::researcher-cycle stale (${{ steps.stale.outputs.cycle_age_min }} min) — dispatching"
+          gh workflow run researcher-cycle.yml --ref main
+
+      - name: Kick audit-legacy if stale > 240 min
+        if: steps.stale.outputs.audit_age_min > 240
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "::notice::audit-legacy stale (${{ steps.stale.outputs.audit_age_min }} min) — dispatching"
+          gh workflow run audit-legacy.yml --ref main
+
+      - name: All fresh — nothing to do
+        if: steps.stale.outputs.cycle_age_min <= 90 && steps.stale.outputs.audit_age_min <= 240
+        run: echo "Everything fresh. cycle=${{ steps.stale.outputs.cycle_age_min }}m, audit=${{ steps.stale.outputs.audit_age_min }}m"

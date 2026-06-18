@@ -23,10 +23,14 @@ on:
       - 'ui/**'
       - '.github/workflows/researcher-cycle.yml'
   schedule:
-    # Double cron — GitHub Actions free-tier silently drops some scheduled runs.
-    # Listing two slots per hour roughly doubles the odds we actually fire.
+    # Triple cron — GitHub Actions free-tier silently drops scheduled runs;
+    # three independent slots per hour mean it's vanishingly unlikely all
+    # three get throttled. Combined with the freshness-watchdog (every 15
+    # min, dispatches us if main has no bot commit in 90 min) this caps the
+    # longest "no fresh data" window at ~90 minutes.
     - cron: '7 * * * *'
-    - cron: '37 * * * *'
+    - cron: '27 * * * *'
+    - cron: '47 * * * *'
 
 concurrency:
   group: cycle
