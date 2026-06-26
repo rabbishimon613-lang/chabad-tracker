@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-06-26T12:33:43.617202+00:00",
-  "count": 691,
+  "generated_at": "2026-06-26T13:27:43.558966+00:00",
+  "count": 692,
   "items": [
+    {
+      "id": 692,
+      "incident_id": 1646,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "David Samuel Cyprys was convicted of child sexual abuse at Melbourne's Yeshiva College.",
+      "failed_at": "2026-06-26T13:27:40.857204+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 690,
       "incident_id": 1437,
