@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-01T19:23:28.846091+00:00",
-  "count": 718,
+  "generated_at": "2026-07-01T20:08:14.553431+00:00",
+  "count": 719,
   "items": [
+    {
+      "id": 719,
+      "incident_id": 1824,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "other",
+      "severity": "null",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Rabbi Mordechai Berger was the principal of Yeshivah College, an independent Orthodox Jewish comprehensive single-sex primary and secondary Jewish day school for boys.",
+      "failed_at": "2026-07-01T20:08:12.211027+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 718,
       "incident_id": 1807,
