@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-01T10:52:43.395282+00:00",
-  "count": 714,
+  "generated_at": "2026-07-01T10:57:01.867511+00:00",
+  "count": 715,
   "items": [
+    {
+      "id": 715,
+      "incident_id": 1790,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-01T10:56:59.076420+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 714,
       "incident_id": 1788,
