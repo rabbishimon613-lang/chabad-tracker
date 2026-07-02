@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-02T21:49:13.830548+00:00",
-  "count": 761,
+  "generated_at": "2026-07-02T22:15:20.350966+00:00",
+  "count": 762,
   "items": [
+    {
+      "id": 762,
+      "incident_id": 1913,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "other",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Yeshivah Centre, East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-02T22:15:14.863147+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 760,
       "incident_id": 1910,
