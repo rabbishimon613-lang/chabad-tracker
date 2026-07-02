@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-02T09:41:57.836267+00:00",
-  "count": 728,
+  "generated_at": "2026-07-02T11:19:14.179612+00:00",
+  "count": 730,
   "items": [
+    {
+      "id": 730,
+      "incident_id": 1859,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "Victim claims he was subjected to abuse at the Yeshivah Centre, and Rabbi Chaim Tzvi Groner was a key figure in the abuse.",
+      "failed_at": "2026-07-02T11:19:11.026364+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 729,
+      "incident_id": 1858,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-02T11:19:10.456819+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 728,
       "incident_id": 1854,
