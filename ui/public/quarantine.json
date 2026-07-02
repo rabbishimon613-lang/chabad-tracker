@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-02T12:21:08.562158+00:00",
-  "count": 732,
+  "generated_at": "2026-07-02T12:26:41.182955+00:00",
+  "count": 733,
   "items": [
+    {
+      "id": 733,
+      "incident_id": 1862,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-02T12:26:38.224086+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 732,
       "incident_id": 1861,
