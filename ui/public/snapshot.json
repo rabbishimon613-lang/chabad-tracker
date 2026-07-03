@@ -3,13 +3,13 @@
   "people": 10049,
   "incidents": 1457,
   "families": 3050,
-  "generated_at": "2026-07-03T00:16:13.673461+00:00",
+  "generated_at": "2026-07-03T01:08:23.976840+00:00",
   "audit": {
     "no_source": 306,
     "passed": 434,
     "passed_partial": 243,
     "quarantined": 474
   },
-  "leads_pending": 81,
+  "leads_pending": 82,
   "leads_claimed": 0
 }
