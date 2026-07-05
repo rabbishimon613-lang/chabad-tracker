@@ -493,3 +493,4 @@
 {"run_id": "28753087256", "at": "2026-07-05T20:00:06.126485+00:00", "incidents": 1692, "leads_pending": 81, "quarantine": 807}
 {"run_id": "28754052127", "at": "2026-07-05T20:34:52.566751+00:00", "incidents": 1692, "leads_pending": 82, "quarantine": 807}
 {"run_id": "28755100816", "at": "2026-07-05T21:14:13.902976+00:00", "incidents": 1694, "leads_pending": 81, "quarantine": 807}
+{"run_id": "28755781776", "at": "2026-07-05T21:40:13.289458+00:00", "incidents": 1697, "leads_pending": 81, "quarantine": 808}
