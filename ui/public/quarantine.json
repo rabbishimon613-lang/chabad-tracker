@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-05T14:09:10.740146+00:00",
-  "count": 804,
+  "generated_at": "2026-07-05T14:56:30.979694+00:00",
+  "count": 805,
   "items": [
+    {
+      "id": 805,
+      "incident_id": 2136,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "other",
+      "severity": "none",
+      "occurred_on": null,
+      "location": "Yeshivah College, St Kilda East, Victoria, Australia",
+      "summary_preview": "Rabbi Mordechai Berger was the principal of Yeshivah College.",
+      "failed_at": "2026-07-05T14:56:28.737557+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 804,
       "incident_id": 2128,
