@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-06T01:23:58.440402+00:00",
-  "count": 810,
+  "generated_at": "2026-07-06T04:22:35.622585+00:00",
+  "count": 812,
   "items": [
+    {
+      "id": 811,
+      "incident_id": 2180,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-06T04:22:32.031984+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 812,
+      "incident_id": 2180,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Manny Waks claims that the Yeshivah Centre failed to handle child abuse allegations properly.",
+      "failed_at": "2026-07-06T04:22:32.031984+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 810,
       "incident_id": 2173,
