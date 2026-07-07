@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-07T23:28:21.414487+00:00",
-  "count": 818,
+  "generated_at": "2026-07-07T23:36:42.594955+00:00",
+  "count": 820,
   "items": [
+    {
+      "id": 820,
+      "incident_id": 2290,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne",
+      "summary_preview": null,
+      "failed_at": "2026-07-07T23:36:38.753897+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 819,
+      "incident_id": 2289,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Sydney",
+      "summary_preview": "Rabbi Moshe Gutnick was questioned by the Royal Commission about policies in response to child sexual abuse in the Melbourne and Sydney Yeshiva communities.",
+      "failed_at": "2026-07-07T23:36:37.246429+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 818,
       "incident_id": 2268,
