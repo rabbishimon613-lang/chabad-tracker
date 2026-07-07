@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-07T12:14:37.208785+00:00",
-  "count": 816,
+  "generated_at": "2026-07-07T13:52:24.512042+00:00",
+  "count": 817,
   "items": [
+    {
+      "id": 817,
+      "incident_id": 2260,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Yeshivah Centre, Melbourne, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-07T13:52:19.512741+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 816,
       "incident_id": 2222,
