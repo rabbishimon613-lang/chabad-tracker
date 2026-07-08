@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-08T16:56:06.523174+00:00",
-  "count": 821,
+  "generated_at": "2026-07-08T17:48:13.155872+00:00",
+  "count": 822,
   "items": [
+    {
+      "id": 822,
+      "incident_id": 2338,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "other",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Yeshivah Centre, Melbourne",
+      "summary_preview": null,
+      "failed_at": "2026-07-08T17:48:08.654561+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 821,
       "incident_id": 2301,
