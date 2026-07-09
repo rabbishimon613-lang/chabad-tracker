@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-09T13:27:43.490476+00:00",
-  "count": 827,
+  "generated_at": "2026-07-09T13:29:19.342475+00:00",
+  "count": 828,
   "items": [
+    {
+      "id": 828,
+      "incident_id": 2384,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-09T13:29:14.870644+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 827,
       "incident_id": 2381,
