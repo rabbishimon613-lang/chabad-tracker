@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-12T10:13:59.435124+00:00",
-  "count": 838,
+  "generated_at": "2026-07-12T11:19:31.544665+00:00",
+  "count": 839,
   "items": [
+    {
+      "id": 839,
+      "incident_id": 2588,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-12T11:19:29.124084+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 836,
       "incident_id": 2543,
