@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-12T23:09:05.145983+00:00",
-  "count": 843,
+  "generated_at": "2026-07-12T23:23:48.164635+00:00",
+  "count": 844,
   "items": [
+    {
+      "id": 844,
+      "incident_id": 2647,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "other",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tzvi Groner was accused of abuse and offered to apologize and resign to settle a $2.5 million lawsuit.",
+      "failed_at": "2026-07-12T23:23:45.329918+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 843,
       "incident_id": 2644,
