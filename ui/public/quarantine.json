@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-12T22:30:58.044823+00:00",
-  "count": 842,
+  "generated_at": "2026-07-12T22:59:58.496450+00:00",
+  "count": 843,
   "items": [
+    {
+      "id": 843,
+      "incident_id": 2644,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "other",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "A victim of historic sexual abuse at Yeshivah Centre offered to drop a $2.5 million lawsuit if Rabbi Chaim Tzvi Groner apologised and resigned.",
+      "failed_at": "2026-07-12T22:59:54.515625+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 842,
       "incident_id": 2630,

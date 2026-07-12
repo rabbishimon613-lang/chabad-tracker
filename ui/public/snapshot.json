@@ -1,14 +1,14 @@
 {
   "houses": 4257,
   "people": 10051,
-  "incidents": 2176,
+  "incidents": 2179,
   "families": 3050,
-  "generated_at": "2026-07-12T22:30:58.044823+00:00",
+  "generated_at": "2026-07-12T22:59:58.496450+00:00",
   "audit": {
     "no_source": 306,
-    "passed": 1081,
+    "passed": 1083,
     "passed_partial": 243,
-    "quarantined": 546
+    "quarantined": 547
   },
   "leads_pending": 82,
   "leads_claimed": 0
