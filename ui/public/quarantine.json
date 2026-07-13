@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-13T15:11:06.945299+00:00",
-  "count": 856,
+  "generated_at": "2026-07-13T15:19:29.053414+00:00",
+  "count": 857,
   "items": [
+    {
+      "id": 857,
+      "incident_id": 2684,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": "2024",
+      "location": "Yeshiva College, St Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi David Kramer pleaded guilty to multiple charges of indecent assault.",
+      "failed_at": "2026-07-13T15:19:24.623713+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 856,
       "incident_id": 2680,
