@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-13T21:12:51.475727+00:00",
-  "count": 872,
+  "generated_at": "2026-07-13T21:27:35.288552+00:00",
+  "count": 874,
   "items": [
+    {
+      "id": 873,
+      "incident_id": 2715,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": null,
+      "location": "Miami, Florida, USA",
+      "summary_preview": null,
+      "failed_at": "2026-07-13T21:27:32.418613+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 874,
+      "incident_id": 2715,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": null,
+      "location": "Miami, Florida, USA",
+      "summary_preview": "Rabbi Yosef Benita was arrested on child molestation charges.",
+      "failed_at": "2026-07-13T21:27:32.418613+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 872,
       "incident_id": 2712,
