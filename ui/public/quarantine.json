@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-13T16:59:23.522962+00:00",
-  "count": 858,
+  "generated_at": "2026-07-13T17:20:36.001155+00:00",
+  "count": 860,
   "items": [
+    {
+      "id": 860,
+      "incident_id": 2691,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": null,
+      "location": "St Kilda, Victoria, Australia",
+      "summary_preview": "David Cyprys pleaded guilty to multiple charges of indecent assault at Yeshiva College St Kilda.",
+      "failed_at": "2026-07-13T17:20:33.309519+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 859,
+      "incident_id": 2690,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": null,
+      "location": "St Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi David Kramer pleaded guilty to multiple charges of indecent assault at Yeshiva College St Kilda.",
+      "failed_at": "2026-07-13T17:20:32.390133+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 858,
       "incident_id": 2686,
