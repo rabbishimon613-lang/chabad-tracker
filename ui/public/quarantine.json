@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-13T23:12:56.703625+00:00",
-  "count": 876,
+  "generated_at": "2026-07-13T23:24:40.923571+00:00",
+  "count": 878,
   "items": [
+    {
+      "id": 877,
+      "incident_id": 2723,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": null,
+      "location": "Miami-Dade, Florida, USA",
+      "summary_preview": null,
+      "failed_at": "2026-07-13T23:24:37.078446+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 878,
+      "incident_id": 2723,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": null,
+      "location": "Miami-Dade, Florida, USA",
+      "summary_preview": "Rabbi Yosef Benita, a teacher at Lubavitch Educational Center, was arrested on child molestation charges.",
+      "failed_at": "2026-07-13T23:24:37.078446+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 875,
       "incident_id": 2718,
