@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-14T19:42:15.220925+00:00",
-  "count": 910,
+  "generated_at": "2026-07-14T19:57:01.856212+00:00",
+  "count": 912,
   "items": [
+    {
+      "id": 912,
+      "incident_id": 2795,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": "null",
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-14T19:56:59.012528+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 911,
+      "incident_id": 2794,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": "null",
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-14T19:56:58.950351+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 910,
       "incident_id": 2768,
