@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-15T01:00:06.303081+00:00",
-  "count": 925,
+  "generated_at": "2026-07-15T03:22:08.087243+00:00",
+  "count": 927,
   "items": [
+    {
+      "id": 926,
+      "incident_id": 2824,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": "2021-04-29",
+      "location": "Miami, Florida, USA",
+      "summary_preview": null,
+      "failed_at": "2026-07-15T03:22:05.676999+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 927,
+      "incident_id": 2824,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": "2021-04-29",
+      "location": "Miami, Florida, USA",
+      "summary_preview": "Yosef Benita was charged with child molestation.",
+      "failed_at": "2026-07-15T03:22:05.676999+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 924,
       "incident_id": 2820,
