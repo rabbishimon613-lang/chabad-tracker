@@ -779,3 +779,4 @@
 {"run_id": "29376455060", "at": "2026-07-14T23:33:09.532157+00:00", "incidents": 2346, "leads_pending": 85, "quarantine": 917}
 {"run_id": "29377838635", "at": "2026-07-15T00:01:56.235289+00:00", "incidents": 2350, "leads_pending": 85, "quarantine": 921}
 {"run_id": "29378372738", "at": "2026-07-15T00:12:26.544214+00:00", "incidents": 2354, "leads_pending": 85, "quarantine": 925}
+{"run_id": "29380516897", "at": "2026-07-15T01:00:06.791662+00:00", "incidents": 2355, "leads_pending": 85, "quarantine": 925}
