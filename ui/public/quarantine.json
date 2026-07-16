@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-16T07:09:33.668651+00:00",
-  "count": 934,
+  "generated_at": "2026-07-16T07:28:40.843743+00:00",
+  "count": 936,
   "items": [
+    {
+      "id": 935,
+      "incident_id": 2898,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-16T07:28:37.775979+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 936,
+      "incident_id": 2898,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Rabbi Yitzchok Dovid Groner was the direct administrator of the Yeshivah Centre until recently, and the centre was advised against implementing reforms proposed in response to last year's Royal Commission into child sexual abuse.",
+      "failed_at": "2026-07-16T07:28:37.775979+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 933,
       "incident_id": 2896,
