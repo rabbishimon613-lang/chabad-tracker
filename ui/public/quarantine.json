@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-16T19:34:11.977433+00:00",
-  "count": 949,
+  "generated_at": "2026-07-16T19:45:45.223096+00:00",
+  "count": 951,
   "items": [
+    {
+      "id": 951,
+      "incident_id": 2935,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Rabbi Yitzchok Dovid Groner was the direct administrator of the Yeshivah Centre until recently.",
+      "failed_at": "2026-07-16T19:45:37.741142+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 950,
+      "incident_id": 2934,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Rabbi Yitzchok Dovid Groner was the direct administrator of the Yeshivah Centre until recently.",
+      "failed_at": "2026-07-16T19:45:36.903563+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 949,
       "incident_id": 2933,
