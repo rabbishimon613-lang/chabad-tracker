@@ -860,3 +860,4 @@
 {"run_id": "29563387118", "at": "2026-07-17T07:32:24.570393+00:00", "incidents": 2502, "leads_pending": 90, "quarantine": 957}
 {"run_id": "29570164572", "at": "2026-07-17T09:30:10.567551+00:00", "incidents": 2504, "leads_pending": 91, "quarantine": 957}
 {"run_id": "29572382808", "at": "2026-07-17T10:07:39.248839+00:00", "incidents": 2506, "leads_pending": 91, "quarantine": 957}
+{"run_id": "29572880763", "at": "2026-07-17T10:16:12.553109+00:00", "incidents": 2508, "leads_pending": 91, "quarantine": 957}
