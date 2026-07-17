@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-17T19:46:35.203183+00:00",
-  "count": 976,
+  "generated_at": "2026-07-17T20:12:12.071538+00:00",
+  "count": 978,
   "items": [
+    {
+      "id": 978,
+      "incident_id": 3007,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "other",
+      "severity": "allegation",
+      "occurred_on": "null",
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Zvi Telsner allegedly delivered sermons attacking child sexual abuse victims.",
+      "failed_at": "2026-07-17T20:12:09.716736+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 977,
+      "incident_id": 3006,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": "null",
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-17T20:12:09.477989+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 974,
       "incident_id": 3003,
