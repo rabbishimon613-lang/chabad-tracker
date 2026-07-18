@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-18T21:58:36.453408+00:00",
+  "generated_at": "2026-07-18T22:12:27.986692+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1009,
+      "incident_id": 3116,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-18T22:12:25.841046+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1008,
+      "incident_id": 3115,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-18T22:12:25.781076+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1007,
       "incident_id": 3101,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-06-14T12:29:34.858261+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 10,
-      "incident_id": 13,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2008-2015",
-      "location": "Aventura, Miami-Dade County, Florida, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T12:29:34.858261+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 8,
-      "incident_id": 22,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2008-12",
-      "location": "Los Angeles, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T12:29:32.600926+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
