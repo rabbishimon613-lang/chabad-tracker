@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-18T22:12:27.986692+00:00",
+  "generated_at": "2026-07-18T22:31:33.327588+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1010,
+      "incident_id": 3119,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": "null",
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-18T22:31:30.610786+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1009,
       "incident_id": 3116,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-14T12:29:35.621611+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 9,
-      "incident_id": 13,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2008-2015",
-      "location": "Aventura, Miami-Dade County, Florida, USA",
-      "summary_preview": "Chabad Chayil operated the after\u2011school program without a required Florida Department of Children and Families license for seven years at one school and two years at another, violating state childcare regulations.",
-      "failed_at": "2026-06-14T12:29:34.858261+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
