@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-19T00:59:49.142247+00:00",
+  "generated_at": "2026-07-19T01:09:50.220008+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1012,
+      "incident_id": 3134,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-19T01:09:48.194078+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1011,
       "incident_id": 3131,
@@ -14984,21 +14999,6 @@
       "location": "Melbourne, Victoria, Australia",
       "summary_preview": null,
       "failed_at": "2026-06-14T12:29:37.278139+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 12,
-      "incident_id": 22,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2008-12",
-      "location": "Los Angeles, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T12:29:36.593530+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
