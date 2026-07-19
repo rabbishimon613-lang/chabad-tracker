@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-19T22:33:34.167108+00:00",
+  "generated_at": "2026-07-19T23:01:50.330549+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1029,
+      "incident_id": 3213,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Zvi Telsner allegedly delivered sermons attacking child sexual abuse victims.",
+      "failed_at": "2026-07-19T23:01:48.011953+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1028,
+      "incident_id": 3212,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-19T23:01:47.677842+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1027,
       "incident_id": 3197,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-06-14T12:31:04.473178+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 29,
-      "incident_id": 61,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "tax_evasion",
-      "severity": "investigation",
-      "occurred_on": "2007-11-14",
-      "location": "Ben\u2011Gurion Airport, Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T12:31:04.226480+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 27,
-      "incident_id": 60,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "investigation",
-      "occurred_on": "2008-2022",
-      "location": "Miami-Dade County, Florida, USA",
-      "summary_preview": "Karp\u2019s office is alleged to have facilitated Chabad Chayil\u2019s rent\u2011free use of school facilities by filing paperwork that incorrectly stated no fees were charged and by failing to oversee compliance with licensing and background\u2011check requir",
-      "failed_at": "2026-06-14T12:31:03.931233+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
