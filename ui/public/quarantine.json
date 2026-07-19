@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-19T00:02:00.154584+00:00",
+  "generated_at": "2026-07-19T00:59:49.142247+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1011,
+      "incident_id": 3131,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-19T00:59:43.952720+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1010,
       "incident_id": 3119,
@@ -14984,21 +14999,6 @@
       "location": "Los Angeles, California, USA",
       "summary_preview": null,
       "failed_at": "2026-06-14T12:29:36.593530+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 11,
-      "incident_id": 28,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "charged",
-      "occurred_on": null,
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T12:29:35.621611+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
