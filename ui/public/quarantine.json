@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-20T22:08:47.914777+00:00",
+  "generated_at": "2026-07-20T22:38:29.947549+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1040,
+      "incident_id": 3264,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "David Cyprys was accused of child sexual abuse, and the Yeshivah Centre and Yeshivah College were criticized for their response.",
+      "failed_at": "2026-07-20T22:38:27.150099+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1037,
       "incident_id": 3238,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-14T12:31:18.996281+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 41,
-      "incident_id": 75,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "dismissed",
-      "occurred_on": "2015",
-      "location": "Poway, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T12:31:18.996281+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
