@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-21T07:04:57.574280+00:00",
+  "generated_at": "2026-07-21T07:57:55.437786+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1063,
+      "incident_id": 3283,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "Allegations of historic sexual abuse at Yeshivah Centre, with Rabbi Chaim Tzvi Groner accused of abuse.",
+      "failed_at": "2026-07-21T07:57:52.831581+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1060,
       "incident_id": 3281,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-14T18:54:19.626586+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 62,
-      "incident_id": 121,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "1992",
-      "location": "Parksville Road, Town of Liberty, Sullivan County, New York, USA",
-      "summary_preview": "The plaintiff alleges that Shmuel Posner sexually assaulted him in 1992 while the plaintiff was a nine\u2011year\u2011old attending Camp Gan Israel, a summer camp associated with Chabad-Lubavitch.",
-      "failed_at": "2026-06-14T18:54:19.456598+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
