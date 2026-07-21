@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-21T15:24:36.194762+00:00",
+  "generated_at": "2026-07-21T16:37:26.128342+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1064,
+      "incident_id": 3294,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "probed",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-21T16:37:23.557761+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1065,
+      "incident_id": 3294,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "probed",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Zvi Telsner was probed for child sexual abuse.",
+      "failed_at": "2026-07-21T16:37:23.557761+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1063,
       "incident_id": 3283,
@@ -14969,36 +14999,6 @@
       "location": "Bondi, New South Wales, Australia",
       "summary_preview": null,
       "failed_at": "2026-06-14T18:54:29.757810+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 64,
-      "incident_id": 122,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "1994",
-      "location": "Parksville Road, Town of Liberty, Sullivan County, New York, USA",
-      "summary_preview": "The plaintiff alleges that Motti Sandman sexually assaulted him in 1994 while the plaintiff was an eleven\u2011year\u2011old attending Camp Gan Israel, a summer camp associated with Chabad-Lubavitch.",
-      "failed_at": "2026-06-14T18:54:19.626586+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 65,
-      "incident_id": 122,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "1994",
-      "location": "Parksville Road, Town of Liberty, Sullivan County, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T18:54:19.626586+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
