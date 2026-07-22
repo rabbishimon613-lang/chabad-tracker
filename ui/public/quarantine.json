@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-22T07:06:34.821281+00:00",
+  "generated_at": "2026-07-22T07:58:04.314775+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1074,
+      "incident_id": 3341,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "other",
+      "severity": "investigation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "The Yeshivah Centre, run by Rabbi Yitzchok Dovid Groner, was under investigation for the use of money allocated as part of the Building the Education Revolution (BER) stimulus package.",
+      "failed_at": "2026-07-22T07:58:01.849134+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1075,
+      "incident_id": 3341,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "other",
+      "severity": "investigation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-22T07:58:01.849134+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1076,
+      "incident_id": 3341,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "other",
+      "severity": "investigation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "The Yeshivah Centre, run by Rabbi Yitzchok Dovid Groner, was under investigation for the use of money allocated as part of the Building the Education Revolution (BER) stimulus package.",
+      "failed_at": "2026-07-22T07:58:01.849134+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1073,
       "incident_id": 3323,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-14T18:56:13.978781+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 77,
-      "incident_id": 135,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "New York, NY, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T18:56:13.978781+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 74,
-      "incident_id": 134,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": "Israel",
-      "summary_preview": "Yosef Segal, former chief financial officer of the Chabad Youth Organization, accused the organization\u2019s head of stealing more than $3\u202fmillion and misappropriating funds earmarked for Chernobyl children, while also being accused by the head",
-      "failed_at": "2026-06-14T18:56:09.900871+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 75,
-      "incident_id": 134,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": "Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-14T18:56:09.900871+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
