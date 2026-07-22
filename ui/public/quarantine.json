@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-22T23:15:21.694687+00:00",
+  "generated_at": "2026-07-22T23:39:59.297327+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1095,
+      "incident_id": 3391,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-22T23:39:56.460495+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1094,
+      "incident_id": 3389,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-22T23:39:56.092465+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1093,
       "incident_id": 3378,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-06-15T16:24:53.024562+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 95,
-      "incident_id": 231,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "investigation",
-      "occurred_on": "2024-04",
-      "location": "Sydney, New South Wales, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:24:46.512072+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 93,
-      "incident_id": 226,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": "2023-08-12",
-      "location": "Melbourne, Victoria, Australia",
-      "summary_preview": "David Samuel Cyprys, a former security guard at the Yeshivah Centre, was found guilty of 17 charges including rape, indecent assault and gross indecency involving nine children aged 7 to 17. The offenses occurred between the 1980s and early",
-      "failed_at": "2026-06-15T16:24:08.549756+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
