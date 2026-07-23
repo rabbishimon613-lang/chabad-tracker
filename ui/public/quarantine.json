@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-23T10:38:28.134670+00:00",
+  "generated_at": "2026-07-23T10:51:29.242995+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1098,
+      "incident_id": 3411,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-23T10:51:25.265633+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1096,
       "incident_id": 3406,
@@ -14984,21 +14999,6 @@
       "location": "Poway, California, USA",
       "summary_preview": null,
       "failed_at": "2026-06-15T16:24:58.528281+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 98,
-      "incident_id": 334,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2022-04",
-      "location": "Poway, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:24:57.216434+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
