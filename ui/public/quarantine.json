@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-23T17:03:40.638017+00:00",
+  "generated_at": "2026-07-23T17:41:17.668219+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1099,
+      "incident_id": 3422,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "David Cyprys was accused of child sexual abuse, and the Yeshivah Centre and Yeshivah College were criticized for their response.",
+      "failed_at": "2026-07-23T17:41:15.119346+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1100,
+      "incident_id": 3422,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-23T17:41:15.119346+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1101,
+      "incident_id": 3422,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "David Cyprys was accused of child sexual abuse, and the Yeshivah Centre and Yeshivah College were criticized for their response.",
+      "failed_at": "2026-07-23T17:41:15.119346+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1098,
       "incident_id": 3411,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-15T16:25:00.527040+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 102,
-      "incident_id": 354,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2014-02",
-      "location": "Washington, DC, United States",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:25:00.527040+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 100,
-      "incident_id": 341,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": "2014-12-13",
-      "location": "Los Angeles, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:24:59.420411+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 99,
-      "incident_id": 336,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2023-07",
-      "location": "Poway, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:24:58.528281+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
