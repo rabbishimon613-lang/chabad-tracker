@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-23T17:54:24.986167+00:00",
+  "generated_at": "2026-07-23T18:49:07.309089+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1105,
+      "incident_id": 3429,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "other",
+      "severity": "resigned",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-23T18:49:04.215145+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1102,
       "incident_id": 3423,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-15T16:25:00.982271+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 106,
-      "incident_id": 396,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "charged",
-      "occurred_on": "2018-02-01",
-      "location": "East Brunswick, New Jersey, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:25:00.982271+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
