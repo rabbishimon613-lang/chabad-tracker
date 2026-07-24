@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-24T07:38:49.533554+00:00",
+  "generated_at": "2026-07-24T07:52:35.240891+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1122,
+      "incident_id": 3472,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Rabbi Zvi Telsner was brought as the new Dayan (rabbinical judge) of the Centre and Lubavitch community.",
+      "failed_at": "2026-07-24T07:52:31.730606+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1121,
       "incident_id": 3456,
@@ -14984,21 +14999,6 @@
       "location": "Postville, Iowa, USA",
       "summary_preview": null,
       "failed_at": "2026-06-15T16:25:17.691140+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 122,
-      "incident_id": 560,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": "2009-11-12",
-      "location": "Postville, Iowa, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:25:17.536408+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
