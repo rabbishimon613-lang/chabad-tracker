@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-24T09:54:05.701642+00:00",
+  "generated_at": "2026-07-24T10:26:33.592255+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1126,
+      "incident_id": 3479,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "A victim of historic sexual abuse at Yeshivah Centre offered to drop a $2.5 million lawsuit if Rabbi Chaim Tzvi Groner apologizes and resigns.",
+      "failed_at": "2026-07-24T10:26:31.329102+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1123,
       "incident_id": 3474,
@@ -14984,21 +14999,6 @@
       "location": "Sydney, New South Wales, Australia",
       "summary_preview": null,
       "failed_at": "2026-06-15T16:25:23.728097+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 126,
-      "incident_id": 634,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "investigation",
-      "occurred_on": "2019-09",
-      "location": "Miami-Dade County, Florida, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:25:20.571493+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
