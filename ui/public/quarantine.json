@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-24T14:24:45.583466+00:00",
+  "generated_at": "2026-07-24T15:02:36.735422+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1127,
+      "incident_id": 3491,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-24T15:02:33.367834+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1126,
       "incident_id": 3479,
@@ -14984,21 +14999,6 @@
       "location": "Poway, California, USA",
       "summary_preview": null,
       "failed_at": "2026-06-16T00:16:21.034109+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 127,
-      "incident_id": 658,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "investigation",
-      "occurred_on": "2016-11-29",
-      "location": "Sydney, New South Wales, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-15T16:25:23.728097+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
