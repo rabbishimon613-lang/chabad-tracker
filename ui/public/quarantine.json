@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-24T18:25:33.749457+00:00",
+  "generated_at": "2026-07-24T18:55:02.619325+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1130,
+      "incident_id": 3504,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "investigation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-24T18:55:00.162206+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1129,
+      "incident_id": 3503,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-24T18:54:58.508862+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1128,
       "incident_id": 3502,
@@ -14969,36 +14999,6 @@
       "location": "Kfar Chabad, Israel",
       "summary_preview": null,
       "failed_at": "2026-06-16T00:16:43.559774+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 130,
-      "incident_id": 666,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Kfar Chabad, Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:16:36.674874+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 129,
-      "incident_id": 665,
-      "layer": 12,
-      "layer_name": "perpetrator_only",
-      "reason": "Source page describes the named person as a VICTIM, not a perpetrator. Doctrine reject \u2014 Chabad-as-victim cases are out of scope.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2005",
-      "location": "Tel Aviv, Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:16:34.854212+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
