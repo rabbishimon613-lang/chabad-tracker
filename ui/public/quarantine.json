@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-25T11:33:58.482190+00:00",
+  "generated_at": "2026-07-25T11:40:57.377948+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1147,
+      "incident_id": 3561,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "Daniel Hayman was convicted of child sexual abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-25T11:40:54.064713+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1146,
+      "incident_id": 3560,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "David Cyprys was convicted of child sexual abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-25T11:40:53.958708+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1143,
       "incident_id": 3552,
@@ -14969,36 +14999,6 @@
       "location": "Brooklyn, New York, USA",
       "summary_preview": null,
       "failed_at": "2026-06-16T00:18:00.266505+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 147,
-      "incident_id": 692,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "1987-1996",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:17:56.054672+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 146,
-      "incident_id": 690,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "2024",
-      "location": "Melbourne, Victoria, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:17:52.800106+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
