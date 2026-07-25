@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-25T15:37:00.349238+00:00",
+  "generated_at": "2026-07-25T15:45:46.648243+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1151,
+      "incident_id": 3574,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-25T15:45:44.325041+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1150,
+      "incident_id": 3573,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-25T15:45:42.535501+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1149,
       "incident_id": 3572,
@@ -14969,36 +14999,6 @@
       "location": "Melbourne, Victoria, Australia",
       "summary_preview": null,
       "failed_at": "2026-06-16T00:18:46.608983+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 151,
-      "incident_id": 698,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "investigation",
-      "occurred_on": "2022-??-??",
-      "location": "Melbourne, Victoria, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:18:42.283261+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 150,
-      "incident_id": 697,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "investigation",
-      "occurred_on": "2024-06",
-      "location": "Melbourne, Victoria, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:18:33.380286+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
