@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-25T21:23:24.452789+00:00",
+  "generated_at": "2026-07-25T21:35:35.102482+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1156,
+      "incident_id": 3599,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "Rabbi Zvi Telsner was accused of child sexual abuse and the Yeshivah Centre agreed to compensate victims up to $80,000 each.",
+      "failed_at": "2026-07-25T21:35:32.530564+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1157,
+      "incident_id": 3599,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-25T21:35:32.530564+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1158,
+      "incident_id": 3599,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "Rabbi Zvi Telsner was accused of child sexual abuse and the Yeshivah Centre agreed to compensate victims up to $80,000 each.",
+      "failed_at": "2026-07-25T21:35:32.530564+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1154,
       "incident_id": 3590,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T00:19:12.054376+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 159,
-      "incident_id": 705,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2014",
-      "location": "Stamford, Connecticut, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:19:12.054376+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 156,
-      "incident_id": 704,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2014",
-      "location": "Stamford, Connecticut, USA",
-      "summary_preview": "Rabbi Moshe Shemtov occupied the Chabad Center in Stamford and was required to pay a monthly mortgage in lieu of rent. He later stopped making the required payments, prompting the organization to seek a summary process judgment for possessi",
-      "failed_at": "2026-06-16T00:19:07.885645+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 157,
-      "incident_id": 704,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2014",
-      "location": "Stamford, Connecticut, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:19:07.885645+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
