@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-25T09:21:12.653586+00:00",
+  "generated_at": "2026-07-25T09:57:23.702990+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1140,
+      "incident_id": 3548,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "David Cyprys was mentioned as a person who made allegations of child sexual abuse against the Yeshivah Centre and Yeshivah College.",
+      "failed_at": "2026-07-25T09:57:18.264597+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1141,
+      "incident_id": 3548,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-25T09:57:18.264597+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1142,
+      "incident_id": 3548,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "David Cyprys was mentioned as a person who made allegations of child sexual abuse against the Yeshivah Centre and Yeshivah College.",
+      "failed_at": "2026-07-25T09:57:18.264597+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1137,
       "incident_id": 3520,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T00:17:49.713110+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 141,
-      "incident_id": 685,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Melbourne, Australia",
-      "summary_preview": "Rabbi Zvi Telsner, a Chabad emissary in Melbourne, is cited as a leader who has been publicly disgraced for actions that contributed to a culture enabling child sexual abuse, including alleged cover\u2011up and attacks on victims. The article no",
-      "failed_at": "2026-06-16T00:17:49.540345+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 142,
-      "incident_id": 685,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Melbourne, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:17:49.540345+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 139,
-      "incident_id": 684,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": "New York, NY, USA",
-      "summary_preview": "Velvel Serebryanski, identified as the son of a senior Chabad emissary in Australia, has admitted to sexually abusing the article's author and is accused of abusing other children. He is reported to be residing and moving freely within the ",
-      "failed_at": "2026-06-16T00:17:48.862662+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
