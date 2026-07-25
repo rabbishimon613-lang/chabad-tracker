@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-25T19:41:05.459331+00:00",
+  "generated_at": "2026-07-25T19:55:36.670670+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1154,
+      "incident_id": 3590,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": "2021-04-29",
+      "location": "Miami, USA",
+      "summary_preview": null,
+      "failed_at": "2026-07-25T19:55:33.616391+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1155,
+      "incident_id": 3590,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": "2021-04-29",
+      "location": "Miami, USA",
+      "summary_preview": "Yosef Benita, a teacher at Lubavitch Educational Center, was arrested on child molestation charges.",
+      "failed_at": "2026-07-25T19:55:33.616391+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1153,
       "incident_id": 3587,
@@ -14969,36 +14999,6 @@
       "location": "Stamford, Connecticut, USA",
       "summary_preview": null,
       "failed_at": "2026-06-16T00:19:07.885645+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 154,
-      "incident_id": 703,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "1820",
-      "location": "Belarus/Ukraine",
-      "summary_preview": "Historical documents indicate that Rabbi Moshe Schneersohn converted to Christianity in 1820. The article states that Chabad followers and later Chabad institutions allegedly attempted to erase this fact from the historical record, constitu",
-      "failed_at": "2026-06-16T00:19:03.698818+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 155,
-      "incident_id": 703,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "1820",
-      "location": "Belarus/Ukraine",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:19:03.698818+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
