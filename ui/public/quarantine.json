@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-25T15:45:46.648243+00:00",
+  "generated_at": "2026-07-25T16:36:57.451220+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1152,
+      "incident_id": 3577,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-25T16:36:52.933818+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1151,
       "incident_id": 3574,
@@ -14984,21 +14999,6 @@
       "location": "Los Angeles, California, USA",
       "summary_preview": null,
       "failed_at": "2026-06-16T00:18:59.503642+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 152,
-      "incident_id": 699,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "investigation",
-      "occurred_on": "2022-??-??",
-      "location": "Melbourne, Victoria, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:18:46.608983+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
