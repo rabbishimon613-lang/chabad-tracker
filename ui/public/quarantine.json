@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-25T23:12:35.347296+00:00",
+  "generated_at": "2026-07-25T23:31:51.566702+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1160,
+      "incident_id": 3605,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "indicted",
+      "occurred_on": null,
+      "location": "Safed, Israel",
+      "summary_preview": null,
+      "failed_at": "2026-07-25T23:31:47.678636+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1159,
       "incident_id": 3603,
@@ -14984,21 +14999,6 @@
       "location": "Postville, Iowa, USA",
       "summary_preview": null,
       "failed_at": "2026-06-16T00:19:27.444227+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 160,
-      "incident_id": 707,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2024",
-      "location": "Postville, Iowa, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T00:19:23.322447+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
