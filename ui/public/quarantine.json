@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-25T22:37:02.222300+00:00",
+  "generated_at": "2026-07-25T23:05:24.075240+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1159,
+      "incident_id": 3603,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Safed, Israel",
+      "summary_preview": null,
+      "failed_at": "2026-07-25T23:05:21.071031+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1156,
       "incident_id": 3599,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-16T00:19:23.322447+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 158,
-      "incident_id": 705,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2014",
-      "location": "Stamford, Connecticut, USA",
-      "summary_preview": "Rabbi Yisrael Deren, the regional director, refused to transfer title of the Stamford Chabad Center to Rabbi Moshe Shemtov and purported to revoke Shemtov's authority, leading to a dispute adjudicated by a Chabad Bais Din and later civil co",
-      "failed_at": "2026-06-16T00:19:12.054376+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
