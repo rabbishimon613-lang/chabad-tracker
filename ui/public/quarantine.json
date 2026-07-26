@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-26T11:42:50.771739+00:00",
+  "generated_at": "2026-07-26T11:47:23.984582+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1182,
+      "incident_id": 3637,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "Daniel Hayman was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-26T11:47:20.943882+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1181,
+      "incident_id": 3636,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "David Cyprys was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-26T11:47:20.852117+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1180,
       "incident_id": 3635,
@@ -14969,36 +14999,6 @@
       "location": "St. Louis, Missouri, USA",
       "summary_preview": null,
       "failed_at": "2026-06-16T18:24:17.961397+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 181,
-      "incident_id": 730,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "investigation",
-      "occurred_on": null,
-      "location": "Melbourne, Australia",
-      "summary_preview": "Royal Commission hearings and subsequent news reporting found that the late Rabbi Yitzchok Dovid Groner actively covered up child sexual abuse cases in Chabad institutions in Melbourne, Australia, and helped alleged Chabad-affiliated pedoph",
-      "failed_at": "2026-06-16T18:24:17.185454+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 182,
-      "incident_id": 730,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "investigation",
-      "occurred_on": null,
-      "location": "Melbourne, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:17.185454+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
