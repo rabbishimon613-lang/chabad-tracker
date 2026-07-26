@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-26T04:34:12.361735+00:00",
+  "generated_at": "2026-07-26T05:04:00.442144+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1171,
+      "incident_id": 3624,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-26T05:03:57.318036+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1172,
+      "incident_id": 3624,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Groner may have misled the royal commission into child sexual abuse about the resignation of Rabbi Zvi Telsner.",
+      "failed_at": "2026-07-26T05:03:57.318036+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1168,
       "incident_id": 3621,
@@ -14969,36 +14999,6 @@
       "location": "Global (policy applied in Israel)",
       "summary_preview": null,
       "failed_at": "2026-06-16T18:24:15.091949+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 171,
-      "incident_id": 725,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2004",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": "Rabbi Israel Heller, a Chabad-affiliated mohel, performed the traditional metzitzah b'peh procedure, orally suctioning blood from neonates after circumcision. A 2004 study identified eight infants who subsequently contracted neonatal genita",
-      "failed_at": "2026-06-16T18:24:14.837335+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 172,
-      "incident_id": 725,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2004",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:14.837335+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
