@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-26T19:42:05.946413+00:00",
+  "generated_at": "2026-07-26T19:52:21.490074+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1190,
+      "incident_id": 3661,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "David Cyprys, a teacher at Yeshivah College, was accused of child sexual abuse.",
+      "failed_at": "2026-07-26T19:52:18.111122+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1191,
+      "incident_id": 3661,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-26T19:52:18.111122+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1192,
+      "incident_id": 3661,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "David Cyprys, a teacher at Yeshivah College, was accused of child sexual abuse.",
+      "failed_at": "2026-07-26T19:52:18.111122+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1187,
       "incident_id": 3659,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T18:24:31.885753+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 193,
-      "incident_id": 737,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "drug_trafficking",
-      "severity": "charged",
-      "occurred_on": "2014-09",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:31.885753+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 190,
-      "incident_id": 736,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "drug_trafficking",
-      "severity": "charged",
-      "occurred_on": "2014-09",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": "Boruch \u201cBarry\u201d Rapoport, 47, was arrested by the FBI in Brooklyn after attempting to purchase 50 pounds of marijuana for shipment from El\u202fPaso, Texas to Brooklyn. He was arraigned in federal court and released on $500,000 bail.",
-      "failed_at": "2026-06-16T18:24:31.665019+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 191,
-      "incident_id": 736,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "drug_trafficking",
-      "severity": "charged",
-      "occurred_on": "2014-09",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:31.665019+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
