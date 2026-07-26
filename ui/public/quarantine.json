@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-26T17:14:53.334972+00:00",
+  "generated_at": "2026-07-26T17:32:09.246062+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1185,
+      "incident_id": 3651,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-26T17:32:05.212024+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1184,
       "incident_id": 3639,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-16T18:24:23.336863+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 184,
-      "incident_id": 733,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "charged",
-      "occurred_on": "2010-08",
-      "location": "Israel",
-      "summary_preview": "Rabbi Yitzchak Ginsburgh was arrested after authorities concluded that a book he authored advocated the killing of Arab civilians, including infants, as a form of self\u2011defense. He claimed the police misunderstood the text and was later rele",
-      "failed_at": "2026-06-16T18:24:18.959939+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
