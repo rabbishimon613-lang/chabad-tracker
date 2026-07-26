@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-26T21:11:16.523026+00:00",
+  "generated_at": "2026-07-26T21:24:59.013503+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1193,
+      "incident_id": 3667,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "AVB was abused by Daniel Hayman and David Cyprys at Yeshiva Bondi centre.",
+      "failed_at": "2026-07-26T21:24:56.577171+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1190,
       "incident_id": 3661,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-16T18:24:36.058141+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 192,
-      "incident_id": 737,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "drug_trafficking",
-      "severity": "charged",
-      "occurred_on": "2014-09",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": "Moshe \u201cMony\u201d Horenshtein, 27, was arrested alongside two other Crown Heights Chabad members in a federal drug\u2011trafficking sting involving a planned shipment of marijuana from Texas to Brooklyn. He was released on $500,000 bail.",
-      "failed_at": "2026-06-16T18:24:31.885753+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
