@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-26T21:24:59.013503+00:00",
+  "generated_at": "2026-07-26T21:38:15.612837+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1195,
+      "incident_id": 3671,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "AVB, a child abuse victim, alleged that he was sexually abused at Yeshiva Bondi centre in the 1980s.",
+      "failed_at": "2026-07-26T21:38:13.511719+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1194,
+      "incident_id": 3669,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "Daniel Hayman, a youth leader, was convicted of child sexual abuse at Yeshiva Bondi centre.",
+      "failed_at": "2026-07-26T21:38:13.304663+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1193,
       "incident_id": 3667,
@@ -14969,36 +14999,6 @@
       "location": "St. Paul, Minnesota, USA",
       "summary_preview": null,
       "failed_at": "2026-06-16T18:25:04.104612+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 194,
-      "incident_id": 738,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "drug_trafficking",
-      "severity": "charged",
-      "occurred_on": "2014-09",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": "Menachem Jacobson, 30, was arrested with two other Crown Heights Chabad members for attempting to buy 50\u202flb of marijuana for shipment to Brooklyn. He was released on $500,000 bail posted by Rabbi Boruch Jacobson of Hunter College Chabad.",
-      "failed_at": "2026-06-16T18:24:36.058141+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 195,
-      "incident_id": 738,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "drug_trafficking",
-      "severity": "charged",
-      "occurred_on": "2014-09",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:36.058141+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
