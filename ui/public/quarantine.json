@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-26T07:08:51.263672+00:00",
+  "generated_at": "2026-07-26T07:42:28.544007+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1173,
+      "incident_id": 3628,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "David Cyprys, a teacher at Yeshivah College, was accused of child sexual abuse.",
+      "failed_at": "2026-07-26T07:42:25.475159+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1174,
+      "incident_id": 3628,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-26T07:42:25.475159+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1175,
+      "incident_id": 3628,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "David Cyprys, a teacher at Yeshivah College, was accused of child sexual abuse.",
+      "failed_at": "2026-07-26T07:42:25.475159+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1171,
       "incident_id": 3624,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T18:24:15.402937+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 176,
-      "incident_id": 727,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2004-10",
-      "location": "Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:15.402937+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 173,
-      "incident_id": 726,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "1999",
-      "location": "Global (policy applied in Israel)",
-      "summary_preview": "The late Lubavitcher Rebbe is reported to have expressed doubts about the Jewish origins of Ethiopian immigrants and instructed Chabad schools to exclude them, resulting in a ban on Ethiopian children from Chabad educational institutions in",
-      "failed_at": "2026-06-16T18:24:15.091949+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 174,
-      "incident_id": 726,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "1999",
-      "location": "Global (policy applied in Israel)",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:15.091949+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
