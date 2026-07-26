@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-26T11:36:57.982604+00:00",
+  "generated_at": "2026-07-26T11:42:50.771739+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1180,
+      "incident_id": 3635,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "Daniel Hayman was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-26T11:42:48.444459+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1179,
+      "incident_id": 3634,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "David Cyprys was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-26T11:42:48.363770+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1176,
       "incident_id": 3629,
@@ -14969,36 +14999,6 @@
       "location": "Melbourne, Australia",
       "summary_preview": null,
       "failed_at": "2026-06-16T18:24:17.185454+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 179,
-      "incident_id": 729,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2005-03-21",
-      "location": "Mitzpor Ziv, West Bank, Israel",
-      "summary_preview": "Rabbi Yitzchak Ginsburgh spoke at a ceremony at the now\u2011disbanded illegal settler outpost Mitzpor Ziv, calling soldiers to disobey Israeli evacuation orders. The statement was reported in a 2005 blog post and characterized as incitement to ",
-      "failed_at": "2026-06-16T18:24:16.094654+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 180,
-      "incident_id": 729,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2005-03-21",
-      "location": "Mitzpor Ziv, West Bank, Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:16.094654+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
