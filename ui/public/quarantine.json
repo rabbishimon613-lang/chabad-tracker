@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-26T07:42:28.544007+00:00",
+  "generated_at": "2026-07-26T07:57:09.195167+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1176,
+      "incident_id": 3629,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne",
+      "summary_preview": "David Cyprys, a former employee of Yeshivah Centre, was accused of child sexual abuse.",
+      "failed_at": "2026-07-26T07:57:06.830979+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1177,
+      "incident_id": 3629,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne",
+      "summary_preview": null,
+      "failed_at": "2026-07-26T07:57:06.830979+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1178,
+      "incident_id": 3629,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne",
+      "summary_preview": "David Cyprys, a former employee of Yeshivah Centre, was accused of child sexual abuse.",
+      "failed_at": "2026-07-26T07:57:06.830979+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1173,
       "incident_id": 3628,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T18:24:16.094654+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 177,
-      "incident_id": 728,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2004-10",
-      "location": "Kiryat Malachi, Israel",
-      "summary_preview": "Rabbi Yeruslavski, the Chabad leader in Kiryat Malachi, defended the policy of not accepting Ethiopian children in Chabad schools, describing it as an internal matter unrelated to racism.",
-      "failed_at": "2026-06-16T18:24:15.874181+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 178,
-      "incident_id": 728,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2004-10",
-      "location": "Kiryat Malachi, Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:15.874181+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 175,
-      "incident_id": 727,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2004-10",
-      "location": "Israel",
-      "summary_preview": "Rabbi Menachem Brod publicly affirmed that Chabad schools do not accept Ethiopian children, citing the Rebbe\u2019s instruction and claiming the policy applies to any person whose Jewishness is in question.",
-      "failed_at": "2026-06-16T18:24:15.402937+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
