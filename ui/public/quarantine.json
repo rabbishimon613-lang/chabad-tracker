@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-26T11:47:23.984582+00:00",
+  "generated_at": "2026-07-26T12:10:45.984892+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1184,
+      "incident_id": 3639,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "Daniel Hayman was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-26T12:10:43.526234+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1183,
+      "incident_id": 3638,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "David Cyprys was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-26T12:10:43.423860+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1182,
       "incident_id": 3637,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-06-16T18:24:18.959939+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 185,
-      "incident_id": 733,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "charged",
-      "occurred_on": "2010-08",
-      "location": "Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:18.959939+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 183,
-      "incident_id": 731,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": "2008-04-??",
-      "location": "St. Louis, Missouri, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:17.961397+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
