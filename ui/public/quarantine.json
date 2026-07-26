@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-26T19:34:31.939099+00:00",
+  "generated_at": "2026-07-26T19:42:05.946413+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1187,
+      "incident_id": 3659,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "David Cyprys, a teacher at Yeshivah College, was accused of child sexual abuse.",
+      "failed_at": "2026-07-26T19:42:03.767157+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1188,
+      "incident_id": 3659,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-26T19:42:03.767157+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1189,
+      "incident_id": 3659,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "David Cyprys, a teacher at Yeshivah College, was accused of child sexual abuse.",
+      "failed_at": "2026-07-26T19:42:03.767157+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1186,
       "incident_id": 3654,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T18:24:31.665019+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 188,
-      "incident_id": 735,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2006-04",
-      "location": "Tel Aviv, Israel",
-      "summary_preview": "Rabbi Zalman Notik, a spiritual director at Torat Emet Yeshiva, was accused by Chabad spokesperson Menahem Brod of participating in the organization of a messianic rally that allegedly used the Chabad name without permission and engaged in ",
-      "failed_at": "2026-06-16T18:24:27.506795+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 189,
-      "incident_id": 735,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2006-04",
-      "location": "Tel Aviv, Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:24:27.506795+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 186,
-      "incident_id": 734,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2013",
-      "location": "Sydney, New South Wales, Australia",
-      "summary_preview": "Rabbi Pinchus Feldman, head of the Chabad-Lubavitch community in Sydney, is alleged to have operated a Ponzi scheme that defrauded victims of approximately $1.6 million, resulting in a beit din judgment against him and his son. He has paid ",
-      "failed_at": "2026-06-16T18:24:23.336863+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
