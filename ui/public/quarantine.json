@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-27T01:18:13.932331+00:00",
+  "generated_at": "2026-07-27T03:56:05.141767+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1204,
+      "incident_id": 3678,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "investigation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-27T03:56:00.416413+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1203,
+      "incident_id": 3677,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-27T03:55:58.290456+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1202,
       "incident_id": 3674,
@@ -14969,36 +14999,6 @@
       "location": "Melbourne, Victoria, Australia",
       "summary_preview": null,
       "failed_at": "2026-06-16T18:27:18.462742+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 204,
-      "incident_id": 744,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "convicted",
-      "occurred_on": "2013-09",
-      "location": "Los Angeles, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:00.314906+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 203,
-      "incident_id": 743,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": "1988",
-      "location": "New York, NY, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:26:45.943483+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
