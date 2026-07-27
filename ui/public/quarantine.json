@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-27T05:30:04.532347+00:00",
+  "generated_at": "2026-07-27T07:42:37.752812+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1206,
+      "incident_id": 3687,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": "2021-04-29",
+      "location": "Miami, FL, USA",
+      "summary_preview": null,
+      "failed_at": "2026-07-27T07:42:33.665802+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1207,
+      "incident_id": 3687,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": "2021-04-29",
+      "location": "Miami, FL, USA",
+      "summary_preview": "Yosef Benita, a teacher at Lubavitch Educational Center, was charged with child molestation.",
+      "failed_at": "2026-07-27T07:42:33.665802+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1205,
       "incident_id": 3681,
@@ -14969,36 +14999,6 @@
       "location": "Worcester, Massachusetts, USA",
       "summary_preview": null,
       "failed_at": "2026-06-16T18:27:30.687823+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 206,
-      "incident_id": 749,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2014",
-      "location": "Australia",
-      "summary_preview": "According to the article, Chabad officials assisted Rabbi David Kramer in fleeing Australia and facilitated his deportation without informing victims or the broader Jewish community, constituting an alleged cover\u2011up of his sexual\u2011abuse crim",
-      "failed_at": "2026-06-16T18:27:30.312380+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 207,
-      "incident_id": 749,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2014",
-      "location": "Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:30.312380+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
