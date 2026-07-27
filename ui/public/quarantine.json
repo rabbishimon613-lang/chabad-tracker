@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-27T12:44:39.414829+00:00",
+  "generated_at": "2026-07-27T14:56:05.876756+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1212,
+      "incident_id": 3702,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "David Cyprys allegedly abused boys at the Yeshivah Centre.",
+      "failed_at": "2026-07-27T14:56:03.385925+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1210,
+      "incident_id": 3701,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-27T14:56:03.276052+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1211,
+      "incident_id": 3701,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Rabbi Zvi Telsner allegedly abused boys at the Yeshivah Centre.",
+      "failed_at": "2026-07-27T14:56:03.276052+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1209,
       "incident_id": 3692,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T18:27:31.184285+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 213,
-      "incident_id": 752,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2010-08",
-      "location": null,
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:31.184285+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 210,
-      "incident_id": 751,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2010-08",
-      "location": null,
-      "summary_preview": "Rabbi Yaacov Yosef was summoned by police to answer questions about the controversial book \"Torat Hamelech\" and announced he would not appear for the scheduled interview.",
-      "failed_at": "2026-06-16T18:27:30.957766+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 211,
-      "incident_id": 751,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2010-08",
-      "location": null,
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:30.957766+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
