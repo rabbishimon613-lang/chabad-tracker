@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-27T15:13:26.227356+00:00",
+  "generated_at": "2026-07-27T15:31:10.751390+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1214,
+      "incident_id": 3704,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "Daniel Hayman was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-27T15:31:08.039332+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1213,
+      "incident_id": 3703,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "David Cyprys was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-27T15:31:07.948897+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1212,
       "incident_id": 3702,
@@ -14969,36 +14999,6 @@
       "location": null,
       "summary_preview": "Rabbi Yitzhak Shapira, author of the book \"Torat Hamelech,\" was questioned by police on suspicion of incitement for content that appears to permit killing non\u2011Jews under certain conditions.",
       "failed_at": "2026-06-16T18:27:31.486556+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 215,
-      "incident_id": 753,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2010-08",
-      "location": null,
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:31.486556+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 212,
-      "incident_id": 752,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2010-08",
-      "location": null,
-      "summary_preview": "Rabbi Dov Lior was summoned by police in connection with the \"Torat Hamelech\" case and failed to appear for the scheduled meeting.",
-      "failed_at": "2026-06-16T18:27:31.184285+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
     }
