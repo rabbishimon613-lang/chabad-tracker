@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-27T15:31:10.751390+00:00",
+  "generated_at": "2026-07-27T15:57:18.984223+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1216,
+      "incident_id": 3706,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "Daniel Hayman was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-27T15:57:16.243226+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1215,
+      "incident_id": 3705,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "David Cyprys was convicted of child abuse at Sydney's Yeshiva Bondi centre.",
+      "failed_at": "2026-07-27T15:57:16.167151+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1214,
       "incident_id": 3704,
@@ -14969,36 +14999,6 @@
       "location": "Toronto, Ontario, Canada",
       "summary_preview": "The daycare operated by Chabad of Midtown Toronto was reported to be unlicensed and not inspected, despite being presented to parents as a regulated facility. Program director D\u2019vora Deutsch stated the operation was legal under an exemption",
       "failed_at": "2026-06-16T18:27:31.718751+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 217,
-      "incident_id": 754,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2013",
-      "location": "Toronto, Ontario, Canada",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:31.718751+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 214,
-      "incident_id": 753,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "investigation",
-      "occurred_on": "2010-08",
-      "location": null,
-      "summary_preview": "Rabbi Yitzhak Shapira, author of the book \"Torat Hamelech,\" was questioned by police on suspicion of incitement for content that appears to permit killing non\u2011Jews under certain conditions.",
-      "failed_at": "2026-06-16T18:27:31.486556+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
     }
