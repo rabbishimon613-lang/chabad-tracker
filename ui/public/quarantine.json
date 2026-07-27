@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-27T20:39:37.982505+00:00",
+  "generated_at": "2026-07-27T20:53:00.824406+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1221,
+      "incident_id": 3728,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-27T20:52:58.397953+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1220,
       "incident_id": 3725,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-16T18:27:33.968864+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 220,
-      "incident_id": 756,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": "2010",
-      "location": "United States (specific city not stated)",
-      "summary_preview": "Levi Raichik pleaded guilty to participating in a scheme that defrauded Medicare of approximately $12\u202fmillion by providing unnecessary treatments to elderly and mentally ill patients. The fraud was carried out through a network of providers",
-      "failed_at": "2026-06-16T18:27:32.227763+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
