@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-27T07:51:06.270293+00:00",
+  "generated_at": "2026-07-27T08:53:22.087538+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1208,
+      "incident_id": 3689,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "charged",
+      "occurred_on": "1980s",
+      "location": "Sydney, Australia",
+      "summary_preview": "Daniel Hayman, a staff member at Yeshiva Bondi centre, was convicted of child abuse.",
+      "failed_at": "2026-07-27T08:53:19.391684+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1206,
       "incident_id": 3687,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-16T18:27:30.687823+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 209,
-      "incident_id": 750,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "tax_evasion",
-      "severity": "investigation",
-      "occurred_on": "2012-12",
-      "location": "Worcester, Massachusetts, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:30.687823+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
