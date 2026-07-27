@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-27T19:54:58.957742+00:00",
+  "generated_at": "2026-07-27T20:03:01.494860+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1217,
+      "incident_id": 3722,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "David Cyprys, a former teacher at Yeshivah College, was accused of child sexual abuse.",
+      "failed_at": "2026-07-27T20:02:59.181379+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1218,
+      "incident_id": 3722,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-27T20:02:59.181379+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1219,
+      "incident_id": 3722,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "David Cyprys, a former teacher at Yeshivah College, was accused of child sexual abuse.",
+      "failed_at": "2026-07-27T20:02:59.181379+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1216,
       "incident_id": 3706,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T18:27:32.227763+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 218,
-      "incident_id": 755,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2009-06-14",
-      "location": "Johannesburg, Gauteng, South Africa",
-      "summary_preview": "Barry Tannenbaum, a South African-born businessman, is accused of operating a Ponzi scheme that defrauded hundreds of investors of up to R15\u202fbillion. A South African court ordered the appointment of a liquidator for his estate, and a multi\u2011",
-      "failed_at": "2026-06-16T18:27:31.939785+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 219,
-      "incident_id": 755,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2009-06-14",
-      "location": "Johannesburg, Gauteng, South Africa",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:31.939785+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 216,
-      "incident_id": 754,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": "2013",
-      "location": "Toronto, Ontario, Canada",
-      "summary_preview": "The daycare operated by Chabad of Midtown Toronto was reported to be unlicensed and not inspected, despite being presented to parents as a regulated facility. Program director D\u2019vora Deutsch stated the operation was legal under an exemption",
-      "failed_at": "2026-06-16T18:27:31.718751+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
