@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-28T07:26:31.858574+00:00",
+  "generated_at": "2026-07-28T07:44:25.394907+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1222,
+      "incident_id": 3748,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-28T07:44:20.908803+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1223,
+      "incident_id": 3748,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-28T07:44:20.908803+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1224,
+      "incident_id": 3748,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-28T07:44:20.908803+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1221,
       "incident_id": 3728,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-16T18:27:34.262085+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 225,
-      "incident_id": 758,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2006",
-      "location": "Rockaway Township, New Jersey, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:34.262085+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 222,
-      "incident_id": 757,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": "2010",
-      "location": "United States (specific city not stated)",
-      "summary_preview": "Schmuel Fogelman pleaded guilty to taking part in the same Medicare fraud scheme that extracted about $12\u202fmillion by delivering unneeded medical services to vulnerable patients. The operation was tied to his Chabad familial connections.",
-      "failed_at": "2026-06-16T18:27:33.968864+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 223,
-      "incident_id": 757,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": "2010",
-      "location": "United States (specific city not stated)",
-      "summary_preview": null,
-      "failed_at": "2026-06-16T18:27:33.968864+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
