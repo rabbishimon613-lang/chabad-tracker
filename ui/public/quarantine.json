@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-28T20:40:45.831036+00:00",
+  "generated_at": "2026-07-28T20:47:49.696317+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1301,
+      "incident_id": 3802,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-28T20:47:47.228592+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1298,
       "incident_id": 3800,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-17T20:31:36.546785+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 302,
-      "incident_id": 833,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "tax_evasion",
-      "severity": "convicted",
-      "occurred_on": "2024-01-01",
-      "location": "Poway, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-17T20:31:36.546785+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
