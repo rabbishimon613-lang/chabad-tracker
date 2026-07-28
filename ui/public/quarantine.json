@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-28T07:44:25.394907+00:00",
+  "generated_at": "2026-07-28T10:03:40.435762+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1225,
+      "incident_id": 3752,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Yeshivah Centre in East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-28T10:03:37.088236+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1222,
       "incident_id": 3748,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-17T17:24:39.154833+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 224,
-      "incident_id": 758,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2006",
-      "location": "Rockaway Township, New Jersey, USA",
-      "summary_preview": "Asher Herson, a Chabad shliach, is accused of pressuring longtime residents David and Hilda Landsman to give him money, threatening to withdraw support for their community activities and allegedly influencing patronage of their bakery when ",
-      "failed_at": "2026-06-16T18:27:34.262085+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
