@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-28T22:41:27.689951+00:00",
+  "generated_at": "2026-07-28T23:10:37.968838+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1326,
+      "incident_id": 3812,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-28T23:10:34.875177+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1327,
+      "incident_id": 3812,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-28T23:10:34.875177+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1328,
+      "incident_id": 3812,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-28T23:10:34.875177+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1323,
       "incident_id": 3811,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-17T20:31:49.594137+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 327,
-      "incident_id": 901,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": "Poway, California, USA",
-      "summary_preview": "Multi-million dollar fraud",
-      "failed_at": "2026-06-17T20:31:48.840823+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 328,
-      "incident_id": 901,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": "Poway, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-17T20:31:48.840823+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 325,
-      "incident_id": 894,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "money_laundering",
-      "severity": "convicted",
-      "occurred_on": "2009-01-01",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": "Rebbe jailed",
-      "failed_at": "2026-06-17T20:31:47.505864+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
