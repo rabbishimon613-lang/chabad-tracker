@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-28T10:03:40.435762+00:00",
+  "generated_at": "2026-07-28T10:14:27.210808+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1226,
+      "incident_id": 3755,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Yeshivah Centre, Melbourne",
+      "summary_preview": null,
+      "failed_at": "2026-07-28T10:14:24.947038+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1225,
       "incident_id": 3752,
@@ -14984,21 +14999,6 @@
       "location": "Mumbai, Maharashtra, India",
       "summary_preview": null,
       "failed_at": "2026-06-17T17:24:39.607993+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 226,
-      "incident_id": 760,
-      "layer": 12,
-      "layer_name": "perpetrator_only",
-      "reason": "Source page describes the named person as a VICTIM, not a perpetrator. Doctrine reject \u2014 Chabad-as-victim cases are out of scope.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2010",
-      "location": "Mumbai, Maharashtra, India",
-      "summary_preview": null,
-      "failed_at": "2026-06-17T17:24:39.154833+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
