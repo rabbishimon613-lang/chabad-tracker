@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-29T15:34:08.669638+00:00",
+  "generated_at": "2026-07-29T16:57:28.097437+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1393,
+      "incident_id": 3862,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-29T16:57:24.866973+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1394,
+      "incident_id": 3862,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-29T16:57:24.866973+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1392,
       "incident_id": 3861,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-06-17T23:53:44.503224+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 395,
-      "incident_id": 1183,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "tax_evasion",
-      "severity": "convicted",
-      "occurred_on": "2022-01-01",
-      "location": "Escondido, US",
-      "summary_preview": null,
-      "failed_at": "2026-06-17T23:53:44.503224+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 393,
-      "incident_id": 1172,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "charged",
-      "occurred_on": "2013-01-01",
-      "location": "Paris, France",
-      "summary_preview": null,
-      "failed_at": "2026-06-17T23:53:23.973008+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
