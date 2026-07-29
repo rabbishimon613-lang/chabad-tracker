@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-29T16:57:28.097437+00:00",
+  "generated_at": "2026-07-29T17:23:45.311046+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1396,
+      "incident_id": 3865,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Victims of abuse alleged that Rabbi Zvi Telsner remained in a position of leadership at the Yeshivah Centre despite being disgraced.",
+      "failed_at": "2026-07-29T17:23:42.639892+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1395,
+      "incident_id": 3864,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-29T17:23:42.398354+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1393,
       "incident_id": 3862,
@@ -14969,36 +14999,6 @@
       "location": "San Diego, US",
       "summary_preview": "San Diego real estate agent sentenced 64 months for multi-million-dollar Ponzi schemes; also assisted Chabad of Poway rabbi Goldstein in fraudulently obtaining ~$1M in emergency grant funds.",
       "failed_at": "2026-06-17T23:53:53.375544+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 397,
-      "incident_id": 1187,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": "2022-01-01",
-      "location": "San Diego, US",
-      "summary_preview": null,
-      "failed_at": "2026-06-17T23:53:53.375544+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 394,
-      "incident_id": 1183,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "tax_evasion",
-      "severity": "convicted",
-      "occurred_on": "2022-01-01",
-      "location": "Escondido, US",
-      "summary_preview": "Escondido businessman convicted in Chabad of Poway tax evasion scheme with rabbi Goldstein; sentenced to 8 months, evaded ~$180K in taxes.",
-      "failed_at": "2026-06-17T23:53:44.503224+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
     }
