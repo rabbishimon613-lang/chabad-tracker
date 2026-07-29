@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-29T10:48:20.242737+00:00",
+  "generated_at": "2026-07-29T11:01:43.132258+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1370,
+      "incident_id": 3844,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Serebryanski was convicted of child sex abuse in a long-running scandal.",
+      "failed_at": "2026-07-29T11:01:40.211124+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1371,
+      "incident_id": 3844,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-29T11:01:40.211124+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1372,
+      "incident_id": 3844,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Serebryanski was convicted of child sex abuse in a long-running scandal.",
+      "failed_at": "2026-07-29T11:01:40.211124+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1367,
       "incident_id": 3841,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-17T23:52:04.930019+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 371,
-      "incident_id": 1099,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "charged",
-      "occurred_on": "2023-01-01",
-      "location": "New Jersey, USA",
-      "summary_preview": "Welfare fraud",
-      "failed_at": "2026-06-17T23:52:00.568897+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 372,
-      "incident_id": 1099,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "charged",
-      "occurred_on": "2023-01-01",
-      "location": "New Jersey, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-17T23:52:00.568897+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 369,
-      "incident_id": 1091,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "charged",
-      "occurred_on": null,
-      "location": "",
-      "summary_preview": "Yeshiva teacher arrested",
-      "failed_at": "2026-06-17T23:51:56.334311+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
