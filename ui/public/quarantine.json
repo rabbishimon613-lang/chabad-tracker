@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-29T15:27:37.533513+00:00",
+  "generated_at": "2026-07-29T15:34:08.669638+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1392,
+      "incident_id": 3861,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-29T15:34:05.928106+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1391,
       "incident_id": 3859,
@@ -14984,21 +14999,6 @@
       "location": "Paris, France",
       "summary_preview": null,
       "failed_at": "2026-06-17T23:53:23.973008+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 392,
-      "incident_id": 1162,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "investigation",
-      "occurred_on": "2010-01-01",
-      "location": "Israel",
-      "summary_preview": null,
-      "failed_at": "2026-06-17T23:53:14.310814+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
