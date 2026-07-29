@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-29T19:42:55.441902+00:00",
+  "generated_at": "2026-07-29T19:51:20.537543+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1406,
+      "incident_id": 3872,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission about Rabbi Zvi Telsner's position at Yeshivah Centre.",
+      "failed_at": "2026-07-29T19:51:15.849025+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1407,
+      "incident_id": 3872,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-29T19:51:15.849025+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1408,
+      "incident_id": 3872,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission about Rabbi Zvi Telsner's position at Yeshivah Centre.",
+      "failed_at": "2026-07-29T19:51:15.849025+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1403,
       "incident_id": 3869,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-18T05:02:58.528745+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 408,
-      "incident_id": 1220,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:02:56.545693+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 407,
-      "incident_id": 1219,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2022-01-01",
-      "location": "Tel Aviv, Israel",
-      "summary_preview": "Chabad Israel Financial Fraud",
-      "failed_at": "2026-06-18T05:02:55.164015+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 406,
-      "incident_id": 1218,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2011-01-01",
-      "location": "Sydney, Australia",
-      "summary_preview": "Cover-up of child sexual abuse allegations",
-      "failed_at": "2026-06-18T05:02:50.613329+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
