@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-30T19:51:47.819243+00:00",
+  "generated_at": "2026-07-30T19:59:24.238034+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1456,
+      "incident_id": 3925,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission regarding Rabbi Zvi Telsner's position at Yeshivah Centre.",
+      "failed_at": "2026-07-30T19:59:19.865492+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1457,
+      "incident_id": 3925,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T19:59:19.865492+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1458,
+      "incident_id": 3925,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission regarding Rabbi Zvi Telsner's position at Yeshivah Centre.",
+      "failed_at": "2026-07-30T19:59:19.865492+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1455,
       "incident_id": 3920,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-18T05:05:43.864785+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 457,
-      "incident_id": 1249,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "tax_evasion",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "New Jersey, USA",
-      "summary_preview": "Eliyahu Ezagui: New Jersey rabbi convicted of wire fraud and tax evasion for issuing false charitable donation receipts to wealthy donors.",
-      "failed_at": "2026-06-18T05:05:39.037826+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 458,
-      "incident_id": 1249,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "tax_evasion",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "New Jersey, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:05:39.037826+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 455,
-      "incident_id": 1248,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "2023-01-01",
-      "location": "New Jersey, USA",
-      "summary_preview": "Rabbi Sholom Ber Levitin: Chabad-affiliated rabbi convicted in 2023 of sex crimes against multiple victims in New Jersey.",
-      "failed_at": "2026-06-18T05:05:34.155475+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
