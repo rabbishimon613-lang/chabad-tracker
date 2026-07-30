@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-30T03:28:19.944683+00:00",
+  "generated_at": "2026-07-30T04:28:51.553199+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1432,
+      "incident_id": 3895,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-30T04:28:48.485898+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1433,
+      "incident_id": 3895,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T04:28:48.485898+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1434,
+      "incident_id": 3895,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-30T04:28:48.485898+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1429,
       "incident_id": 3894,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-18T05:04:34.025485+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 433,
-      "incident_id": 1235,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Deer Park, Long Island, New York",
-      "summary_preview": "Schmuel Fogelman: Man arrested for stealing $124,000 from Chabad of Roslyn on Long Island.",
-      "failed_at": "2026-06-18T05:04:29.154773+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 434,
-      "incident_id": 1235,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Deer Park, Long Island, New York",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:04:29.154773+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 431,
-      "incident_id": 1234,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2010-01-01",
-      "location": "USA",
-      "summary_preview": "Schmuel Fogelman: DOJ press release 2010 related to Chabad-connected fraud. Rabbi at Chabad of the Medical Area.",
-      "failed_at": "2026-06-18T05:04:24.500422+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
