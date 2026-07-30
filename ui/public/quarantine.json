@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-30T21:49:08.951773+00:00",
+  "generated_at": "2026-07-30T22:15:02.191967+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1467,
+      "incident_id": 3937,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-30T22:14:59.790764+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1464,
       "incident_id": 3935,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-18T05:06:06.752669+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 468,
-      "incident_id": 1255,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "convicted",
-      "occurred_on": "2009-01-01",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:06:06.752669+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
