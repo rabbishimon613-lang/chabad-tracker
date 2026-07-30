@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-30T09:36:26.231767+00:00",
+  "generated_at": "2026-07-30T10:03:23.669793+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1446,
+      "incident_id": 3906,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T10:03:20.793674+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1443,
       "incident_id": 3904,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-18T05:05:13.277825+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 445,
-      "incident_id": 1243,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Postville, Iowa, USA",
-      "summary_preview": "Aaron Rubashkin: Owner/manager at Agriprocessors kosher meat plant in Iowa, convicted of financial crimes including bank fraud and immigration violations related to the plant's collapse.",
-      "failed_at": "2026-06-18T05:05:08.528335+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
