@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-30T10:33:46.823744+00:00",
+  "generated_at": "2026-07-30T10:37:00.582348+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1447,
+      "incident_id": 3908,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T10:36:58.429167+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1446,
       "incident_id": 3906,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-18T05:05:13.277825+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 448,
-      "incident_id": 1244,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "South Bay, California",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:05:13.277825+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
