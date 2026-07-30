@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-30T13:03:11.252836+00:00",
+  "generated_at": "2026-07-30T14:25:29.008278+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1454,
+      "incident_id": 3916,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T14:25:26.378032+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1451,
       "incident_id": 3914,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-18T05:05:34.155475+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 453,
-      "incident_id": 1247,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "2023-01-01",
-      "location": "New York, NY, USA",
-      "summary_preview": "Rabbi Sholom Ber Levitin: New complaint filed in 2023 against Chabad rabbi for sexual abuse of minors in New York.",
-      "failed_at": "2026-06-18T05:05:29.381065+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
