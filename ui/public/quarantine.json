@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-30T04:40:10.089668+00:00",
+  "generated_at": "2026-07-30T06:36:21.248752+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1438,
+      "incident_id": 3900,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T06:36:18.929548+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1435,
       "incident_id": 3897,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-18T05:04:54.866347+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 437,
-      "incident_id": 1238,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "drug_trafficking",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Unknown",
-      "summary_preview": "Yochanan Levitansky: Yochanan Levitansky, Chabad-affiliated man, convicted of drug trafficking and fraud charges.",
-      "failed_at": "2026-06-18T05:04:44.096579+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
