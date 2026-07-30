@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-30T04:28:51.553199+00:00",
+  "generated_at": "2026-07-30T04:40:10.089668+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1435,
+      "incident_id": 3897,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-30T04:40:04.605707+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1436,
+      "incident_id": 3897,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T04:40:04.605707+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1437,
+      "incident_id": 3897,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-30T04:40:04.605707+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1432,
       "incident_id": 3895,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-18T05:04:44.096579+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 438,
-      "incident_id": 1238,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "drug_trafficking",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Unknown",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:04:44.096579+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 435,
-      "incident_id": 1236,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2024-01-01",
-      "location": "New York, NY, USA",
-      "summary_preview": "Schmuel Fogelman: New York rabbi indicted in 2024 on multiple counts of fraud involving charitable donations.",
-      "failed_at": "2026-06-18T05:04:34.025485+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 436,
-      "incident_id": 1236,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": "2024-01-01",
-      "location": "New York, NY, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:04:34.025485+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
