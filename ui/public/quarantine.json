@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-30T21:40:29.645962+00:00",
+  "generated_at": "2026-07-30T21:49:08.951773+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1464,
+      "incident_id": 3935,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-30T21:49:03.621801+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1465,
+      "incident_id": 3935,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T21:49:03.621801+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1466,
+      "incident_id": 3935,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-30T21:49:03.621801+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1463,
       "incident_id": 3929,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-18T05:06:06.752669+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 465,
-      "incident_id": 1253,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "other",
-      "severity": "convicted",
-      "occurred_on": "2011-01-01",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": "Rabbi Milton Balkany, the Bostoner Rebbe of Boro Park Brooklyn, convicted and sentenced by SDNY for extorting SAC Capital hedge fund. Threatened to expose alleged criminal activity at SAC unless paid. Federal fraud and extortion charges.",
-      "failed_at": "2026-06-18T05:05:57.605743+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 466,
-      "incident_id": 1253,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "other",
-      "severity": "convicted",
-      "occurred_on": "2011-01-01",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:05:57.605743+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 463,
-      "incident_id": 1252,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "tax_evasion",
-      "severity": "convicted",
-      "occurred_on": "2008-01-01",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": "Rabbi Naftali Tzvi Weisz, the Grand Rebbe of the Spinka Hasidic sect in Brooklyn, sentenced to 2 years federal prison for decade-long tax fraud scheme laundering millions through the Spinka sect. Collected donations and funneled money back ",
-      "failed_at": "2026-06-18T05:05:53.376306+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
