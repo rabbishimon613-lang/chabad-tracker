@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-07-30T07:19:39.247348+00:00",
+  "generated_at": "2026-07-30T07:53:28.457863+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1439,
+      "incident_id": 3902,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-30T07:53:23.259730+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1438,
       "incident_id": 3900,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-18T05:04:54.866347+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 440,
-      "incident_id": 1240,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "money_laundering",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Miami, Florida",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:04:54.866347+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
