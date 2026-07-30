@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-07-29T23:41:01.944944+00:00",
+  "generated_at": "2026-07-30T00:07:47.124867+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1418,
+      "incident_id": 3887,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "financial_fraud",
+      "severity": "convicted",
+      "occurred_on": null,
+      "location": null,
+      "summary_preview": null,
+      "failed_at": "2026-07-30T00:06:01.947297+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1419,
+      "incident_id": 3887,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "financial_fraud",
+      "severity": "convicted",
+      "occurred_on": null,
+      "location": null,
+      "summary_preview": "Rabbi Yisroel Goldstein was sentenced to prison for multi-million-dollar fraud schemes.",
+      "failed_at": "2026-07-30T00:06:01.947297+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1415,
       "incident_id": 3882,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-06-18T05:03:24.404238+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 420,
-      "incident_id": 1227,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "New York, NY, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:03:24.404238+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 418,
-      "incident_id": 1226,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "2014-01-01",
-      "location": "Melbourne, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:03:19.830299+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
