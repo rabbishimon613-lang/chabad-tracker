@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-31T08:20:05.600186+00:00",
+  "generated_at": "2026-07-31T10:04:09.969610+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1469,
+      "incident_id": 3960,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-31T10:04:06.737747+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1470,
+      "incident_id": 3960,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-31T10:04:06.737747+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1471,
+      "incident_id": 3960,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-31T10:04:06.737747+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1468,
       "incident_id": 3955,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-18T05:06:32.276536+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 470,
-      "incident_id": 1260,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "tax_evasion",
-      "severity": "convicted",
-      "occurred_on": "2021-01-01",
-      "location": "San Diego, California, USA",
-      "summary_preview": "Co-defendant in Chabad of Poway multi-million dollar tax evasion and fraud scheme. Pleaded guilty along with Rabbi Yisroel Goldstein and 10+ others.",
-      "failed_at": "2026-06-18T05:06:28.225835+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 471,
-      "incident_id": 1260,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "tax_evasion",
-      "severity": "convicted",
-      "occurred_on": "2021-01-01",
-      "location": "San Diego, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T05:06:28.225835+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 469,
-      "incident_id": 1259,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": "New Jersey, USA",
-      "summary_preview": "A New Jersey rabbi sentenced to 18 months in prison for human trafficking and prostitution of a 17-year-old girl.",
-      "failed_at": "2026-06-18T05:06:23.341665+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
