@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-07-31T21:45:34.013542+00:00",
+  "generated_at": "2026-07-31T22:31:52.405398+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1481,
+      "incident_id": 3991,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-31T22:31:49.756214+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1482,
+      "incident_id": 3991,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-07-31T22:31:49.756214+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1483,
+      "incident_id": 3991,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-07-31T22:31:49.756214+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1478,
       "incident_id": 3988,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-18T10:48:29.429275+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 482,
-      "incident_id": 1267,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "assault",
-      "severity": "convicted",
-      "occurred_on": "2015-01-01",
-      "location": "New Jersey, USA",
-      "summary_preview": "Avrohom Goldstein, 36, son of Jay Goldstein, convicted of conspiracy to commit kidnapping in New Jersey divorce coercion ring. Part of team that kidnapped Orthodox Jewish husbands to force religious divorces.",
-      "failed_at": "2026-06-18T10:48:19.055462+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 483,
-      "incident_id": 1267,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "assault",
-      "severity": "convicted",
-      "occurred_on": "2015-01-01",
-      "location": "New Jersey, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T10:48:19.055462+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 480,
-      "incident_id": 1266,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "assault",
-      "severity": "convicted",
-      "occurred_on": "2015-01-01",
-      "location": "New Jersey, USA",
-      "summary_preview": "Moshe Goldstein, 32, son of Jay Goldstein, convicted of conspiracy to commit kidnapping in New Jersey divorce coercion ring. Participated in Oct 2013 warehouse kidnapping of Orthodox Jewish husband to force religious divorce.",
-      "failed_at": "2026-06-18T05:06:56.826414+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
