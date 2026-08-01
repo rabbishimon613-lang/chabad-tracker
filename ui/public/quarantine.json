@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-01T17:14:15.037931+00:00",
+  "generated_at": "2026-08-01T17:29:28.372452+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1502,
+      "incident_id": 4042,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Zvi Telsner was alleged to have occupied a position of leadership within the Yeshivah Centre despite being disgraced.",
+      "failed_at": "2026-08-01T17:29:25.900516+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1501,
+      "incident_id": 4041,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-08-01T17:29:25.710588+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1498,
       "incident_id": 4032,
@@ -14969,36 +14999,6 @@
       "location": "USA",
       "summary_preview": null,
       "failed_at": "2026-06-18T10:48:54.825131+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 501,
-      "incident_id": 1282,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": "Moshe Friedman, 31, Brooklyn Orthodox man admitted to sexually abusing a young boy. Sentenced to 10 years probation and mental health diversion program \u2014 no prison time despite admission of abuse.",
-      "failed_at": "2026-06-18T10:48:53.618882+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 502,
-      "incident_id": 1282,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T10:48:53.618882+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
