@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-01T10:10:27.996372+00:00",
+  "generated_at": "2026-08-01T10:14:41.660717+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1489,
+      "incident_id": 4018,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-01T10:14:39.101502+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1488,
+      "incident_id": 4017,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-01T10:14:39.034716+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1487,
       "incident_id": 4005,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-06-18T10:48:33.957545+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 489,
-      "incident_id": 1272,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "assault",
-      "severity": "convicted",
-      "occurred_on": "2015-01-01",
-      "location": "Brooklyn, New York, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T10:48:33.661833+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 487,
-      "incident_id": 1271,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "financial_fraud",
-      "severity": "charged",
-      "occurred_on": "2021-01-01",
-      "location": "San Diego, California, USA",
-      "summary_preview": "Second San Diego Chabad rabbi named in the sprawling Chabad of Poway financial fraud case. Part of the wider network of defendants in the multi-million dollar tax evasion and fraud scheme.",
-      "failed_at": "2026-06-18T10:48:32.280308+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
