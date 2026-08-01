@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-01T01:13:16.371989+00:00",
+  "generated_at": "2026-08-01T03:42:53.791980+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1487,
+      "incident_id": 4005,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "other",
+      "severity": "null",
+      "occurred_on": "1896",
+      "location": "Lubavitch, Russia",
+      "summary_preview": "Rabbi Shalom Dov Ber Schneersohn opened a unique yeshiva in Lubavitch, Russia, where a significant part of the day was devoted to the study of Chassidic teachings.",
+      "failed_at": "2026-08-01T03:42:50.955545+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1484,
       "incident_id": 4000,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-18T10:48:32.280308+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 488,
-      "incident_id": 1271,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "charged",
-      "occurred_on": "2021-01-01",
-      "location": "San Diego, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T10:48:32.280308+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
