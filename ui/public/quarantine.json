@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-08-02T09:30:40.673160+00:00",
+  "generated_at": "2026-08-02T10:05:12.304183+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1509,
+      "incident_id": 4085,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-08-02T10:05:08.896633+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 1510,
+      "incident_id": 4085,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-02T10:05:08.896633+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1511,
+      "incident_id": 4085,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
+      "failed_at": "2026-08-02T10:05:08.896633+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1508,
       "incident_id": 4082,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-06-18T10:49:37.072113+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 512,
-      "incident_id": 1293,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "investigation",
-      "occurred_on": "2014-01-01",
-      "location": "Israel / Chicago, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T10:49:37.072113+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 510,
-      "incident_id": 1291,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "charged",
-      "occurred_on": "2017-01-01",
-      "location": "Lakewood, NJ, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T10:49:25.925857+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 509,
-      "incident_id": 1289,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": "2025-01-01",
-      "location": "Australia",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T10:49:16.468108+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
