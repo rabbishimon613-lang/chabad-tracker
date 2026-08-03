@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-03T21:29:51.465788+00:00",
+  "generated_at": "2026-08-03T21:50:17.763190+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1615,
+      "incident_id": 4214,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-03T21:50:14.964059+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1616,
+      "incident_id": 4214,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "Nechama Bendet, General Manager of the Yeshivah Centre, was accused of covering up child abuse allegations in the Victorian Government Inquiry into Handling of Child Abuse by Religious and Other Non-Government Organisations.",
+      "failed_at": "2026-08-03T21:50:14.964059+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1612,
       "incident_id": 4208,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-06-18T18:37:48.066139+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 616,
-      "incident_id": 1393,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": "2010-01-01",
-      "location": "Colonie, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T18:37:47.651657+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 614,
-      "incident_id": 1392,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "tax_evasion",
-      "severity": "convicted",
-      "occurred_on": "2021-01-01",
-      "location": "Poway, USA",
-      "summary_preview": "The director of the Poway Chabad, Yisroel Goldstein, was convicted of tax fraud in 2021. He was found guilty of underreporting income and falsifying records.",
-      "failed_at": "2026-06-18T18:37:47.161659+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
