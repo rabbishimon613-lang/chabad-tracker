@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-03T07:55:08.625489+00:00",
+  "generated_at": "2026-08-03T08:37:46.772241+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1540,
+      "incident_id": 4156,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse|cover_up",
+      "severity": "allegation|investigation",
+      "occurred_on": "null",
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-03T08:37:42.017347+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1537,
       "incident_id": 4151,
@@ -14984,21 +14999,6 @@
       "location": "Lakewood, NJ, USA",
       "summary_preview": null,
       "failed_at": "2026-06-18T15:53:30.813529+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 540,
-      "incident_id": 1317,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "tax_evasion",
-      "severity": "convicted",
-      "occurred_on": "2022-01-01",
-      "location": "San Diego, California, USA",
-      "summary_preview": null,
-      "failed_at": "2026-06-18T10:52:03.531586+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
