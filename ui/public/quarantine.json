@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-04T07:22:37.562833+00:00",
+  "generated_at": "2026-08-04T07:59:03.925816+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1642,
+      "incident_id": 4238,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-04T07:59:01.000301+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1639,
       "incident_id": 4234,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-06-18T18:39:05.599792+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 641,
-      "incident_id": 1410,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": "2024-01-01",
-      "location": "Sydney, Australia",
-      "summary_preview": "Rabbi Menachem Vorchheimer, a Chabad rabbi in Sydney, has been accused of covering up sexual abuse by another rabbi in his congregation in 2023-2024. He allegedly discouraged victims from reporting abuse to police.",
-      "failed_at": "2026-06-18T18:39:00.560186+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
