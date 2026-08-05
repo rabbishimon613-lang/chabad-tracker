@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-05T21:54:40.513621+00:00",
+  "generated_at": "2026-08-05T22:17:09.316616+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1738,
+      "incident_id": 4341,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-05T22:17:06.432064+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1737,
       "incident_id": 4338,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-07-02T14:24:42.796894+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 739,
-      "incident_id": 1869,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Yeshivah Centre, Melbourne",
-      "summary_preview": "Rabbi Zvi Telsner allegedly delivered sermons attacking child sexual abuse victims.",
-      "failed_at": "2026-07-02T14:24:42.796894+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
