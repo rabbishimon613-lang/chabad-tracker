@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-07T12:06:42.795633+00:00",
+  "generated_at": "2026-08-07T12:27:21.692884+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1800,
+      "incident_id": 4445,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-07T12:27:19.218925+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1801,
+      "incident_id": 4445,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "Rabbi Yitzchok D. Groner was accused of sexual abuse, allegedly linked to the disruptive behavior of a former student, Manny Waks, who attended Yeshivah College.",
+      "failed_at": "2026-08-07T12:27:19.218925+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1799,
       "incident_id": 4431,
@@ -14969,36 +14999,6 @@
       "location": "Yeshiva College, St Kilda, Victoria, Australia",
       "summary_preview": "David Cyprys pleaded guilty to multiple charges of indecent assault.",
       "failed_at": "2026-07-05T11:09:29.512803+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 801,
-      "incident_id": 2119,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "charged",
-      "occurred_on": null,
-      "location": "Yeshiva College, St Kilda, Victoria, Australia",
-      "summary_preview": "Rabbi David Kramer pleaded guilty to multiple charges of indecent assault.",
-      "failed_at": "2026-07-05T11:09:28.724062+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 800,
-      "incident_id": 2114,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "pleaded guilty",
-      "occurred_on": "null",
-      "location": "St Kilda, Victoria, Australia",
-      "summary_preview": "David Cyprys pleaded guilty to multiple charges of indecent assault.",
-      "failed_at": "2026-07-05T05:47:25.341266+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
     }
