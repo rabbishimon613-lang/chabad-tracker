@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-07T08:33:22.163455+00:00",
+  "generated_at": "2026-08-07T08:38:51.376437+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1789,
+      "incident_id": 4424,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-07T08:38:47.020946+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 1786,
       "incident_id": 4419,
@@ -14986,21 +15001,6 @@
       "failed_at": "2026-07-03T22:12:53.476430+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 789,
-      "incident_id": 1995,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "pleaded_guilty",
-      "occurred_on": null,
-      "location": "St Kilda, Victoria, Australia",
-      "summary_preview": "David Cyprys pleaded guilty to multiple charges of indecent assault at Yeshiva College St Kilda.",
-      "failed_at": "2026-07-03T22:12:51.063539+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
