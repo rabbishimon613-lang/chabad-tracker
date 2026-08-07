@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-07T15:34:44.592239+00:00",
+  "generated_at": "2026-08-07T16:03:15.134642+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1805,
+      "incident_id": 4457,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-07T16:03:10.665127+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1806,
+      "incident_id": 4457,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "The Yeshivah Centre's submission to the Victorian Government Inquiry into Handling of Child Abuse by Religious and Other Non-Government Organisations.",
+      "failed_at": "2026-08-07T16:03:10.665127+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1803,
       "incident_id": 4455,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-07-05T19:38:44.377770+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 806,
-      "incident_id": 2150,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Yeshivah Centre, East St. Kilda, Victoria, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-07-05T17:22:36.103441+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 805,
-      "incident_id": 2136,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "other",
-      "severity": "none",
-      "occurred_on": null,
-      "location": "Yeshivah College, St Kilda East, Victoria, Australia",
-      "summary_preview": "Rabbi Mordechai Berger was the principal of Yeshivah College.",
-      "failed_at": "2026-07-05T14:56:28.737557+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
