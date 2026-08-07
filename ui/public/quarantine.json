@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-07T15:22:33.801228+00:00",
+  "generated_at": "2026-08-07T15:34:44.592239+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1803,
+      "incident_id": 4455,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-07T15:34:42.081344+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1804,
+      "incident_id": 4455,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "Yeshivah Centre's submission to the Victorian Government Inquiry into Handling of Child Abuse by Religious and Other Non-Government Organisations.",
+      "failed_at": "2026-08-07T15:34:42.081344+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1802,
       "incident_id": 4448,
@@ -14969,36 +14999,6 @@
       "location": "Yeshivah College, St Kilda East, Victoria, Australia",
       "summary_preview": "Rabbi Mordechai Berger was the principal of Yeshivah College.",
       "failed_at": "2026-07-05T14:56:28.737557+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 804,
-      "incident_id": 2128,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "pleaded guilty",
-      "occurred_on": null,
-      "location": "Yeshiva College, St Kilda, Victoria, Australia",
-      "summary_preview": "David Cyprys pleaded guilty to multiple charges of indecent assault.",
-      "failed_at": "2026-07-05T12:47:00.585396+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 803,
-      "incident_id": 2127,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "pleaded guilty",
-      "occurred_on": null,
-      "location": "Yeshiva College, St Kilda, Victoria, Australia",
-      "summary_preview": "Rabbi David Kramer pleaded guilty to multiple charges of indecent assault.",
-      "failed_at": "2026-07-05T12:46:59.858167+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
     }
