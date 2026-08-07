@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-07T13:38:47.245558+00:00",
+  "generated_at": "2026-08-07T13:47:37.366664+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1802,
+      "incident_id": 4448,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "other",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Manny Waks believes his disruptive behaviour and rebellion against his strict Hasidic upbringing can potentially be linked to abuse he says he was subjected to at the Orthodox Jewish school in St Kilda East.",
+      "failed_at": "2026-08-07T13:47:34.918723+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1800,
       "incident_id": 4445,
@@ -14984,21 +14999,6 @@
       "location": "Yeshiva College, St Kilda, Victoria, Australia",
       "summary_preview": "Rabbi David Kramer pleaded guilty to multiple charges of indecent assault.",
       "failed_at": "2026-07-05T12:46:59.858167+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 802,
-      "incident_id": 2120,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "charged",
-      "occurred_on": null,
-      "location": "Yeshiva College, St Kilda, Victoria, Australia",
-      "summary_preview": "David Cyprys pleaded guilty to multiple charges of indecent assault.",
-      "failed_at": "2026-07-05T11:09:29.512803+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
     }
