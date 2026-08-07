@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-07T18:29:38.929815+00:00",
+  "generated_at": "2026-08-07T19:08:36.678710+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 1807,
+      "incident_id": 4471,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-07T19:08:33.894481+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 1808,
+      "incident_id": 4471,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Pinchas Ash was allegedly involved in covering up sexual abuse at Yeshivah Centre - Lubavitch.",
+      "failed_at": "2026-08-07T19:08:33.894481+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 1805,
       "incident_id": 4457,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-07-05T23:12:11.376082+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 808,
-      "incident_id": 2163,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Yeshivah Centre, Melbourne",
-      "summary_preview": null,
-      "failed_at": "2026-07-05T21:40:10.601141+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 807,
-      "incident_id": 2156,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "null",
-      "location": "St Kilda East, Victoria, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-07-05T19:38:44.377770+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
