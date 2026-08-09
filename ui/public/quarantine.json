@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-09T10:52:02.213742+00:00",
+  "generated_at": "2026-08-09T11:00:50.979355+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2146,
+      "incident_id": 4734,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-09T11:00:47.026724+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 2143,
       "incident_id": 4727,
@@ -14984,21 +14999,6 @@
       "location": "Sydney, Australia",
       "summary_preview": "Daniel Hayman was convicted of child sexual abuse at Sydney's Yeshiva Bondi centre.",
       "failed_at": "2026-07-25T11:40:54.064713+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 1146,
-      "incident_id": 3560,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "convicted",
-      "occurred_on": "1980s",
-      "location": "Sydney, Australia",
-      "summary_preview": "David Cyprys was convicted of child sexual abuse at Sydney's Yeshiva Bondi centre.",
-      "failed_at": "2026-07-25T11:40:53.958708+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
     }
