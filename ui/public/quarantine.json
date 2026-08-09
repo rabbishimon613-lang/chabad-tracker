@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-09T19:54:59.898351+00:00",
+  "generated_at": "2026-08-09T20:03:15.435214+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2195,
+      "incident_id": 4794,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-09T20:03:12.971231+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 2196,
+      "incident_id": 4794,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC, Australia",
+      "summary_preview": "Rabbi Elisha Gr was mentioned in a submission to the Victorian Government Inquiry into Handling of Child Abuse by Religious and Other Non-Government Organisations.",
+      "failed_at": "2026-08-09T20:03:12.971231+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 2193,
       "incident_id": 4793,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-07-26T23:41:03.739471+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 1198,
-      "incident_id": 3672,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, Victoria, Australia",
-      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
-      "failed_at": "2026-07-26T23:41:03.739471+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 1195,
-      "incident_id": 3671,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": "1980s",
-      "location": "Sydney, Australia",
-      "summary_preview": "AVB, a child abuse victim, alleged that he was sexually abused at Yeshiva Bondi centre in the 1980s.",
-      "failed_at": "2026-07-26T21:38:13.511719+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
