@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-09T02:50:43.133313+00:00",
+  "generated_at": "2026-08-09T04:24:37.265985+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2098,
+      "incident_id": 4691,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-09T04:24:34.386904+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 2099,
+      "incident_id": 4691,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "Melbourne, Australia",
+      "summary_preview": "Rabbi Pinchus Feldman was accused of sexual abuse during his tenure as the leader of the Yeshivah Centre in Melbourne.",
+      "failed_at": "2026-08-09T04:24:34.386904+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 2095,
       "incident_id": 4687,
@@ -14969,36 +14999,6 @@
       "location": "Melbourne, Victoria, Australia",
       "summary_preview": null,
       "failed_at": "2026-07-23T17:41:15.119346+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 1101,
-      "incident_id": 3422,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Melbourne, Victoria, Australia",
-      "summary_preview": "David Cyprys was accused of child sexual abuse, and the Yeshivah Centre and Yeshivah College were criticized for their response.",
-      "failed_at": "2026-07-23T17:41:15.119346+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 1098,
-      "incident_id": 3411,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Melbourne, Victoria, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-07-23T10:51:25.265633+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
