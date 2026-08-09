@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-09T15:55:46.788262+00:00",
+  "generated_at": "2026-08-09T16:03:15.457352+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2159,
+      "incident_id": 4760,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-09T16:03:13.054998+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 2156,
       "incident_id": 4747,
@@ -14984,21 +14999,6 @@
       "location": "Safed, Israel",
       "summary_preview": null,
       "failed_at": "2026-07-25T23:31:47.678636+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 1159,
-      "incident_id": 3603,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "Safed, Israel",
-      "summary_preview": null,
-      "failed_at": "2026-07-25T23:05:21.071031+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
     }
