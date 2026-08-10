@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-10T11:54:47.272826+00:00",
+  "generated_at": "2026-08-10T12:06:54.976655+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2284,
+      "incident_id": 4853,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-10T12:06:47.288921+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 2283,
+      "incident_id": 4852,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-10T12:06:47.213447+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 2280,
       "incident_id": 4850,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-07-28T16:57:00.410128+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 1286,
-      "incident_id": 3786,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, VIC, Australia",
-      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
-      "failed_at": "2026-07-28T16:57:00.410128+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 1281,
-      "incident_id": 3785,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, VIC, Australia",
-      "summary_preview": "Rabbi Zvi Telsner allegedly committed child sexual abuse at the Yeshivah Centre.",
-      "failed_at": "2026-07-28T15:28:04.935801+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
