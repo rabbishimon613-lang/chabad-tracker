@@ -1,7 +1,22 @@
 {
-  "generated_at": "2026-08-10T15:36:42.339458+00:00",
+  "generated_at": "2026-08-10T16:30:54.013971+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2291,
+      "incident_id": 4866,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-10T16:30:51.389577+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
     {
       "id": 2290,
       "incident_id": 4865,
@@ -14984,21 +14999,6 @@
       "location": "East St. Kilda, Australia",
       "summary_preview": "Rabbi Aaron Serebryanski\u2019s son was linked to Melbourne\u2019s Yeshivah Centre, a Chabad umbrella organization that was implicated in helping the offenders cover up their misdeeds.",
       "failed_at": "2026-07-28T19:46:10.589476+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 1291,
-      "incident_id": 3797,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "other",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, Australia",
-      "summary_preview": "Manny Waks believes his disruptive behaviour, rebellion against his strict Hasidic upbringing, and his current lack of observance can potentially be linked to abuse he says he was subjected to at the Yeshivah College.",
-      "failed_at": "2026-07-28T19:46:10.479934+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
     }
