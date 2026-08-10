@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-10T08:55:43.134522+00:00",
+  "generated_at": "2026-08-10T09:01:06.027512+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2265,
+      "incident_id": 4839,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-10T09:01:01.340878+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 2266,
+      "incident_id": 4839,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "cover_up",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "St Kilda East, Victoria, Australia",
+      "summary_preview": "The Yeshivah Centre's submission to the Victorian Government Inquiry into Handling of Child Abuse by Religious and Other Non-Government Organisations.",
+      "failed_at": "2026-08-10T09:01:01.340878+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 2263,
       "incident_id": 4838,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-07-28T14:57:42.716468+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 1268,
-      "incident_id": 3777,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, VIC, Australia",
-      "summary_preview": "Rabbi Aaron Serebryanski's family was linked to the cover-up of child sex abuse at the Yeshivah Centre.",
-      "failed_at": "2026-07-28T14:57:42.716468+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 1263,
-      "incident_id": 3774,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, VIC, Australia",
-      "summary_preview": "Cyprys is linked to Melbourne\u2019s Yeshivah Centre, which allegedly helped offenders cover up their misdeeds.",
-      "failed_at": "2026-07-28T14:40:48.289333+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
