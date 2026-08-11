@@ -1,7 +1,37 @@
 {
-  "generated_at": "2026-08-11T09:28:48.603767+00:00",
+  "generated_at": "2026-08-11T09:41:00.914520+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2349,
+      "incident_id": 4920,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC 3183 Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-11T09:40:55.502475+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 2350,
+      "incident_id": 4920,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "allegation",
+      "occurred_on": null,
+      "location": "East St. Kilda, VIC 3183 Australia",
+      "summary_preview": "Rabbi Yitzchok D. Groner was mentioned in a submission to the Victorian Government Inquiry into Handling of Child Abuse by Religious and Other Non-Government Organisations.",
+      "failed_at": "2026-08-11T09:40:55.502475+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 2346,
       "incident_id": 4915,
@@ -14971,36 +15001,6 @@
       "failed_at": "2026-07-29T01:08:15.988108+00:00",
       "audit_status": "quarantined",
       "name_redacted": true
-    },
-    {
-      "id": 1352,
-      "incident_id": 3824,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, Victoria, Australia",
-      "summary_preview": "Aaron Kestecher allegedly committed child sexual abuse at Yeshivah College.",
-      "failed_at": "2026-07-29T01:08:15.988108+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 1347,
-      "incident_id": 3823,
-      "layer": 1,
-      "layer_name": "url_liveness",
-      "reason": "Every source URL on file returns an error (link rot).",
-      "type": "sexual_abuse",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, Victoria, Australia",
-      "summary_preview": "David Kramer allegedly committed child sexual abuse at Yeshivah College.",
-      "failed_at": "2026-07-29T01:08:15.794580+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
     }
   ]
 }
