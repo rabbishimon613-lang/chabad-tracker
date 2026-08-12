@@ -1,7 +1,52 @@
 {
-  "generated_at": "2026-08-12T00:05:55.171535+00:00",
+  "generated_at": "2026-08-12T00:42:01.629279+00:00",
   "count": 1000,
   "items": [
+    {
+      "id": 2419,
+      "incident_id": 4995,
+      "layer": 1,
+      "layer_name": "url_liveness",
+      "reason": "Every source URL on file returns an error (link rot).",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Rabbi Aaron Serebryanski was convicted of child sex abuse.",
+      "failed_at": "2026-08-12T00:41:59.142106+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
+    {
+      "id": 2420,
+      "incident_id": 4995,
+      "layer": 2,
+      "layer_name": "name_on_page",
+      "reason": "The named person does not appear in any source page.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": null,
+      "failed_at": "2026-08-12T00:41:59.142106+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": true
+    },
+    {
+      "id": 2421,
+      "incident_id": 4995,
+      "layer": 3,
+      "layer_name": "verbatim_quote",
+      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
+      "type": "sexual_abuse",
+      "severity": "convicted",
+      "occurred_on": null,
+      "location": "Melbourne, Victoria, Australia",
+      "summary_preview": "Rabbi Aaron Serebryanski was convicted of child sex abuse.",
+      "failed_at": "2026-08-12T00:41:59.142106+00:00",
+      "audit_status": "quarantined",
+      "name_redacted": false
+    },
     {
       "id": 2416,
       "incident_id": 4985,
@@ -14956,51 +15001,6 @@
       "failed_at": "2026-07-30T00:52:43.663742+00:00",
       "audit_status": "quarantined",
       "name_redacted": false
-    },
-    {
-      "id": 1421,
-      "incident_id": 3888,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, Victoria, Australia",
-      "summary_preview": null,
-      "failed_at": "2026-07-30T00:52:43.663742+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
-    },
-    {
-      "id": 1422,
-      "incident_id": 3888,
-      "layer": 3,
-      "layer_name": "verbatim_quote",
-      "reason": "No claimed quote appears in its source page \u2014 likely fabricated.",
-      "type": "cover_up",
-      "severity": "allegation",
-      "occurred_on": null,
-      "location": "East St. Kilda, Victoria, Australia",
-      "summary_preview": "Rabbi Chaim Tsvi Groner allegedly provided false or misleading evidence to the Royal Commission.",
-      "failed_at": "2026-07-30T00:52:43.663742+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": false
-    },
-    {
-      "id": 1418,
-      "incident_id": 3887,
-      "layer": 2,
-      "layer_name": "name_on_page",
-      "reason": "The named person does not appear in any source page.",
-      "type": "financial_fraud",
-      "severity": "convicted",
-      "occurred_on": null,
-      "location": null,
-      "summary_preview": null,
-      "failed_at": "2026-07-30T00:06:01.947297+00:00",
-      "audit_status": "quarantined",
-      "name_redacted": true
     }
   ]
 }
